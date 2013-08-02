@@ -1,3 +1,4 @@
+% -*- pdf: BrettTerespolskyMScDissertation.pdf -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Thesis 
 % LaTeX Template
@@ -27,10 +28,27 @@
 
 \documentclass[11pt, a4paper, oneside]{Thesis} % Paper size, default font size and one-sided paper
 
-\graphicspath{{./Pictures/}} % Specifies the directory where pictures are stored
+\graphicspath{{./Figures/}} % Specifies the directory where pictures are stored
 
 \usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
-\hypersetup{urlcolor=blue, colorlinks=true} % Colors hyperlinks in blue - change to black if annoying
+\usepackage[inline]{trackchanges}
+% trackchanges package options:
+% finalold  - Reject all edits. Refrain from using this.
+% finalnew  - Accept all edits. Refrain from using this.
+% The above two options should not be used, rather the trackchanges.py application must be used. Alternatively there is the acceptchanges.py for the terminal but check options carefully
+% footnotes - Display edits as footnotes. 
+% margins   - Display edits as margin notes. 
+% inline    - Display edits inline.
+\addeditor{KJN}
+\addeditor{BRT}
+% Usage of trackchanges below
+% \add[editor]{added text}
+% \remove[editor]{removed text}
+% \change[editor]{removed text}{added text}
+% \note[editor]{note text}
+% \annote[editor]{text to annotate}{note text}
+
+\hypersetup{urlcolor=blue, colorlinks=false} % Colors hyperlinks in blue - change to black if annoying
 \title{\ttitle} % Defines the thesis title - don't touch this
 
 \begin{document}
@@ -65,7 +83,7 @@
 \textsc{\Large Masters Dissertation}\\[0.5cm] % Thesis type
 
 \HRule \\[0.4cm] % Horizontal line
-{\huge \bfseries \ttitle}\\[0.4cm] % Thesis title
+{\huge \bfseries \ttitle \note[BRT]{Need to find a suitable title}}\\[0.4cm] % Thesis title
 \HRule \\[1.5cm] % Horizontal line
  
 \begin{minipage}{0.4\textwidth}

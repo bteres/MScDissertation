@@ -31,6 +31,14 @@
 \graphicspath{{./Figures/}} % Specifies the directory where pictures are stored
 
 \usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
+\usepackage{har2nat}
+\makeatletter
+\def\@mb@citenamelist{cite,citep,citet,citealp,citealt}
+\makeatother
+\usepackage{multibib}
+\newcites{bib}{Bibliography}
+\renewcommand{\bibname}{References}
+\usepackage{tocbibind}
 \usepackage[inline]{trackchanges}
 % trackchanges package options:
 % finalold  - Reject all edits. Refrain from using this.
@@ -303,12 +311,21 @@ $\omega$ & angular frequency & rads$^{-1}$ \\
 
 \label{Bibliography}
 
-\lhead{\emph{Bibliography}} % Change the page header to say "Bibliography"
+\lhead{\emph{References}} % Change the page header to say "Bibliography"
 
-\bibliographystyle{unsrtnat} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+\bibliographystyle{ieeetr} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
 
 \bibliography{Bibliography} % The references (bibliography) information are stored in the file named "Bibliography.bib"
 
-blah blah
+\lhead{\emph{Bibliography}}
+
+\bibliographystylebib{apa}
+
+\makeatletter
+\def\@biblabel#1{\hspace*{-\labelsep}}
+\makeatother
+
+\bibliographybib{Bibliography}
+\nocitebib{*}
 
 \end{document}  

@@ -55,6 +55,15 @@
 % \change[editor]{removed text}{added text}
 % \note[editor]{note text}
 % \annote[editor]{text to annotate}{note text}
+\makeatletter
+\def\input@path{{./Primitives/}}
+\makeatother
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{external}
+\tikzexternalize[prefix=TikzFigures/] %  activate!
+
+\pgfplotscreateplotcyclelist{linestyles*}{solid,dashed, dotted, loosely dashed, loosely dotted, loosely dashdotted}
 
 \hypersetup{urlcolor=blue, colorlinks=false} % Colors hyperlinks in blue - change to black if annoying
 \title{\ttitle} % Defines the thesis title - don't touch this

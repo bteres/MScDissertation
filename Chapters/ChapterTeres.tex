@@ -1,38 +1,91 @@
 % -*- root: ../main.tex -*-
 % Chapter Template
+\tikzset{declare function={
+    rise(\t,\ta,\n) = and(\t >= 0, \t < \ta/(2^(2/\n))) * 2*(\t/\ta)^\n    +
+    and(\t >= \ta/2^(2/\n), \t< \ta) * ((-2)*(\t/\ta)^\n + 4*(\t/\ta)^(\n/2) - 1)     +
+     (\t>\ta) * (1);
+  },
+  declare function={
+    fall(\t,\tb) = exp(-\t/\tb);
+  },
+  declare function={
+    teres(\t,\ta,\tb,\n,\I,\e) = (\I/\e)*fall(\t,\tb)*rise(\t,\ta,\n);
+  }}
 
 \chapter{The Terespolsky Function} % Main chapter title
 
 \label{ChapterTeres} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
 \lhead{\chaptername~\thechapter. \emph{The Terespolsky Function}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+\begin{quote}
+\note[BRT]{Chapter abstract goes here!}
+\end{quote}
 
-%----------------------------------------------------------------------------------------
-%	SECTION 1
-%----------------------------------------------------------------------------------------
+\section{Overview}
 
-\section{Main Section 1}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut, tempus sed arcu. Quisque molestie, ante a tincidunt ullamcorper, sapien enim dignissim lacus, in semper nibh erat lobortis purus. Integer dapibus ligula ac risus convallis pellentesque.
+\section{Function Definition and Properties}
+The Terespolsky function is an approximation of the Heidler function with the advantage that it has an analytical solution in the frequency domain. Moreover it is still ``customizable'', meaning that the steepness of the graph, the rise and fall times and peak current can all be modified. This allows for analyses using 10/350, 8/20 and any other lightning waveforms required.
 
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Subsection 1}
+The Terespolsky function is defined in \eqnref{eqn:TF}
+\input{AdditionalFiles/TeresFunc}
+Where: \\
+\begin{tabular}{cll}
+	$I_0$ & = & Peak current [kA] \\
+	$\eta$ & = & Correction factor of peak current \\
+	$\tau_1$ & = & Rise time constant [s] \\
+	$\tau_2$ & = & Fall time constant [s] \\
+	$n$ & = & Steepness factor
+\end{tabular}\\
 
-Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Vivamus sodales tortor eget quam adipiscing in vulputate ante ullamcorper. Sed eros ante, lacinia et sollicitudin et, aliquam sit amet augue. In hac habitasse platea dictumst.
+Modifying these properties gives the desired lightning current waveform. An example plot of this function can be seen in \figref{fig:TeresFuncEX}.
+\begin{figure}[]
+	\centering
+	\tikzsetnextfilename{TeresFuncEx}
+	\input{TeresFuncEx}
+	\caption{Graph of an example Terespolsky function lightning current waveform.}
+	\label{fig:TeresFuncEX}
+\end{figure}
+As with the Heidler function, the Terespolsky function can be rewritten as in \eqnref{eqn:TFSmall}.
+\begin{equation}
+i(t) = \frac{I_0}{\eta} x \left( t \right) y \left( t \right)
+\label{eqn:TFSmall}
+\end{equation}
+where the function in \eqnref{eqn:TFrise}
+\begin{equation}
+	x \left( t \right) = \left\{
+	  \begin{array}{l l}
+	    2 \left( \frac{t}{\tau_1} \right )^n & \quad \textrm{for $0 \leq t < \frac{\tau_1}{2^{\frac{2}{n}}}$} \\
+	    -2 \left( \frac{t}{\tau_1} \right )^n +4 \left( \frac{t}{\tau_1} \right )^{\frac{n}{2}} -1 & \quad \textrm{for $\frac{\tau_1}{2^{\frac{2}{n}}} \leq t < \tau_1$} \\
+	    1 & \quad \textrm{for $t \geq \tau_1$}
+	  \end{array} \right.
+	\label{eqn:TFrise}
+\end{equation}
+is the current-rise function and the function in \eqnref{eqn:TFfall}
+\begin{equation}
+	y \left( t \right) = e^{-\frac{t}{\tau_2}}
+	\label{eqn:TFfall}
+\end{equation}
+is the current-decay function.
 
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
+It is clear that the Terespolsky function takes the same form as the Heidler function (see \secref{sec:bg_heidler}). The difference is in $x \left( t \right)$ which is not directly integrate-able in the Heidler function but can be integrated and hence transformed into the frequency domain in the Terespolsky function.
 
-\subsection{Subsection 2}
-Morbi rutrum odio eget arcu adipiscing sodales. Aenean et purus a est pulvinar pellentesque. Cras in elit neque, quis varius elit. Phasellus fringilla, nibh eu tempus venenatis, dolor elit posuere quam, quis adipiscing urna leo nec orci. Sed nec nulla auctor odio aliquet consequat. Ut nec nulla in ante ullamcorper aliquam at sed dolor. Phasellus fermentum magna in augue gravida cursus. Cras sed pretium lorem. Pellentesque eget ornare odio. Proin accumsan, massa viverra cursus pharetra, ipsum nisi lobortis velit, a malesuada dolor lorem eu neque.
+\subsection{Steepness Factor}
 
-%----------------------------------------------------------------------------------------
-%	SECTION 2
-%----------------------------------------------------------------------------------------
 
-\section{Main Section 2}
+\subsection{Rise Time}
 
-Sed ullamcorper quam eu nisl interdum at interdum enim egestas. Aliquam placerat justo sed lectus lobortis ut porta nisl porttitor. Vestibulum mi dolor, lacinia molestie gravida at, tempus vitae ligula. Donec eget quam sapien, in viverra eros. Donec pellentesque justo a massa fringilla non vestibulum metus vestibulum. Vestibulum in orci quis felis tempor lacinia. Vivamus ornare ultrices facilisis. Ut hendrerit volutpat vulputate. Morbi condimentum venenatis augue, id porta ipsum vulputate in. Curabitur luctus tempus justo. Vestibulum risus lectus, adipiscing nec condimentum quis, condimentum nec nisl. Aliquam dictum sagittis velit sed iaculis. Morbi tristique augue sit amet nulla pulvinar id facilisis ligula mollis. Nam elit libero, tincidunt ut aliquam at, molestie in quam. Aenean rhoncus vehicula hendrerit.
+
+\subsection{Fall Time}
+
+
+\subsection{Delayed Function}
+
+
+\section{Time Domain Analysis}
+
+
+\section{Frequency Domain Analysis}
+
+
+\section{Conslusion}

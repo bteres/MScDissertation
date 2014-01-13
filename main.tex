@@ -30,6 +30,7 @@
 
 \graphicspath{{./Figures/}} % Specifies the directory where pictures are stored
 
+\usepackage{Extras}
 \usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
 \usepackage{har2nat}
 \makeatletter
@@ -327,7 +328,7 @@ $\omega$ & angular frequency & rads$^{-1}$ \\
 \lhead{\emph{References}} % Change the page header to say "Bibliography"
 
 \bibliographystyle{ieeetr} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
-
+% \nocite{*}
 \bibliography{Bibliography} % The references (bibliography) information are stored in the file named "Bibliography.bib"
 
 \lhead{\emph{Bibliography}}

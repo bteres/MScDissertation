@@ -1,0 +1,22 @@
+\begin{tikzpicture}[
+  scale = 1.5,
+]
+  \begin{axis}[
+    xlabel=Time ($\mu s$),
+    ylabel=Current ($kA$),
+    grid=both,
+    /pgf/number format/1000 sep={},
+    xmin=0,
+    xmax=500e-6,
+    ymin=0,
+    ymax=4.1,
+    cycle list name=linestyles*,
+    scaled x ticks={base 10:6},
+    xtick scale label code/.code={},
+    samples=1000
+  ]
+    
+    \addplot+[domain=0:500e-6] {heidler(\x, 19e-6, 485e-6, 10, 4, 0.93)};
+
+  \end{axis}
+\end{tikzpicture}

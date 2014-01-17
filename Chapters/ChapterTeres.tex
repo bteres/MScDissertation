@@ -10,6 +10,12 @@
   },
   declare function={
     teres(\t,\ta,\tb,\n,\I,\e) = (\I/\e)*fall(\t,\tb)*rise(\t,\ta,\n);
+  },
+  declare function={
+  	hrise(\t,\ta,\n) = ((\t/\ta)^\n)/(1 + (\t/\ta)^\n);
+  },
+  declare function={
+  	heidler(\t,\ta,\tb,\n,\I,\e) = (\I/\e)*hrise(\t,\ta,\n)*fall(\t,\tb);
   }}
 
 \chapter{The Terespolsky Function} % Main chapter title
@@ -21,10 +27,63 @@
 \note[BRT]{Chapter abstract goes here!}
 \end{quote}
 
-\section{Overview}
+%----------------------------------------------------------------------------------------
+%	Overview
+%----------------------------------------------------------------------------------------
 
+\section{Overview}
+\label{sec:overview}
+
+%----------------------------------------------------------------------------------------
+%	Developing the Terespolsky Function
+%----------------------------------------------------------------------------------------
+
+\section{Developing the Terespolsky Function}
+\label{sec:developing_the_}
+
+As outlined in Chapter~\ref{ChapterApproach}, the Terespolsky function has certain criteria. Firstly, it must approximate the Heidler function in the time domain. Secondly, it must have an analytical solution to its integral. Lastly, it must match the lightning parameters set out in \cite{IEC623051}, the \textbf{IEC 62305 Lightning Protection Standard}. With these criteria in mind the Terespolsky function is developed. This requires one to first analyse the Heidler function and then using the information obtained, redefine the ``problem'' areas.
+
+An example of the Heidler function can be seen in \figref{fig:HeidlerFunction}. This function is defined by \eqnref{eqn:HF} in Section~\ref{sec:bg_heidler}.
+\inputtikzfig{HeidlerFunc.tex}{HeidlerFunction}{Graph depicting the Heidler function in the form of a 10/350 lightning waveform with a 4 $kA$ peak.}
+The shorthand version of the equation can be seen in \eqnref{eqn:HFsmall}
+\begin{equation}
+i(t) = \frac{I_0}{\eta} x \left( t \right) y \left( t \right)
+\label{eqn:HFsmall}
+\end{equation}
+where
+\begin{equation}
+	x \left( t \right) = \frac{\left (\frac{t}{\tau_1} \right )^n}{1 + \left (\frac{t}{\tau_1} \right )^n}
+	\label{eqn:HFrise}
+\end{equation}
+and
+\begin{equation}
+	y \left( t \right) = e^{-\frac{t}{\tau_2}}
+	\label{eqn:HFfall}
+\end{equation}
+By evaluating \eqnrefs{eqn:HFrise}{eqn:HFfall} independently the ``issues'' with the equation can be found. From this the approximations that solves these ``issues'' according to the criteria can be developed.
+
+%-----------------------------------
+%	Heidler Rise Function
+%-----------------------------------
+\subsection{Heidler Rise Function}
+\label{sub:heidler_rise_function}
+
+
+
+%-----------------------------------
+%	Heidler Fall Function
+%-----------------------------------
+\subsection{Heidler Fall Function}
+\label{sub:heidler_fall_function}
+
+
+%----------------------------------------------------------------------------------------
+%	Function Definition and Properties
+%----------------------------------------------------------------------------------------
 
 \section{Function Definition and Properties}
+\label{sec:function_definition_and_properties}
+
 The Terespolsky function is an approximation of the Heidler function with the advantage that it has an analytical solution in the frequency domain. Moreover it is still ``customizable'', meaning that the steepness of the graph, the rise and fall times and peak current can all be modified. This allows for analyses using 10/350, 8/20 and any other lightning waveforms required.
 
 The Terespolsky function is defined in \eqnref{eqn:TF}
@@ -38,14 +97,8 @@ Where: \\
 	$n$ & = & Steepness factor
 \end{tabular}\\
 
-Modifying these properties gives the desired lightning current waveform. An example plot of this function can be seen in \figref{fig:TeresFuncEX}.
-\begin{figure}[]
-	\centering
-	\tikzsetnextfilename{TeresFuncEx}
-	\input{TeresFuncEx}
-	\caption{Graph of an example Terespolsky function lightning current waveform.}
-	\label{fig:TeresFuncEX}
-\end{figure}
+Modifying these properties gives the desired lightning current waveform. An example plot of this function can be seen in \figref{fig:TeresFuncEx}.
+\inputtikzfig{TeresFuncEx}{TeresFuncEx}{Graph of an example Terespolsky function lightning current waveform.}
 As with the Heidler function, the Terespolsky function can be rewritten as in \eqnref{eqn:TFSmall}.
 \begin{equation}
 i(t) = \frac{I_0}{\eta} x \left( t \right) y \left( t \right)
@@ -70,22 +123,53 @@ is the current-decay function.
 
 It is clear that the Terespolsky function takes the same form as the Heidler function (see \secref{sec:bg_heidler}). The difference is in $x \left( t \right)$ which is not directly integrate-able in the Heidler function but can be integrated and hence transformed into the frequency domain in the Terespolsky function.
 
+%-----------------------------------
+%	Steepness Factor
+%-----------------------------------
 \subsection{Steepness Factor}
+\label{sub:steepness_factor}
 
 
+%-----------------------------------
+%	Rise Time
+%-----------------------------------
 \subsection{Rise Time}
+\label{sub:rise_time}
 
 
+%-----------------------------------
+%	Fall Time
+%-----------------------------------
 \subsection{Fall Time}
+\label{sub:fall_time}
 
 
+%-----------------------------------
+%	Delayed Function
+%-----------------------------------
 \subsection{Delayed Function}
+\label{sub:delayed_function}
 
+
+%----------------------------------------------------------------------------------------
+%	Time Domain Analysis
+%----------------------------------------------------------------------------------------
 
 \section{Time Domain Analysis}
+\label{sec:time_domain_analysis}
 
+
+%----------------------------------------------------------------------------------------
+%	Frequency Domain Analysis
+%----------------------------------------------------------------------------------------
 
 \section{Frequency Domain Analysis}
+\label{sec:frequency_domain_analysis}
 
 
-\section{Conslusion}
+%----------------------------------------------------------------------------------------
+%	Conclusion
+%----------------------------------------------------------------------------------------
+
+\section{Conclusion}
+\label{sec:conclusion}

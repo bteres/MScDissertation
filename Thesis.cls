@@ -184,11 +184,11 @@
 
 \thesistitle{Thesis Title} % Your thesis title - this is used in the title and abstract
 %-------------------------------------------------  
-\supervisor{Prof. K. J. \textsc{Nixon}} % You supervisor's name - this is used in the title page
+\supervisor{Prof. Ken. J. \textsc{Nixon}} % You supervisor's name - this is used in the title page
 %-------------------------------------------------   
 \examiner{} % Your examiner's name - this is not currently used anywhere in the template, cite it with \examname if you want it
 %-------------------------------------------------   
-\degree{MSc Eng} % Your degree name - this is currently used in the title page and abstract
+\degree{Master of Science in Engineering} % Your degree name - this is currently used in the title page and abstract
 %-------------------------------------------------   
 \authors{Brett Ryan \textsc{Terespolsky}} % Your name - this is used in the title page and abstract
 %-------------------------------------------------   

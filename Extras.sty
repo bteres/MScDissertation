@@ -36,7 +36,7 @@
 \newcommand{\tabref}[1]{{\sl Table~\ref{#1}\/}}
 \newcommand{\tabrefs}[2]{{\sl Tables~\ref{#1}\/} and {\sl \ref{#2}}\/}
 \newcommand{\eqnref}[1]{{\sl Equation~\ref{#1}\/}}
-\newcommand{\eqnrefs}[2]{{(\ref{#1})\/} and {(\ref{#2})}\/}
+\newcommand{\eqnrefs}[2]{{\sl Equations~\ref{#1}} and {\sl \ref{#2}}\/}
 \newcommand{\secref}[1]{{\sl Section~\ref{#1}}\xspace}
 \newcommand{\secrefs}[2]{{\sl Sections~\ref{#1}\/} and {\sl \ref{#2}}\/}
 \newcommand{\secrefn}[3]{{\sl Sections~\ref{#1}\/}, {\sl \ref{#2}} and {\sl \ref{#3}}\/}
@@ -65,7 +65,16 @@
 
 
 % Macros for easy inclusion of figures
-
+\newcommand{\inputtikzfig}[3]
+{
+\begin{figure}[htbp]
+    \centering
+    \tikzsetnextfilename{#2}
+    \input{#1}
+    \caption{#3}
+    \label{fig:#2}
+\end{figure}
+}
 \newcommand{\inputfig}[2]
 {
 \begin{figure}[htbp]

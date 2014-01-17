@@ -69,6 +69,17 @@
 \hypersetup{urlcolor=blue, colorlinks=false} % Colors hyperlinks in blue - change to black if annoying
 \title{\ttitle} % Defines the thesis title - don't touch this
 
+%----------------------------------------------------------------------------------------
+%	Allow Russian alphabet from english letters. Just type \textcry{...}
+%----------------------------------------------------------------------------------------
+\usepackage[OT2,T1]{fontenc}
+\newcommand\textcyr[1]{{\fontencoding{OT2}\fontfamily{wncyr}\selectfont #1}}
+\def\Eoborotnoye{\char3}
+\def\eoborotnoye{\char11}
+\def\cprime{\char126}
+\def\cdprime{\char127}
+
+
 \begin{document}
 
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
@@ -117,7 +128,7 @@
 \end{flushright}
 \end{minipage}\\[3cm]
  
-\large \textit{A thesis submitted in fulfilment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
+\large \textit{A dissertation submitted in fulfilment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
 \textit{in the}\\[0.4cm]
 \groupname\\\deptname\\[2cm] % Research group name and department name
  
@@ -275,7 +286,14 @@ $\omega$ & angular frequency & rads$^{-1}$ \\
 
 \pagestyle{empty} % Page style needs to be empty for this page
 
-\dedicatory{For/Dedicated to/To my\ldots} % Dedication text
+\dedicatory{For/Dedicated to/To my\ldots \textcyr{Privet SHurochka\\
+a b v g d e \"e zh z i\\ {\u i} k l m n o p r s t\\ u f kh c ts
+shch ch sh y yu\\ ya
+\Eoborotnoye~
+\eoborotnoye~
+\cprime~
+\cdprime~
+}} % Dedication text
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 

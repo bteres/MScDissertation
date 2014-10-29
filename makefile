@@ -16,10 +16,10 @@ all: $(FILES)
 	mv ./Output/*.pdf ./$(OUTFILE).pdf
 
 clean:
-	@rm -rf ./Output
+	@rm -rf ./Output/*.*
 
 superclean:
-	@rm -rf ./Output ./TikzFigures/* ./$(OUTFILE).pdf
+	@rm -rf ./Output/*.* ./TikzFigures/* ./$(OUTFILE).pdf
 
 cont:
 	$(TEX) $(FLAGS) -pvc $(MAIN_FILE)

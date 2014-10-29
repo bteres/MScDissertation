@@ -1,6 +1,6 @@
 % -*- pdf: BrettTerespolskyMScDissertation.pdf -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Thesis 
+% Thesis
 % LaTeX Template
 % Version 1.4 (30/6/13)
 %
@@ -8,7 +8,7 @@
 % http://www.latextemplates.com
 %
 % Original authors:
-% Steven Gunn 
+% Steven Gunn
 % http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/
 % and
 % Sunil Patel
@@ -27,11 +27,11 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[11pt, a4paper, oneside]{Thesis} % Paper size, default font size and one-sided paper
+\usepackage{etex}
 
 \graphicspath{{./Figures/}} % Specifies the directory where pictures are stored
 
-\usepackage{Extras}
-\usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
+\usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers'
 \usepackage{har2nat}
 \makeatletter
 \def\@mb@citenamelist{cite,citep,citet,citealp,citealt}
@@ -45,8 +45,8 @@
 % finalold  - Reject all edits. Refrain from using this.
 % finalnew  - Accept all edits. Refrain from using this.
 % The above two options should not be used, rather the trackchanges.py application must be used. Alternatively there is the acceptchanges.py for the terminal but check options carefully
-% footnotes - Display edits as footnotes. 
-% margins   - Display edits as margin notes. 
+% footnotes - Display edits as footnotes.
+% margins   - Display edits as margin notes.
 % inline    - Display edits inline.
 \addeditor{KJN}
 \addeditor{BRT}
@@ -61,10 +61,11 @@
 \makeatother
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usetikzlibrary{shapes.geometric, intersections,arrows}
 \usepgfplotslibrary{external}
 \tikzexternalize[prefix=TikzFigures/] %  activate!
 
-\pgfplotscreateplotcyclelist{linestyles*}{solid,dashed, dotted, loosely dashed, loosely dotted, loosely dashdotted}
+\usepackage{Extras}
 
 \hypersetup{urlcolor=blue, colorlinks=false} % Colors hyperlinks in blue - change to black if annoying
 \title{\ttitle} % Defines the thesis title - don't touch this
@@ -114,27 +115,27 @@
 \HRule \\[0.4cm] % Horizontal line
 {\huge \bfseries \ttitle \note[BRT]{Need to find a suitable title}}\\[0.4cm] % Thesis title
 \HRule \\[1.5cm] % Horizontal line
- 
+
 \begin{minipage}{0.4\textwidth}
 \begin{flushleft} \large
 \emph{Author:}\\
-\href{http://www.bterespolsky.tk}{\authornames} % Author name - remove the \href bracket to remove the link
+\href{http://www.bteres.tk}{\authornames} % Author name - remove the \href bracket to remove the link
 \end{flushleft}
 \end{minipage}
 \begin{minipage}{0.4\textwidth}
 \begin{flushright} \large
 \emph{Supervisor:} \\
-\href{http://dept.ee.wits.ac.za/~nixon}{\supname} % Supervisor name - remove the \href bracket to remove the link  
+\href{http://dept.ee.wits.ac.za/~nixon}{\supname} % Supervisor name - remove the \href bracket to remove the link
 \end{flushright}
 \end{minipage}\\[3cm]
- 
+
 \large \textit{A dissertation submitted in fulfilment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
 \textit{in the}\\[0.4cm]
 \groupname\\\deptname\\[2cm] % Research group name and department name
- 
+
 {\large \today}\\[4cm] % Date
 %\includegraphics{Logo} % University/department logo - uncomment to place it
- 
+
 \vfill
 \end{center}
 
@@ -151,7 +152,7 @@
 
 I, \authornames, declare that this thesis titled, `\ttitle' and the work presented in it are my own. I confirm that:
 
-\begin{itemize} 
+\begin{itemize}
 \item[\tiny{$\blacksquare$}] This work was done wholly or mainly while in candidature for a research degree at this University.
 \item[\tiny{$\blacksquare$}] Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
 \item[\tiny{$\blacksquare$}] Where I have consulted the published work of others, this is always clearly attributed.
@@ -159,10 +160,10 @@ I, \authornames, declare that this thesis titled, `\ttitle' and the work present
 \item[\tiny{$\blacksquare$}] I have acknowledged all main sources of help.
 \item[\tiny{$\blacksquare$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
 \end{itemize}
- 
+
 Signed:\\
 \rule[1em]{25em}{0.5pt} % This prints a line for the signature
- 
+
 Date:\\
 \rule[1em]{25em}{0.5pt} % This prints a line to write the date
 }
@@ -311,7 +312,7 @@ shch ch sh y yu\\ ya
 \input{./Chapters/ChapterIntro}
 \input{./Chapters/ChapterBackground}
 \input{./Chapters/ChapterApproach}
-\input{./Chapters/ChapterTeres}
+\input{./Chapters/ChapterApprox}
 \input{./Chapters/ChapterResults}
 \input{./Chapters/ChapterApplication}
 \input{./Chapters/ChapterDiscussion}
@@ -329,8 +330,8 @@ shch ch sh y yu\\ ya
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
-\input{./Appendices/AppendixA}
-%\input{./Appendices/AppendixB}
+\input{./Appendices/AppendixTRiseMath}
+\input{./Appendices/AppendixLaplaceMath}
 %\input{./Appendices/AppendixC}
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
@@ -347,7 +348,7 @@ shch ch sh y yu\\ ya
 
 \bibliographystyle{ieeetr} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
 % \nocite{*}
-\bibliography{Bibliography} % The references (bibliography) information are stored in the file named "Bibliography.bib"
+\bibliography{Bibliographies/Bibliography} % The references (bibliography) information are stored in the file named "Bibliography.bib"
 
 \lhead{\emph{Bibliography}}
 
@@ -357,7 +358,7 @@ shch ch sh y yu\\ ya
 \def\@biblabel#1{\hspace*{-\labelsep}}
 \makeatother
 
-\bibliographybib{Bibliography}
+\bibliographybib{Bibliographies/Bibliography}
 \nocitebib{*}
 
-\end{document}  
+\end{document}

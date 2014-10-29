@@ -1,0 +1,28 @@
+\begin{tikzpicture}[
+  scale = 1.5,
+]
+  \begin{axis}[
+    xlabel=Time ($\mu s$),
+    ylabel=Current per Unit Time ($A/s$),
+    grid=both,
+    /pgf/number format/1000 sep={},
+    xmin=0,
+    xmax=100e-6,
+    % ymin=0,
+    % ymax=4.1,
+    cycle list name=linestyles*,
+    scaled x ticks={base 10:6},
+    scaled y ticks={base 10:3},
+    xtick scale label code/.code={},
+    ytick scale label code/.code={},
+    samples=500,
+    legend pos=north east
+  ]
+    
+    \addplot table[col sep=comma, x=dt, y=dh] {AdditionalFiles/dTFunc.csv};
+    \addlegendentryexpanded{Heidler};
+    \addplot table[col sep=comma, x=dt, y=dr] {AdditionalFiles/dTFunc.csv};
+    \addlegendentryexpanded{Approximation};
+
+  \end{axis}
+\end{tikzpicture}

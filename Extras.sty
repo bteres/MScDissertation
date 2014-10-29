@@ -1,4 +1,28 @@
 %------------------------------------------------------------------------------
+%                           Global Tikz Styles and Equations
+%------------------------------------------------------------------------------
+
+\pgfplotscreateplotcyclelist{linestyles*}{solid,dashed, dotted, loosely dashed, loosely dotted, loosely dashdotted}
+\tikzset{declare function={
+    rise(\t,\ta,\n) = and(\t >= 0, \t < \ta/(2^(2/\n))) * 2*(\t/\ta)^\n    +
+    and(\t >= \ta/2^(2/\n), \t< \ta) * ((-2)*(\t/\ta)^\n + 4*(\t/\ta)^(\n/2) - 1)     +
+     (\t>\ta) * (1);
+  },
+  declare function={
+    fall(\t,\tb) = exp(-\t/\tb);
+  },
+  declare function={
+    teres(\t,\ta,\tb,\n,\I,\e) = (\I/\e)*fall(\t,\tb)*rise(\t,\ta,\n);
+  },
+  declare function={
+    hrise(\t,\ta,\n) = ((\t/\ta)^\n)/(1 + (\t/\ta)^\n);
+  },
+  declare function={
+    heidler(\t,\ta,\tb,\n,\I,\e) = (\I/\e)*hrise(\t,\ta,\n)*fall(\t,\tb);
+  }
+}
+
+%------------------------------------------------------------------------------
 %                           New Commands
 %------------------------------------------------------------------------------
 
@@ -38,6 +62,7 @@
 \newcommand{\eqnref}[1]{{\sl Equation~\ref{#1}\/}}
 \newcommand{\eqnrefs}[2]{{\sl Equations~\ref{#1}} and {\sl \ref{#2}}\/}
 \newcommand{\secref}[1]{{\sl Section~\ref{#1}}\xspace}
+\newcommand{\appref}[1]{{\sl Appendix~\ref{#1}}\xspace}
 \newcommand{\secrefs}[2]{{\sl Sections~\ref{#1}\/} and {\sl \ref{#2}}\/}
 \newcommand{\secrefn}[3]{{\sl Sections~\ref{#1}\/}, {\sl \ref{#2}} and {\sl \ref{#3}}\/}
 

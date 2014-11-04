@@ -13,6 +13,9 @@ FLAGS = -f -cd -pdflatex=lualatex -pdf -quiet -synctex=1 -outdir=Output -shell-e
 
 all: $(FILES)
 	$(TEX) $(FLAGS) $(MAIN_FILE)
+	makeglossaries -d Output -q main
+	rm ./Output/*.pdf
+	$(TEX) $(FLAGS) $(MAIN_FILE)
 	mv ./Output/*.pdf ./$(OUTFILE).pdf
 
 clean:

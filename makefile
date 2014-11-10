@@ -12,8 +12,6 @@ FLAGS = -f -cd -pdflatex=lualatex -pdf -quiet -synctex=1 -outdir=Output -shell-e
 # default: help
 
 all: $(FILES)
-	mkdir ./Output
-	mkdir ./Output/TikzFigures
 	$(TEX) $(FLAGS) $(MAIN_FILE)
 	makeglossaries -d Output -q main
 	rm ./Output/*.pdf
@@ -24,7 +22,7 @@ clean:
 	@rm -rf ./Output/*.*
 
 superclean:
-	@rm -rf ./Output/*.* ./TikzFigures/* ./$(OUTFILE).pdf
+	@rm -rf ./Output/*.* ./Output/TikzFigures/* ./TikzFigures/* ./$(OUTFILE).pdf
 
 cont:
 	$(TEX) $(FLAGS) -pvc $(MAIN_FILE)

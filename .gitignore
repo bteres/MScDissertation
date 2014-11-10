@@ -1,4 +1,5 @@
-/Output
+/Output/*.*
+/Output/TikzFigures/*.md5
 # Latex files
 *.acn
 *.acr

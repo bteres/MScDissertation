@@ -24,7 +24,7 @@ Continuously building\ldots
 \section{Developing an Approximation to the Heidler Function}
 \label{sec:developing_approximation}
 
-As outlined in Chapter~\ref{ChapterApproach}, the Terespolsky function has certain criteria. Firstly, it must approximate the Heidler function in the time domain. Secondly, it must have an analytical solution to its integral. Lastly, it must match the lightning parameters set out in~\cite{IEC623051}, the \textbf{IEC 62305 Lightning Protection Standard}. With these criteria in mind the Terespolsky function is developed. This requires one to first analyse the Heidler function and then using the information obtained, redefine the ``problem'' areas.
+As outlined in Chapter~\ref{ChapterApproach}, the approximation function has certain criteria. Firstly, it must approximate the Heidler function in the time domain (within certain error limits). Secondly, it must have an analytical solution to its integral. Lastly, it must match the lightning parameters set out in~\cite{IEC623051}, the \textbf{IEC 62305 Lightning Protection Standard}. With these criteria in mind the approximation function is developed. This requires one to first analyse the Heidler function and then using the information obtained, redefine the ``problem'' areas.
 
 An example of the Heidler function can be seen in \figref{fig:HeidlerFunction}. This function is defined by \eqnref{eqn:HF} in Section~\ref{sec:bg_heidler}.
 \inputtikzfig{HeidlerFunc.tex}{HeidlerFunction}{Graph depicting the Heidler function in the form of a 10/350 lightning waveform with a 200 $kA$ peak.}
@@ -43,7 +43,7 @@ and
     y \left( t \right) = e^{-\frac{t}{\tau_2}}
     \label{eqn:HFfall}
 \end{equation}
-By evaluating \eqnrefs{eqn:HFrise}{eqn:HFfall} independently the ``issues'' with the equation can be found. From this the approximations that solves these ``issues'', according to the criteria outlined above, can be developed.
+By evaluating \eqnrefs{eqn:HFrise}{eqn:HFfall} independently the ``problems'' with the equation can be found. From this the approximation that solves these ``problems'' can be developed, according to the criteria outlined above.
 
 %-----------------------------------
 %   Heidler Rise Function
@@ -67,7 +67,7 @@ There are numerous forms of the S-curve such as those given in \eqnref{eqn:erf} 
         f(x) & = \frac{x}{1+|x|} \label{eqn:abs}
     \end{align}
 \end{subequations}
-These equations do not allow for ``customisation'' and hence the rise time and steepness of the graphs cannot be changed easily. Therefore a ``customisable'' alternative is required. Moreover many of these functions are also not integratable which would not solve the problem.
+These equations do not allow for ``customisation'' and hence the rise time and steepness of the graphs cannot be changed easily. Therefore a ``customisable'' alternative is required. Moreover many of these functions are also not integratable which would not solve the ``problem''.
 
 
 
@@ -79,18 +79,48 @@ These equations do not allow for ``customisation'' and hence the rise time and s
 
 The part of the Heidler function that controls the decay time and shape is in \eqnref{eqn:HFfall} and a graph of this is plotted in \figref{fig:HeidlerFunctionFall}. This function clearly meets all the criteria outlined above. It can easily be customised to change the decay time and it can be trivially integrated (and hence transformed into the frequency domain).
 \inputtikzfig{HeidlerFuncFall}{HeidlerFunctionFall}{Graph depicting the decay function of the Heidler function (exponential decay function).}
-It is also clear that this function is just a complex shift of the signal in the frequency domain because of the rule of Laplace transforms shown in \eqnref{eqn:laplaceComplexShift} \cite{bkSST,bkControl}.
+Moreover this function is just a complex shift of the signal in the frequency domain because of the rule of Laplace transforms shown in \eqnref{eqn:laplaceComplexShift} \cite{bkSST,bkControl}.
 \begin{equation}
     \mathcal{L} \left \{ e^{-at}f\left ( t \right ) \right \} = F \left (s + a \right )
     \label{eqn:laplaceComplexShift}
 \end{equation}
-Therefore there is no need to redefine the decay part of the equation in any way and therefore the Terespolsky function can still be defined as \eqnref{eqn:PreTFSmall}. Where $I_0$, $\eta$ and $y(t)$ are the same as those in the Heidler function.
+Therefore there is no need to redefine the decay part of the equation in any way and therefore the approximation function can still be defined as \eqnref{eqn:PreTFSmall}. Where $I_0$, $\eta$ and $y(t)$ are the same as those in the Heidler function.
 \begin{equation}
 i(t) = \frac{I_0}{\eta} x \left( t \right) y \left( t \right)
 \label{eqn:PreTFSmall}
 \end{equation}
 
-The next section details the Terespolsky function and all its properties.
+The next section details the development of the approximation function.
+
+%----------------------------------------------------------------------------------------
+%    Developing an Approximation to the Heidler Function - Methodology
+%----------------------------------------------------------------------------------------
+
+\section{Developing an Approximation to the Heidler Function}
+\label{sec:approxMethodology}
+A different approach is taken in developing the approximation to those that are taken in the literature (see \chapref{ChapterBackground}). The only part of the Heidler function that is approximated is the rise function ($x(t)$). Moreover, the approximation is developed in the Laplace domain ensuring that the time domain equation can be integrated analytically.
+
+This implies that the rise equation that is developed must be transformed into the time domain. The decay equation and peak current can then be added to this to obtain the overall approximation equation.
+
+Creating an S-curve in the Laplace domain is simply the step response of an n-th order, real and negative pole. The start of the approximation can be seen in \eqnref{eqn:approxRiseLaplace}.
+\begin{equation}
+    X(s) = \frac{1}{s \left ( \frac{s}{\omega_0} +1 \right )^n}
+    \label{eqn:approxRiseLaplace}
+\end{equation}
+Where: \\
+\begin{tabular}{cll}
+    $\omega_0$ & = & Rise time constant [rad/s] \\
+    $n$ & = & Steepness factor
+\end{tabular}\\
+
+Taking the inverse Laplace transform of this equation, the rise function of the approximation is found as shown in \eqnref{eqn:approxRise}
+\begin{equation}
+    x(t) = 1 - e^{-\omega_0 t} \left ( \sum\limits_{i=0}^n \frac{\omega_0^i t^i}{i!} \right )
+    \label{eqn:approxRise}
+\end{equation}
+The constants in this equation can be varied to obtain different rise times and steepness factors (see \secrefs{sub:rise_time}{sub:steepness_factor} respectfully).
+
+By substituting the approximated rise function back into the Heidler function shown in \eqnref{eqn:HFsmall}, the overall approximation can be obtained. The next section details the approximation function, its properties and its frequency domain representation.
 
 %----------------------------------------------------------------------------------------
 %   Function Definition and Properties
@@ -99,44 +129,23 @@ The next section details the Terespolsky function and all its properties.
 \section{Function Definition and Properties}
 \label{sec:function_definition_and_properties}
 
-The Terespolsky function is an approximation of the Heidler function with the advantage that it has an analytical solution in the frequency domain. Moreover it is still ``customizable'', meaning that the steepness of the graph, the rise and fall times and peak current can all be modified. This allows for analyses using 10/350, 8/20 and any other lightning waveforms required.
+This approximation to the Heidler function has the advantage that it has an analytical integral and hence an analytical solution in the frequency domain. Moreover it is still ``customizable'', meaning that the steepness of the graph, the rise and fall times and peak current can all be modified. This allows for analyses using 10/350, 8/20 and any other lightning waveforms required.
 
-The Terespolsky function is defined in \eqnref{eqn:TF}
-\input{AdditionalFiles/TeresFunc}
+The approximation function is defined in \eqnref{eqn:approx}
+\input{AdditionalFiles/Approx}
 Where: \\
 \begin{tabular}{cll}
     $I_0$ & = & Peak current [kA] \\
     $\eta$ & = & Correction factor of peak current \\
-    $\tau_1$ & = & Rise time constant [s] \\
+    $\omega_0$ & = & Rise time constant [rad/s] \\
     $\tau_2$ & = & Fall time constant [s] \\
     $n$ & = & Steepness factor
 \end{tabular}\\
 
-Modifying these properties gives the desired lightning current waveform. An example plot of this function can be seen in \figref{fig:TeresFuncEx}.
-\inputtikzfig{TeresFuncEx}{TeresFuncEx}{Graph of an example Terespolsky function lightning current waveform.}
-As with the Heidler function, the Terespolsky function can be rewritten as in \eqnref{eqn:TFSmall}.
-\begin{equation}
-i(t) = \frac{I_0}{\eta} x \left( t \right) y \left( t \right)
-\label{eqn:TFSmall}
-\end{equation}
-where the function in \eqnref{eqn:TFrise}
-\begin{equation}
-    x \left( t \right) = \left\{
-      \begin{array}{l l}
-        2 \left( \frac{t}{\tau_1} \right )^n & \quad \textrm{for $0 \leq t < \frac{\tau_1}{2^{\frac{2}{n}}}$} \\
-        -2 \left( \frac{t}{\tau_1} \right )^n +4 \left( \frac{t}{\tau_1} \right )^{\frac{n}{2}} -1 & \quad \textrm{for $\frac{\tau_1}{2^{\frac{2}{n}}} \leq t < \tau_1$} \\
-        1 & \quad \textrm{for $t \geq \tau_1$}
-      \end{array} \right.
-    \label{eqn:TFrise}
-\end{equation}
-is the current-rise function and the function in \eqnref{eqn:TFfall}
-\begin{equation}
-    y \left( t \right) = e^{-\frac{t}{\tau_2}}
-    \label{eqn:TFfall}
-\end{equation}
-is the current-decay function.
+Modifying these properties gives the desired lightning current waveform. An example plot of this function can be seen in \figref{fig:ApproxFuncEx}.
+\inputtikzfig{ApproxFuncEx}{ApproxFuncEx}{Graph of an example Heidler approximation function lightning current waveshape.}
 
-It is clear that the Terespolsky function takes the same form as the Heidler function (see \secref{sec:bg_heidler}). The difference is in $x \left( t \right)$ which is not directly integrate-able in the Heidler function but can be integrated and hence transformed into the frequency domain in the Terespolsky function. The following subsections show how the steepness factor, rise time constant and fall time constant affect the shape and properties of the Terespolsky function.
+As the approximation was designed as a modification of the Heidler function, it still takes the same form as in \eqnref{eqn:HFsmall} (see \secref{sec:bg_heidler}). The difference is in $x \left( t \right)$ which is not directly integrate-able in the Heidler function but can be integrated in the approximation and hence transformed into the frequency domain. The following subsections show how the steepness factor, rise time constant and fall time constant affect the shape and properties of the approximation function.
 
 %-----------------------------------
 %   Steepness Factor
@@ -144,23 +153,24 @@ It is clear that the Terespolsky function takes the same form as the Heidler fun
 \subsection{Steepness Factor}
 \label{sub:steepness_factor}
 
-The steepness factor, $n$, changes the shape of the Terespolsky function. \figref{fig:TeresSteepness} shows several plots of the Terespolsky function with different steepness factors but constant rise time constant ($\tau_1$), fall time constant ($\tau_2$), peak current ($I_0$) and correction factor ($\eta$). These values are tabulated in \tabref{tab:TFConstsSteep}.
-\inputtikzfig{TeresSteepness}{TeresSteepness}{Graph showing the effect of changing the steepness factor ($n$) in the Terespolsky function while keeping all the other variables constant.}
+The steepness factor, $n$, changes the shape of the approximation function. \figref{fig:ApproxSteepness} shows several plots of the approximation function with different steepness factors but constant rise time constant ($\omega_0$), fall time constant ($\tau_2$), peak current ($I_0$) and correction factor ($\eta$). These values are tabulated in \tabref{tab:approxConstsSteep}.
+\inputtikzfig{ApproxSteepness}{ApproxSteepness}{Graph showing the effect of changing the steepness factor ($n$) in the approximation function while keeping all the other variables constant.}
 \begin{table}[htbp]
     \centering
-    \caption{Constant values used in \eqnref{eqn:TF} to obtain the graphs in \figref{fig:TeresSteepness}}
+    \caption{Constant values used in \eqnref{eqn:approx} to obtain the graphs in \figref{fig:ApproxSteepness}}
     \begin{tabular}{ll}
         \textbf{Variable} & \textbf{Value} \\
         \hline
         $I_0$ & 4 kA \\
         $\eta$ & 0.94 \\
-        $\tau_1$ & 30 \micro s \\
+        $\omega_0$ & 1 768 000 rad/s \\
         $\tau_2$ & 485 \micro s
     \end{tabular}
-    \label{tab:TFConstsSteep}
+    \label{tab:approxConstsSteep}
 \end{table}
 
-As expected from \eqnrefs{eqn:TFrise}{eqn:TFfall}, the steepness factor only affects the rise function ($x(t)$) of the entire function. Therefore to obtain a steeper rise in the graph, the steepness factor can be increased accordingly. Increasing the steepness factor causes the graph to bend upwards later in time but much quicker.
+\annote[BRT]{As expected from %\eqnrefs{eqn:approx}{eqn:approxRise}
+, the steepness factor only affects the rise function ($x(t)$) of the entire function. Therefore to obtain a steeper rise in the graph, the steepness factor can be increased accordingly. Increasing the steepness factor causes the graph to bend upwards later in time but much quicker.}{This needs to be changed!!!}
 
 %-----------------------------------
 %   Rise Time
@@ -168,11 +178,11 @@ As expected from \eqnrefs{eqn:TFrise}{eqn:TFfall}, the steepness factor only aff
 \subsection{Rise Time}
 \label{sub:rise_time}
 
-\figref{fig:TeresRise} shows
-\inputtikzfig{TeresRise}{TeresRise}{Graph showing the effect of changing the rise time constant ($\tau_1$) in the Terespolsky function while keeping all the other variables constant.}
+\figref{fig:ApproxRise} shows
+\inputtikzfig{ApproxRise}{ApproxRise}{Graph showing the effect of changing the rise time constant ($\omega_0$) in the approximation function while keeping all the other variables constant.}
 \begin{table}[htbp]
     \centering
-    \caption{Constant values used in \eqnref{eqn:TF} to obtain the graphs in \figref{fig:TeresRise}}
+    \caption{Constant values used in \eqnref{eqn:approx} to obtain the graphs in \figref{fig:ApproxRise}}
     \begin{tabular}{ll}
         \textbf{Variable} & \textbf{Value} \\
         \hline
@@ -181,7 +191,7 @@ As expected from \eqnrefs{eqn:TFrise}{eqn:TFfall}, the steepness factor only aff
         $n$ & 3 \\
         $\tau_2$ & 485 \micro s
     \end{tabular}
-    \label{tab:TFConstsRise}
+    \label{tab:approxConstsRise}
 \end{table}
 
 %-----------------------------------
@@ -190,28 +200,21 @@ As expected from \eqnrefs{eqn:TFrise}{eqn:TFfall}, the steepness factor only aff
 \subsection{Fall Time}
 \label{sub:fall_time}
 
-\figref{fig:TeresFall} shows \ldots
-\inputtikzfig{TeresFall}{TeresFall}{Graph showing the effect of changing the fall time constant ($\tau_2$) in the Terespolsky function while keeping all the other variables constant.}
+\figref{fig:ApproxFall} shows \ldots
+\inputtikzfig{ApproxFall}{ApproxFall}{Graph showing the effect of changing the fall time constant ($\tau_2$) in the approximation function while keeping all the other variables constant.}
 \begin{table}[htbp]
     \centering
-    \caption{Constant values used in \eqnref{eqn:TF} to obtain the graphs in \figref{fig:TeresFall}}
+    \caption{Constant values used in \eqnref{eqn:approx} to obtain the graphs in \figref{fig:ApproxFall}}
     \begin{tabular}{ll}
         \textbf{Variable} & \textbf{Value} \\
         \hline
         $I_0$ & 4 kA \\
         $\eta$ & 0.94 \\
         $n$ & 3 \\
-        $\tau_1$ & 20 \micro s
+        $\omega_0$ & 1 768 000 rad/s
     \end{tabular}
-    \label{tab:TFConstsFall}
+    \label{tab:approxConstsFall}
 \end{table}
-
-% %-----------------------------------
-% % Delayed Function
-% %-----------------------------------
-% \subsection{Delayed Function}
-% \label{sub:delayed_function}
-
 
 %----------------------------------------------------------------------------------------
 %   Time Domain Analysis
@@ -224,7 +227,7 @@ Different waveshapes (1.2/50, 8/20, 10/350, etc.)
 
 Parameters from IEC62305 namely, di/dt, Q, etc.
 
-\inputtikzfig{Derivs}{Derivs}{Graph showing the derivatives of the Heidler function and the Terespolsky function.}
+% \inputtikzfig{Derivs}{Derivs}{Graph showing the derivatives of the Heidler function and the Terespolsky function.}
 
 %----------------------------------------------------------------------------------------
 %   Frequency Domain Analysis
@@ -233,11 +236,11 @@ Parameters from IEC62305 namely, di/dt, Q, etc.
 \section{Frequency Domain Analysis}
 \label{sec:frequency_domain_analysis}
 
-Explain process of transform and give form for any real n and for n even. (see \appref{AppendixLaplace})
+% Explain process of transform and give form for any real n and for n even. (see \appref{AppendixLaplace})
 
-Plot frequency response for different waveshapes (1.2/50, 8/20, 10/350, etc.).
+% Plot frequency response for different waveshapes (1.2/50, 8/20, 10/350, etc.).
 
-Incomplete Gamma \cite{Gautschi:1979:CPI}
+% Incomplete Gamma \cite{Gautschi:1979:CPI}
 
 %----------------------------------------------------------------------------------------
 %   Conclusion

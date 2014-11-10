@@ -7,19 +7,17 @@
     grid=both,
     /pgf/number format/1000 sep={},
     xmin=0,
-    xmax=120e-6,
+    xmax=500e-6,
     ymin=0,
-    % ymax=4.1,
     cycle list name=linestyles*,
     scaled x ticks={base 10:6},
     xtick scale label code/.code={},
-    samples=500,
-    legend pos=south east
+    % samples=500
   ]
-    
-    \foreach \ta in {10, 20, 30, 50, 70}{
-      \addplot+[domain=0:120e-6] {teres(\x, \ta e-6, 485e-6, 3, 4, 0.94)};
-      \addlegendentryexpanded{$\tau_1 = \ta$ \micro s};
+
+    \foreach \i in {300, 350, ..., 550}{
+      \addplot table[col sep=comma] {AdditionalFiles/fallData/fall_\i.csv};
+      \addlegendentryexpanded{$\tau_2 = \i \micro s$};
     }
   \end{axis}
 \end{tikzpicture}

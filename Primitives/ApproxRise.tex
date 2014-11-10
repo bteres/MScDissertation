@@ -7,18 +7,18 @@
     grid=both,
     /pgf/number format/1000 sep={},
     xmin=0,
-    xmax=60e-6,
+    xmax=200e-6,
     ymin=0,
-    ymax=4.1,
     cycle list name=linestyles*,
     scaled x ticks={base 10:6},
     xtick scale label code/.code={},
-    samples=500
+    % samples=500,
+    legend pos=south east,
+    % restrict y to domain=0:200000
   ]
-    
-    \foreach \n in {2,3,5,8,10}{
-      \addplot+[domain=0:60e-6] {teres(\x, 30e-6, 485e-6, \n, 4, 0.94)};
-      \addlegendentryexpanded{$n = \n$};
+    \foreach \w in {50, 100, ..., 300}{
+      \addplot table[col sep=comma] {AdditionalFiles/omegaData/omega0_\w.csv};
+      \addlegendentryexpanded{$\omega_0 = \w$  rad/s};
     }
   \end{axis}
 \end{tikzpicture}

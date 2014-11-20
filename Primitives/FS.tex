@@ -15,10 +15,12 @@
     % samples=500,
     legend pos=south east,
     % restrict y to domain=0:200000
+    scaled y ticks={base 10:-3},
+    ytick scale label code/.code={},
   ]
-    \foreach \w in {5, 12, ..., 40}{
-      \addplot table[col sep=comma] {AdditionalFiles/nData/n_\w.csv};
-      \addlegendentryexpanded{$n = \w$};
-    }
+    \addplot table[col sep=comma]{AdditionalFiles/FS/HeidlerFS.csv};
+    \addlegendentryexpanded{Heidler};
+    \addplot table[col sep=comma]{AdditionalFiles/FS/ApproxFS.csv};
+    \addlegendentryexpanded{Approximation};
   \end{axis}
 \end{tikzpicture}

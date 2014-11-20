@@ -3,26 +3,22 @@
 ]
   \begin{axis}[
     xlabel=Time ($\mu s$),
-    ylabel=Current per Unit Time ($A/s$),
+    ylabel=Current ($kA/\mu s$),
     grid=both,
     /pgf/number format/1000 sep={},
     xmin=0,
-    xmax=100e-6,
-    % ymin=0,
-    % ymax=4.1,
+    xmax=200e-6,
+    ymin=-1e9,
+    ymax=30e9,
     cycle list name=linestyles*,
     scaled x ticks={base 10:6},
-    scaled y ticks={base 10:3},
+    scaled y ticks={base 10:-9},
     xtick scale label code/.code={},
     ytick scale label code/.code={},
-    samples=500,
-    legend pos=north east
   ]
-    
-    \addplot table[col sep=comma, x=dt, y=dh] {AdditionalFiles/dTFunc.csv};
+    \addplot table[col sep=comma] {AdditionalFiles/FS/dHeidlerFS.csv};
     \addlegendentryexpanded{Heidler};
-    \addplot table[col sep=comma, x=dt, y=dr] {AdditionalFiles/dTFunc.csv};
+    \addplot table[col sep=comma] {AdditionalFiles/FS/dApproxFS.csv};
     \addlegendentryexpanded{Approximation};
-
   \end{axis}
 \end{tikzpicture}

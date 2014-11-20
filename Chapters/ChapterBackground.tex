@@ -8,30 +8,44 @@
 \lhead{\chaptername~\thechapter. \emph{Background}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 
 %----------------------------------------------------------------------------------------
-%	SECTION 1
+%    IEC~62305 - Lightning Protection Standard
 %----------------------------------------------------------------------------------------
 
-\section{IEC 62305 - Protection Against Lightning}
-\label{sec:bg_iec}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut, tempus sed arcu. Quisque molestie, ante a tincidunt ullamcorper, sapien enim dignissim lacus, in semper nibh erat lobortis purus. Integer dapibus ligula ac risus convallis pellentesque.
+\section{IEC~62305 - Lightning Protection Standard}
+\label{sec:background_iec62305}
 
 \inputtikzfig{IECWave}{IECWave}{Definitions of short stroke parameter adapted from \cite{IEC623051}}
 
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
+%----------------------------------------------------------------------------------------
+%    Current Waveshape Models
+%----------------------------------------------------------------------------------------
 
+\section{Current Waveshape Models}
+\label{sec:background_current_waveshape_models}
+
+%-----------------------------------
+%    The Double Exponential Model
+%-----------------------------------
+\subsection{The Double Exponential Model}
+\label{sub:background_double_exponential}
+
+%-----------------------------------
+%    The Heidler Function
+%-----------------------------------
 \subsection{The Heidler Function}
-\label{sec:bg_heidler}
+\label{sub:background_heidler}
 
 \input{AdditionalFiles/HeidlerFunc.tex}
 
+\begin{equation}
+    \eta =e^{-\frac{\tau _1}{\tau _2} \left(\frac{n \tau _2}{\tau _1}\right)^{\frac{1}{n}}}
+    \label{eqn:eta}
+\end{equation}
+
+
 %----------------------------------------------------------------------------------------
-%	SECTION 2
+%    Heidler Function Approximations
 %----------------------------------------------------------------------------------------
 
-\section{Approximations of Heidler - Frequency Domain Analyses}
-\label{sec:bg_approx}
-
-Sed ullamcorper quam eu nisl interdum at interdum enim egestas. Aliquam placerat justo sed lectus lobortis ut porta nisl porttitor. Vestibulum mi dolor, lacinia molestie gravida at, tempus vitae ligula. Donec eget quam sapien, in viverra eros. Donec pellentesque justo a massa fringilla non vestibulum metus vestibulum. Vestibulum in orci quis felis tempor lacinia. Vivamus ornare ultrices facilisis. Ut hendrerit volutpat vulputate. Morbi condimentum venenatis augue, id porta ipsum vulputate in. Curabitur luctus tempus justo. Vestibulum risus lectus, adipiscing nec condimentum quis, condimentum nec nisl. Aliquam dictum sagittis velit sed iaculis. Morbi tristique augue sit amet nulla pulvinar id facilisis ligula mollis. Nam elit libero, tincidunt ut aliquam at, molestie in quam. Aenean rhoncus vehicula hendrerit.
+\section{Heidler Function Approximations}
+\label{sec:background_approximations}

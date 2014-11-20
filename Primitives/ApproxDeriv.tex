@@ -1,0 +1,24 @@
+\begin{tikzpicture}[
+  scale = 1.5,
+]
+  \begin{axis}[
+    xlabel=Time ($\mu s$),
+    ylabel=Current ($kA/\mu s$),
+    grid=both,
+    /pgf/number format/1000 sep={},
+    xmin=0,
+    xmax=500e-6,
+    ymin=-1e9,
+    ymax=30e9,
+    cycle list name=linestyles*,
+    scaled x ticks={base 10:6},
+    scaled y ticks={base 10:-9},
+    xtick scale label code/.code={},
+    ytick scale label code/.code={},
+    % samples=500
+  ]
+
+    \addplot table[col sep=comma] {AdditionalFiles/approxDeriv.csv};
+
+  \end{axis}
+\end{tikzpicture}

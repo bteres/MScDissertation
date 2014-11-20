@@ -1,0 +1,27 @@
+\begin{tikzpicture}[scale=0.9]
+\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.517\textwidth, height=0.447\textwidth]{./Figures/sf1-01.png}};
+
+\begin{axis}[%
+% width=6.02303149606299in,
+% height=4.75042322834646in,
+scale only axis,
+xmode=log,
+xmin=0.1,
+xmax=10000000,
+% xminorticks=true,
+xmajorgrids,
+ymode=log,
+ymin=0.001,
+ymax=1000,
+% yminorticks=true,
+ymajorgrids,
+ylabel={Magnitude (A/Hz)},
+xlabel={Frequency  (Hz)}
+]
+
+\addplot [color=red, solid, thick, forget plot]
+  table[col sep=comma]{AdditionalFiles/FS/freqFS.csv};
+\addplot [color=blue, solid, thick, forget plot]
+  table[col sep=comma]{AdditionalFiles/SS/freqSS.csv};
+\end{axis}
+\end{tikzpicture}%

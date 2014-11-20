@@ -119,7 +119,7 @@
 \textsc{\Large Masters Dissertation}\\[0.5cm] % Thesis type
 
 \HRule \\[0.4cm] % Horizontal line
-{\huge \bfseries \ttitle \note[BRT]{Need to find a suitable title}}\\[0.4cm] % Thesis title
+{\huge \bfseries \ttitle}\\[0.4cm] % Thesis title
 \HRule \\[1.5cm] % Horizontal line
 
 \begin{minipage}{0.4\textwidth}
@@ -256,15 +256,15 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 %	PHYSICAL CONSTANTS/OTHER DEFINITIONS
 %----------------------------------------------------------------------------------------
 
-\clearpage % Start a new page
+% \clearpage % Start a new page
 
-\lhead{\emph{Physical Constants}} % Set the left side page header to "Physical Constants"
+% \lhead{\emph{Physical Constants}} % Set the left side page header to "Physical Constants"
 
-\listofconstants{lrcl} % Include a list of Physical Constants (a four column table)
-{
-Speed of Light & $c$ & $=$ & $2.997\ 924\ 58\times10^{8}\ \mbox{ms}^{-\mbox{s}}$ (exact)\\
-% Constant Name & Symbol & = & Constant Value (with units) \\
-}
+% \listofconstants{lrcl} % Include a list of Physical Constants (a four column table)
+% {
+% Speed of Light & $c$ & $=$ & $2.997\ 924\ 58\times10^{8}\ \mbox{ms}^{-\mbox{s}}$ (exact)\\
+% % Constant Name & Symbol & = & Constant Value (with units) \\
+% }
 
 %----------------------------------------------------------------------------------------
 %	SYMBOLS
@@ -276,13 +276,17 @@ Speed of Light & $c$ & $=$ & $2.997\ 924\ 58\times10^{8}\ \mbox{ms}^{-\mbox{s}}$
 
 \listofnomenclature{lll} % Include a list of Symbols (a three column table)
 {
-$a$ & distance & m \\
-$P$ & power & W (Js$^{-1}$) \\
+$\tau_1$ & Heidler rise time constant & \ensuremath{\mu}s \\
+$\tau_2$ & Fall time constant & \ensuremath{\mu}s \\
+$I_0$ & Peak current & A \\
+$\eta$ & Peak current correction &  \\
+$\omega_0$ & Approximation rise tiem constant & rad/s \\
+$n$ & Steepness factor & \\
 % Symbol & Name & Unit \\
 
 & & \\ % Gap to separate the Roman symbols from the Greek
 
-$\omega$ & angular frequency & rads$^{-1}$ \\
+% $\omega$ & angular frequency & rads$^{-1}$ \\
 % Symbol & Name & Unit \\
 }
 
@@ -337,9 +341,7 @@ shch ch sh y yu\\ ya
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
-% \input{./Appendices/AppendixTRiseMath}
-% \input{./Appendices/AppendixLaplaceMath}
-%\input{./Appendices/AppendixC}
+\input{./Appendices/AppendixMath}
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 

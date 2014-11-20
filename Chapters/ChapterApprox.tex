@@ -14,7 +14,7 @@
 %----------------------------------------------------------------------------------------
 
 \section{Overview}
-\label{sec:overview}
+\label{sec:approx_overview}
 
 Continuously building\ldots
 %----------------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ By evaluating \eqnrefs{eqn:HFrise}{eqn:HFfall} independently the ``problems'' wi
 %   Heidler Rise Function
 %-----------------------------------
 \subsection{Heidler Rise Function}
-\label{sub:heidler_rise_function}
+\label{sub:approx_heidler_rise_function}
 
 The rise time part of the Heidler function is defined by \eqnref{eqn:HFrise} and is plotted in \figref{fig:HeidlerFunctionRise}. Clearly, this function can be easily modified to represent any lightning waveform rise time. These can be achieved by varying $n$ (the steepness factor) and $\tau_1$ (the rise time constant).
 \inputtikzfig{HeidlerFuncRise}{HeidlerFunctionRise}{Graph depicting the rise function of the Heidler function (an S-curve).}
@@ -75,7 +75,7 @@ These equations do not allow for ``customisation'' and hence the rise time and s
 %   Heidler Fall Function
 %-----------------------------------
 \subsection{Heidler Fall Function}
-\label{sub:heidler_fall_function}
+\label{sub:approx_heidler_fall_function}
 
 The part of the Heidler function that controls the decay time and shape is in \eqnref{eqn:HFfall} and a graph of this is plotted in \figref{fig:HeidlerFunctionFall}. This function clearly meets all the criteria outlined above. It can easily be customised to change the decay time and it can be trivially integrated (and hence transformed into the frequency domain).
 \inputtikzfig{HeidlerFuncFall}{HeidlerFunctionFall}{Graph depicting the decay function of the Heidler function (exponential decay function).}
@@ -97,12 +97,12 @@ The next section details the development of the approximation function.
 %----------------------------------------------------------------------------------------
 
 \section{Developing an Approximation to the Heidler Function}
-\label{sec:approxMethodology}
+\label{sec:approx_methodology}
 A different approach is taken in developing the approximation to those that are taken in the literature (see \chapref{ChapterBackground}). The only part of the Heidler function that is approximated is the rise function ($x(t)$). Moreover, the approximation is developed in the Laplace domain ensuring that the time domain equation can be integrated analytically.
 
 This implies that the rise equation that is developed must be transformed into the time domain. The decay equation and peak current can then be added to this to obtain the overall approximation equation.
 
-Creating an S-curve in the Laplace domain is simply the step response of an n-th order, real and negative pole. The start of the approximation can be seen in \eqnref{eqn:approxRiseLaplace}.
+Creating an S-curve in the Laplace domain is simply the step response of an n-th order, real and negative pole. The start of the approximation can be seen in \eqnref{eqn:approxRiseLaplace}. \note[BRT]{Think about an appendix here that could be used to detail the entire process including inverse Laplace transforms.}
 \begin{equation}
     X(s) = \frac{1}{s \left ( \frac{s}{\omega_0} +1 \right )^n}
     \label{eqn:approxRiseLaplace}
@@ -117,8 +117,8 @@ Taking the inverse Laplace transform of this equation, the rise function of the 
 \begin{equation}
     x(t) = 1 - e^{-\omega_0 t} \left ( \sum\limits_{i=0}^n \frac{\omega_0^i t^i}{i!} \right )
     \label{eqn:approxRise}
-\end{equation}
-The constants in this equation can be varied to obtain different rise times and steepness factors (see \secrefs{sub:rise_time}{sub:steepness_factor} respectfully).
+\end{equation}\note[BRT]{Plot this function to show its meaning compared to the Heidler above.}
+The constants in this equation can be varied to obtain different steepness factors and rise times (see \secrefs{sub:steepness_factor}{sub:rise_time} respectively).
 
 By substituting the approximated rise function back into the Heidler function shown in \eqnref{eqn:HFsmall}, the overall approximation can be obtained. The next section details the approximation function, its properties and its frequency domain representation.
 
@@ -127,7 +127,7 @@ By substituting the approximated rise function back into the Heidler function sh
 %----------------------------------------------------------------------------------------
 
 \section{Function Definition and Properties}
-\label{sec:function_definition_and_properties}
+\label{sec:approx_function_definition_and_properties}
 
 This approximation to the Heidler function has the advantage that it has an analytical integral and hence an analytical solution in the frequency domain. Moreover it is still ``customizable'', meaning that the steepness of the graph, the rise and fall times and peak current can all be modified. This allows for analyses using 10/350, 8/20 and any other lightning waveforms required.
 
@@ -151,7 +151,7 @@ As the approximation was designed as a modification of the Heidler function, it 
 %   Steepness Factor
 %-----------------------------------
 \subsection{Steepness Factor}
-\label{sub:steepness_factor}
+\label{sub:approx_steepness_factor}
 
 The steepness factor, $n$, changes the shape of the approximation function. \figref{fig:ApproxSteepness} shows several plots of the approximation function with different steepness factors but constant rise time constant ($\omega_0$), fall time constant ($\tau_2$), peak current ($I_0$) and correction factor ($\eta$). These values are tabulated in \tabref{tab:approxConstsSteep}.
 \inputtikzfig{ApproxSteepness}{ApproxSteepness}{Graph showing the effect of changing the steepness factor ($n$) in the approximation function while keeping all the other variables constant.}
@@ -161,24 +161,23 @@ The steepness factor, $n$, changes the shape of the approximation function. \fig
     \begin{tabular}{ll}
         \textbf{Variable} & \textbf{Value} \\
         \hline
-        $I_0$ & 4 kA \\
-        $\eta$ & 0.94 \\
+        $I_0$ & 200 kA \\
+        $\eta$ & 0.93 \\
         $\omega_0$ & 1 768 000 rad/s \\
         $\tau_2$ & 485 \micro s
     \end{tabular}
     \label{tab:approxConstsSteep}
 \end{table}
 
-\annote[BRT]{As expected from %\eqnrefs{eqn:approx}{eqn:approxRise}
-, the steepness factor only affects the rise function ($x(t)$) of the entire function. Therefore to obtain a steeper rise in the graph, the steepness factor can be increased accordingly. Increasing the steepness factor causes the graph to bend upwards later in time but much quicker.}{This needs to be changed!!!}
+As expected from \eqnrefs{eqn:approx}{eqn:approxRise}, the steepness factor only affects the rise function ($x(t)$) of the entire function. Therefore to obtain a steeper rise in the graph, the steepness factor can be increased accordingly. Increasing the steepness factor causes the graph to bend upwards later in time but much quicker. However, the approximation is designed in the Laplace domain and hence the steepness factor also has an effect on the rise time of the waveshape. However this effect is small compared to the change in the steepness.
 
 %-----------------------------------
 %   Rise Time
 %-----------------------------------
 \subsection{Rise Time}
-\label{sub:rise_time}
+\label{sub:approx_rise_time}
 
-\figref{fig:ApproxRise} shows
+The rise time constant, $\omega_0$, is used primarily to change the rise time (number before the `/') of the waveshape. \figref{fig:ApproxRise} shows effect of changing the rise time constant in the approximation while keeping the rest of the parameters constant. The constant values used in this plot are tabulated in \tabref{tab:approxConstsRise}.
 \inputtikzfig{ApproxRise}{ApproxRise}{Graph showing the effect of changing the rise time constant ($\omega_0$) in the approximation function while keeping all the other variables constant.}
 \begin{table}[htbp]
     \centering
@@ -186,21 +185,23 @@ The steepness factor, $n$, changes the shape of the approximation function. \fig
     \begin{tabular}{ll}
         \textbf{Variable} & \textbf{Value} \\
         \hline
-        $I_0$ & 4 kA \\
-        $\eta$ & 0.94 \\
-        $n$ & 3 \\
+        $I_0$ & 200 kA \\
+        $\eta$ & 0.93 \\
+        $n$ & 33 \\
         $\tau_2$ & 485 \micro s
     \end{tabular}
     \label{tab:approxConstsRise}
 \end{table}
 
+This plot clearly shows how the rise time changes with a change in the rise time constant. As with the effect of the steepness factor on the waveshape, the rise time constant also has an effect on the steepness of the graph but this effect is small in comparison.
+
 %-----------------------------------
 %   Fall Time
 %-----------------------------------
 \subsection{Fall Time}
-\label{sub:fall_time}
+\label{sub:approx_fall_time}
 
-\figref{fig:ApproxFall} shows \ldots
+The fall time constant, $\tau_2$ changes the decay time (number after the `/') of the waveshape. \figref{fig:ApproxFall} shows the effect of changing the fall time constant in the approximation function with the other parameters all fixed. These static values are seen in \tabref{tab:approxConstsFall}.
 \inputtikzfig{ApproxFall}{ApproxFall}{Graph showing the effect of changing the fall time constant ($\tau_2$) in the approximation function while keeping all the other variables constant.}
 \begin{table}[htbp]
     \centering
@@ -208,43 +209,65 @@ The steepness factor, $n$, changes the shape of the approximation function. \fig
     \begin{tabular}{ll}
         \textbf{Variable} & \textbf{Value} \\
         \hline
-        $I_0$ & 4 kA \\
-        $\eta$ & 0.94 \\
-        $n$ & 3 \\
+        $I_0$ & 200 kA \\
+        $\eta$ & 0.93 \\
+        $n$ & 33 \\
         $\omega_0$ & 1 768 000 rad/s
     \end{tabular}
     \label{tab:approxConstsFall}
 \end{table}
+
+Several observations are made in this graph, namely:
+\begin{enumerate}
+    \item This is the same effect as that seen in the Heidler function (see \note[BRT]{section in background related to Heidler fall time.}), as expected.
+    \item As with the Heidler function, the decay time is not the same as the decay time constant ($\tau_2$).
+    \item The peak current varies with the change in fall time constant as expected from \eqnref{eqn:eta}.
+\end{enumerate}
 
 %----------------------------------------------------------------------------------------
 %   Time Domain Analysis
 %----------------------------------------------------------------------------------------
 
 \section{Time Domain Analysis}
-\label{sec:time_domain_analysis}
+\label{sec:approx_time_domain_analysis}
+This section shows the time domain properties of the approximation namely, the time derivative and the integral. It is noted that the approximation has an analytical integral, unlike the Heidler function.
 
-Different waveshapes (1.2/50, 8/20, 10/350, etc.)
+%-----------------------------------
+%    Derivative
+%-----------------------------------
+\subsection{Derivative}
+\label{sub:approx_derivative}
+\note[BRT]{Take the derivative and show it. Maybe put an appendix that shows how the derivative is taken?}
+\begin{equation}
+    i(t) = \frac{I_0}{\eta} \left [ e^{-\omega_0 t} \left ( \frac{\omega_0^{n+1} t^n}{n!} \right ) - \frac{1}{\tau_2} \left ( 1 - e^{-\omega_0 t}\left ( \sum_{i=0}^n \frac{\omega_0^{i} t^i}{i!} \right ) \right ) \right ] e^{-\frac{t}{\tau_2}}
+    \label{eqn:approx_deriv}
+\end{equation}
 
-Parameters from IEC62305 namely, di/dt, Q, etc.
+\inputtikzfig{ApproxDeriv}{ApproxDeriv}{Graph showing the derivative of the approximation function.}
 
-% \inputtikzfig{Derivs}{Derivs}{Graph showing the derivatives of the Heidler function and the Terespolsky function.}
+%-----------------------------------
+%    Integral
+%-----------------------------------
+\subsection{Integral}
+\label{sub:approx_integral}
+\begin{equation}
+    \int i(t) \, dt = \frac{I_0 \tau _2 e^{-t \left(\frac{1}{\tau _2}+\omega _0\right)}}{\eta } \left(-e^{t \omega _0} + \sum _{i=0}^n \frac{\omega _0^i}{i!} \sum _{j=0}^i \frac{i! \tau _2^j t^{i-j}}{(i-j)! \left(\tau _2 \omega _0+1\right){}^{j+1}}\right)
+    \label{eqn:approxInt}
+\end{equation}
+
+\note[BRT]{What about charge here? Hence integral?}
 
 %----------------------------------------------------------------------------------------
 %   Frequency Domain Analysis
 %----------------------------------------------------------------------------------------
 
 \section{Frequency Domain Analysis}
-\label{sec:frequency_domain_analysis}
+\label{sec:approx_frequency_domain_analysis}
 
-% Explain process of transform and give form for any real n and for n even. (see \appref{AppendixLaplace})
-
-% Plot frequency response for different waveshapes (1.2/50, 8/20, 10/350, etc.).
-
-% Incomplete Gamma \cite{Gautschi:1979:CPI}
 
 %----------------------------------------------------------------------------------------
 %   Conclusion
 %----------------------------------------------------------------------------------------
 
 \section{Conclusion}
-\label{sec:conclusion}
+\label{sec:approx_conclusion}

@@ -1,0 +1,22 @@
+\begin{tikzpicture}[scale=1.5]
+
+\begin{axis}[%
+% scale only axis,
+xmode=log,
+xmin=0.1,
+xmax=10000000,
+xminorticks=true,
+xmajorgrids,
+ymode=log,
+ymin=0.001,
+ymax=1000,
+yminorticks=true,
+ymajorgrids,
+ylabel={Magnitude (A/Hz)},
+xlabel={Frequency  (Hz)},
+% grid=both,
+cycle list name=linestyles*,
+]
+    \addplot table[col sep=comma]{AdditionalFiles/FS/freqFS.csv};
+\end{axis}
+\end{tikzpicture}%

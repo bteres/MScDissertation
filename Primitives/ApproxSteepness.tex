@@ -1,7 +1,8 @@
 \begin{tikzpicture}[
-  scale = 1.5,
+  % scale = 1.5,
 ]
   \begin{axis}[
+    width=0.8\linewidth,
     xlabel=Time ($\mu s$),
     ylabel=Current ($kA$),
     grid=both,
@@ -18,7 +19,7 @@
   ]
     \foreach \w in {5, 12, ..., 40}{
       \addplot table[col sep=comma] {AdditionalFiles/nData/n_\w.csv};
-      \addlegendentryexpanded{$n = \w$};
+      \addlegendentryexpanded{$n_a = \w$};
     }
   \end{axis}
 \end{tikzpicture}

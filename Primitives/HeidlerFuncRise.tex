@@ -1,7 +1,8 @@
 \begin{tikzpicture}[
-  scale = 1.5,
+  % scale = 1.5,
 ]
   \begin{axis}[
+    width=0.8\linewidth,
     xlabel=Time ($\mu s$),
     ylabel=Current ($kA$),
     grid=both,
@@ -15,7 +16,7 @@
     xtick scale label code/.code={},
     samples=100
   ]
-    
+
     \addplot+[domain=0:100e-6] {hrise(\x, 19e-6,10)};
 
   \end{axis}

@@ -17,12 +17,16 @@
 
 \section{Overview}
 \label{sec:results_overview}
+As mentioned in \chapref{ChapterApproach}, the results obtained in this study are simulated. The simulations used in this study are those of the short lightning current waveshapes detailed in the IEC~62305-1 standard \cite{IEC623051}. These are the initial and subsequent short strokes (10/350 and 0.25/100 respectively). This chapter details the experimental methodology and compares the waveshapes obtained using the approximation (\eqnref{eqn:approx}) with those obtained using the Heidler function (\eqnref{eqn:HF}).
 
-Continuously building\ldots
+%----------------------------------------------------------------------------------------
+%    Experimental Methodology
+%----------------------------------------------------------------------------------------
 
-\note[BRT]{Not sure of sections here but need to have the two main waveshapes that are detailed in IEC 62305 - 10/350 and 0.25/100. Need to comare these in time domain as well as derivative (and integral?). Must quantify all errors. Finally, need to have the frequency spectra of these waveshapes and compare them to the expected values in the standard.}
-
-\inputtikzfig{FSpsd}{StandardFreqComparison}{PSD's of ...}
+\section{Experimental Methodology}
+\label{sec:results_experimental_methodology}
+\note[BRT]{This needs to be fleshed out. I put it in the wrong section originally.}
+The parameters used in creating the Heidler function are detailed in Table B.1 of the IEC~62305-1 standard. Appropriate values are then calculated empirically for the approximation and the comparisons are made. There are various peak current values for the different \glspl{lpl} defined in Table B.1 in \cite{IEC623051}. However, as the peak current is only determined by $I_0$ (peak current) and $\eta$ (peak current correction), the peak current values has no effect on the waveshapes defined in \eqnrefs{eqn:HF}{eqn:approx} or their respective errors.
 
 %----------------------------------------------------------------------------------------
 %    First Short Stroke (10/350)
@@ -30,13 +34,41 @@ Continuously building\ldots
 
 \section{First Short Stroke (10/350)}
 \label{sec:results_FS}
-\inputtikzfig{FS}{FS}{Graph of the first short stroke current model using both the Heidler function and the approximation.}
-The max error is \input{AdditionalFiles/FS/FSerror.txt}\unskip .
+The first short stroke as defined by the IEC~62305-1 has a front time of 10~\usec and a fall time of 350~\usec (see \secref{sec:background_iec62305}) \cite{IEC623051}. A graph depicting both the Heidler function (solid line) and the approximation (dashed line) waveshapes can be seen in \figref{fig:FS}.
+\inputtikzfig{FS}{FS}{Graph of the first short stroke (10/350) current model using both the Heidler function and the approximation. The time scale is up to 200~\usec and the amplitude is as high as 210~kA.}
+The values used in both of the equations to create the waveshapes seen in \figref{fig:FS} are shown in \tabref{tab:FS}.
+\begin{table}[htbp]
+    \centering
+    \caption{Parameters used in \eqnrefs{eqn:HF}{eqn:approx} to plot the waveshapes shown in \figref{fig:FS}.}
+    \begin{tabular}{lcc}
+        \textbf{Parameter} & \textbf{Heidler} & \textbf{Approximation} \\
+        \hline
+        $I_0$ [kA] & 200 & 200 \\
+        $\eta$ & 0.93 & 0.93 \\
+        $n_a$ & - & 33 \\
+        $n_h$ & 10 & - \\
+        $\omega_0$ [rad/s] & - & 1 768 211 \\
+        $\tau_1$ [\usec] & 19 & - \\
+        $\tau_2$ [\usec] & 485 & 485
+    \end{tabular}
+    \label{tab:FS}
+\end{table}
 
-\inputtikzfig{dFS}{dFS}{Graph of the time derivative of the first short stroke current model using both the Heidler function and the approximation.}
-The max error is \input{AdditionalFiles/FS/FSdError.txt}\unskip .
+It is clear from the figure that the approximation closely follows the waveshape produced by the Heidler function. \annote[BRT]{The error is quantified by determining the maximum value of the absolute value of the difference between the two functions. This is then defined as a percentage error by dividing by the maximum value of the Heidler function.}{Appendix here?} In the case of the 10/350 waveshape, with the parameters defined in \tabref{tab:FS}, the maximum error is defined as \input{AdditionalFiles/FS/FSerror.txt}\unskip \%.
 
+The next comparison made is between the first derivatives of both the Heidler function and the approximation (\eqnrefs{eqn:dHF}{eqn:approx_deriv} respectively). This shows the difference in the instantaneous change in current of the two waveshapes. The same parameters are used, i.e. those in \tabref{tab:FS}. The graph showing both of these waveforms can be seen in \figref{fig:dFS}.
+\inputtikzfig{dFS}{dFS}{Graph of the time derivative of the first short stroke (10/350) current model using both the Heidler function and the approximation. The time scale is up to 200~\usec and the amplitude is as high as 30~kA/\usec.}
+
+Clearly the error is more pronounced in the derivative. Using the same method as above to obtain the maximum error as a percentage of the Heidler function maximum, the maximum error is calculated to be \input{AdditionalFiles/FS/FSdError.txt}\unskip \%.
+
+It is noted that the maximum dI/dt occurs during the rise time of the function. Another characteristic of the plot that is noted is that the exponential decay is much longer than the rise. This causes the decay time component of the derivative to be much smaller but longer than the rise time component.
+
+For both \figrefs{fig:FS}{fig:dFS}, it is noted that the time scale goes up to 200~\usec. This is because the tail of the two waveshapes are the same. Therefore the resolution needs to be shown on the rise time of the waveshapes. The amplitudes shown in the two graphs are large enough to show the maximum values (200~kA in \figref{fig:FS} and 27.5~kA/\usec in \figref{fig:dFS}).
+
+For completeness, the amplitude density of the approximated first short stroke is plotted in \figref{fig:FreqFS}. This is produced using \eqnref{eqn:approx_fourier_freq} and the parameters in \tabref{tab:FS}. An amplitude density is plotted because this is what is shown in Figure B.5 in the IEC~62305-1 standard.
 \inputtikzfig{FreqFS}{FreqFS}{Amplitude density of the approximation model produced from the waveshape plotted in \figref{fig:FS}.}
+
+It is difficult to calculate an error in the case of the amplitude density as there is no analytical solution to the integral and hence the Fourier transform of the Heidler function. Therefore any representation of this would be based on numerical methods with inherent errors.
 
 %----------------------------------------------------------------------------------------
 %    Subsequent Short Stroke (0.25/100)
@@ -44,13 +76,41 @@ The max error is \input{AdditionalFiles/FS/FSdError.txt}\unskip .
 
 \section{Subsequent Short Stroke (0.25/100)}
 \label{sec:results_SS}
-\inputtikzfig{SS}{SS}{Graph of a subsequent short stroke current model using both the Heidler function and the approximation.}
-The max error is \input{AdditionalFiles/SS/SSerror.txt}\unskip .
+As stated in \chapref{ChapterApproach}, the purpose of this study is to find an appropriate approximation to the Heidler function that can be used as a substitute when designing systems using the guidelines of the IEC~62305-1 standard. Therefore both the waveforms used in the standard need to be analysed. This section is similar to the last for this reason however slightly different conclusions can be drawn from the two different waveshapes.
 
-\inputtikzfig{dSS}{dSS}{Graph of the time derivative of a subsequent short stroke current model using both the Heidler function and the approximation.}
-The max error is \input{AdditionalFiles/SS/SSdError.txt}\unskip .
+According to the standard, the subsequent short stroke has a front duration of 0.25~\usec and a decay time of 100~\usec \cite{IEC623051}. This implies a much sharper rise time than that of the first short stroke. Again, the three metrics shown here are the actual waveshape, the first time derivative and the amplitude density.
 
+A graph depicting both the Heidler function (solid line) and the approximation (dashed line) waveshapes can be seen in \figref{fig:SS}.
+\inputtikzfig{SS}{SS}{Graph of a subsequent short stroke (0.25/100) current model using both the Heidler function and the approximation. The time scale is up to 5~\usec and the amplitude is as high as 52~kA.}
+The values used in both of the equations to create the waveshapes seen in \figref{fig:SS} are shown in \tabref{tab:SS}.
+\begin{table}[htbp]
+    \centering
+    \caption{Parameters used in \eqnrefs{eqn:HF}{eqn:approx} to plot the waveshapes shown in \figref{fig:SS}.}
+    \begin{tabular}{lcc}
+        \textbf{Parameter} & \textbf{Heidler} & \textbf{Approximation} \\
+        \hline
+        $I_0$ [kA] & 50 & 50 \\
+        $\eta$ & 0.993 & 0.993 \\
+        $n_a$ & - & 33 \\
+        $n_h$ & 10 & - \\
+        $\omega_0$ [rad/s] & - & 74 000 000 \\
+        $\tau_1$ [\usec] & 0.454 & - \\
+        $\tau_2$ [\usec] & 143 & 143
+    \end{tabular}
+    \label{tab:SS}
+\end{table}
+
+Once again the approximation seems to approximate the Heidler function very well. With the method outlined above, the maximum error is calculated to be \input{AdditionalFiles/SS/SSerror.txt}\unskip \%. It is noted that the decay time is so much greater than the front duration (400$\times$), that there is almost no decay in the graph shown. This is however so that the variation in the rise part of the function can be seen.
+
+The first time derivative of both the Heidler function (solid line) and the approximation (dashed line) are shown in \figref{fig:dSS}.
+\inputtikzfig{dSS}{dSS}{Graph of the time derivative of a subsequent short stroke current model using both the Heidler function and the approximation. The time scale is up to 5~\usec and the amplitude is as high as 300~kA/\usec.}
+
+Again it is noted that the error in the first time derivative is more pronounced than in the actual waveshape and this error is calculated to be \input{AdditionalFiles/SS/SSdError.txt}\unskip \%. Moreover, it is noted that the decay time is so large in comparison to the rise time, that the negative dI/dt is negligible and in most engineering applications can be assumed to be zero. It is further noted that the maximum change in current is ten times greater than that of the first return stroke.
+
+Once again, the amplitude density of the approximated subsequent short stroke can be seen in \figref{fig:FreqSS}. This is produced using \eqnref{eqn:approx_fourier_freq} and the parameters in \tabref{tab:SS}.
 \inputtikzfig{FreqSS}{FreqSS}{Amplitude density of the approximation model produced from the waveshape plotted in \figref{fig:SS}.}
+
+As expected, there are higher frequency components in the subsequent short stroke than in the first short stroke. However, the amplitude is lower.
 
 %----------------------------------------------------------------------------------------
 %    Conclusion

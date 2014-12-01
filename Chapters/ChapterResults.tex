@@ -25,8 +25,17 @@ As mentioned in \chapref{ChapterApproach}, the results obtained in this study ar
 
 \section{Experimental Methodology}
 \label{sec:results_experimental_methodology}
-\note[BRT]{This needs to be fleshed out. I put it in the wrong section originally.}
-The parameters used in creating the Heidler function are detailed in Table B.1 of the IEC~62305-1 standard. Appropriate values are then calculated empirically for the approximation and the comparisons are made. There are various peak current values for the different \glspl{lpl} defined in Table B.1 in \cite{IEC623051}. However, as the peak current is only determined by $I_0$ (peak current) and $\eta$ (peak current correction), the peak current values has no effect on the waveshapes defined in \eqnrefs{eqn:HF}{eqn:approx} or their respective errors.
+The requirement in this study is to determine the accuracy of the approximation to the Heidler function. This is achieved by running mathematical simulations using mathematical modelling software such as MATLAB, Mathematica, wxMaxima, etc. In order to determine a level of accuracy, the values used in the IEC~62305-1 are used as a control. The parameters used in creating the Heidler function are detailed in Table B.1 of the IEC~62305-1 standard. These values are for the 10/350 and the 0.25/100 waveshapes (first and subsequent short strokes respectively).
+
+Starting with the Heidler parameters mentioned above, initial values are estimated for the parameters of the approximation. These values are then empirically optimized in order to minimize the error between the approximation and the Heidler waveshapes. These tabulated and calculated parameters are then used in \eqnrefs{eqn:HF}{eqn:approx} to evaluate the accuracy of the approximation.
+
+There are various peak current values for the different \glspl{lpl} defined in Table B.1 in \cite{IEC623051}. However, as the peak current is only determined by $I_0$ (peak current) and $\eta$ (peak current correction), the peak current values have no effect on the waveshapes defined in \eqnrefs{eqn:HF}{eqn:approx} or their respective errors.
+
+The process entails three simulations per waveshape. These include the current waveshape, the change in current (first derivative) and the amplitude density.
+
+The current waveshapes of the Heidler function and the approximation are plotted with the required parameters. The absolute value of the difference between the two functions is determined and the maximum error is defined from this as a percentage of the Heidler function. The first derivative is done in very much the same manner as the current waveshape.
+
+Finally the amplitude density is evaluated. This is done by using the parameters calculated for the approximation in \eqnref{eqn:approx_fourier_freq}. This is then plotted on log-log axes.
 
 %----------------------------------------------------------------------------------------
 %    First Short Stroke (10/350)

@@ -182,7 +182,7 @@
 %	defined as \examname above so you cite it as \examname
 %----------------------------------------------------------------------------------------
 
-\thesistitle{Approximating the Heidler Function with an Analytical Integral - Development and Evaluation} % Your thesis title - this is used in the title and abstract
+\thesistitle{An Approximation to the Heidler Function with an Analytical Integral for Lightning Current Applications} % Your thesis title - this is used in the title and abstract
 %-------------------------------------------------
 \supervisor{Prof. Ken. J. \textsc{Nixon}} % You supervisor's name - this is used in the title page
 %-------------------------------------------------

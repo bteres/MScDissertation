@@ -7,10 +7,75 @@
 
 \lhead{\chaptername~\thechapter. \emph{Discussion and Further Work}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 
-\note[BRT]{dI/dt for two graphs implicications. \\
-Optimisation \\
-Frequency stuff \\
-No change in error \\
-Golden ratio}
+\begin{quote}
+\note[BRT]{Chapter abstract goes here!}
+\end{quote}
 
-\inputtikzfig{FSpsd}{StandardFreqComparison}{\annote[BRT]{PSD's of ...}{This should probably be in Discussion in some other manner.}}
+%----------------------------------------------------------------------------------------
+%    Overview
+%----------------------------------------------------------------------------------------
+
+\section{Overview}
+\label{sec:discussion_overview}
+In simulating the approximation in comparison to the Heidler function, several observations are made. This chapter points out these observations and discusses any implications that they may have in using the approximation. Furthermore, some conclusions about the validity of the approximation and the suitability as a replacement for the Heidler function are made. Finally some comments are made about the work that can be done to further this research.
+
+%----------------------------------------------------------------------------------------
+%    Time Domain
+%----------------------------------------------------------------------------------------
+
+\section{Time Domain}
+\label{sec:discussion_time_domain}
+As there is no accurate way of integrating the Heidler function and hence obtaining frequency domain information without numerical methods, the comparisons between the Heidler function and the approximation are made in the time domain. By using this method, the maximum errors can be quantified. The following two sections discuss the results obtained in \secrefs{sec:results_FS}{sec:results_SS}.
+
+%-----------------------------------
+%    Stroke Current
+%-----------------------------------
+\subsection{Lightning Stroke Current}
+\label{sub:discussion_lightning_stroke_current}
+\chapref{ChapterResults} discussed the first and subsequent stroke simulations in isolation of each other. Several observations are made about the two strokes together. By first looking at the graphs in \figrefs{fig:FS}{fig:SS}, it is obvious that the shape of the graph is the same for both waveshapes but with different time and amplitude scales. It is noted that the decay parts of the approximation waveshapes follow the Heidler function decay exactly as expected. Therefore any errors are only present in the rise part of the waveshapes.
+
+The values of $\omega_0$ (approximation rise time constant) and $n_a$ (approximation steepness factor) that are used in creating the approximations shown in \figrefs{fig:FS}{fig:SS} are determined empirically. These values can be seen in \tabrefs{tab:FS}{tab:SS} respectively. It is noted that $n_a$ remains constant while $\omega_0$ increases for a faster rise time. This is expected as $\omega_0 \propto \frac{1}{t}$ and $\tau_1$ (Heidler rise time constant) decreases with a quicker rise time. From the values in Table B.1 in the IEC~62305-1 standard, it is seen that the $\tau_1$ ratio of the first stroke to the subsequent stroke is $19/0.454 = 41.85$. Looking at the same ratio of $\omega_0$ with the values used in \tabrefs{tab:FS}{tab:SS}, there is a ratio of $1 768 211/74 000 000 = 0.023895$. This is the inverse of $41.85$ and therefore it is concluded that if the values of $\tau_1$ are known and only one value of $\omega_0$ is known, the known value of $\omega_0$ can be multiplied or divided by the ratio of $\tau_1$. Multiplication of $\omega_0$ is done for a decrease in $\tau_1$ and division for an increase in $\tau_1$.
+
+Another observation that is made is that the maximum absolute error in the first stroke is \input{AdditionalFiles/FS/FSerror.txt}\unskip \% and \input{AdditionalFiles/SS/SSerror.txt}\unskip \% in the subsequent stroke. This is such a small deviation that it could be attributed to rounding errors when finding values of $\omega_0$. This indicates that the maximum absolute error is constant for any approximation waveshapes. However this is unproven and is merely an observation but these errors do hold true for the waveshapes defined in the IEC~62305-1 standard which is set as the control in this study (see \chapref{ChapterApproach}).
+
+%-----------------------------------
+%    Stroke Current Derivative
+%-----------------------------------
+\subsection{Stroke Current Derivative}
+\label{sub:discussion_stroke_current_derivative}
+When looking at the waveshapes of the derivatives of the approximated waveforms when compared with those of the Heidler function in \figrefs{fig:dFS}{fig:dSS}, a few observations are made. The first is that the peak change in current is seen at about 50\% of peak current value during the rise of the waveshape. This holds true for both the Heidler function and the approximation. This is expected as the rise time function is an S-curve which is most steep in the middle of the rise.
+
+From the two graphs, it can be seen that the maximum change in current in the subsequent stroke is ten times greater than that of the first stroke. This is important to note when designing \glspl{lps} as the change in current is directly proportional to the voltage produced across an inductor (any wire). Therefore, the subsequent short strokes are more likely to have an effect on more sensitive systems due to even the smallest inductances.
+
+%----------------------------------------------------------------------------------------
+%    Frequency Domain
+%----------------------------------------------------------------------------------------
+
+\section{Frequency Domain}
+\label{sec:discussion_frequency_domain}
+One of the reasons for undertaking this study is to determine an analytical Fourier transform for the Heidler function (see \chapref{ChapterApproach}). This implies that any transform of the Heidler function is done numerically which has inherent errors. Therefore there is no real way to quantify the error of the approximation in the frequency domain. However \figref{fig:StandardFrequencyComparison} shows an adaptation of Figure~B.5 in the IEC~62305-1 standard with the results obtained from the Fourier transform of the approximation (\eqnref{eqn:approx_fourier_freq}) plotted on top.
+\inputtikzfig{FSpsd}{StandardFreqComparison}{Amplitude densities of the different lightning currents according to \gls{lpl} I as stipulated by the IEC~62305-1 with the results of the approximation's Fourier transform (adapted from Figure~B.5 in \cite{IEC623051}).}
+Line 2 shows the expected amplitude density of the first short stroke current while line 3 shows the expected amplitude density of the subsequent short stroke current. The results from the approximation clearly follow their respective waveshape expectations.
+
+An amplitude density is chosen because that is what is stipulated in the standard. However clearly if the values are multiplied by their respective currents i.e. \eqnref{eqn:approx_fourier_freq} is multiplied by frequency, the amplitude spectrum can be found. It is clear that for the first short stroke the peak current components are between about 500~Hz and 40~kHz with a rapid decay above 40~kHz. The subsequent short stroke has lower amplitude current components with a wider frequency range as expected. The peak current components here are between about 1~kHz and 1~MHz. Therefore when the concern is with wideband response or high frequency response, the subsequent short stroke is of importance in the evaluation.
+
+%----------------------------------------------------------------------------------------
+%    Further Work
+%----------------------------------------------------------------------------------------
+
+\section{Further Work}
+\label{sec:discussion_further_work}
+This study is used to show that there is a replacement for the Heidler function when using the IEC~62305-1 standard, that can be integrated. Therefore there is enough evidence given via experimentation (simulation) to define a suitable function that can be used. The evidence in this study is based on the waveforms and information outlined in the standard. However there are areas that can be further evaluated to possibly optimise the use of this function.
+
+As noted above there is an error associated with the current waveshape and its derivative when compared with those of the Heidler function. This error is within a tolerable range and is quantified. It can therefore be taken into account in very sensitive system designs. It is posited above that this error could be consistent across all variations of the waveshape, however there are only two cases dealt with in this study and therefore this hypothesis requires further testing.
+
+Another area for further research is again related to the errors that are quantified above. It is possible that the errors are as ``high'' as they are (no approximation will ever have zero error) because the numbers used for $n_a$ (approximation steepness factor) and $\omega_0$ (approximation rise time constant) are determined empirically. These could be better calculated by using some form of error optimisation algorithm. With these calculated numbers the error could be reduced.
+
+Finally there may be some relationship between $\omega_0$ and the parameters used in the Heidler function, particularly $\tau_1$ (Heidler rise time constant). By the same notion there may be some relationship between $n_a$ and the parameters used in the Heidler function. These relationships would make plotting different waveshapes even easier than using the ratio method described in \secref{sub:discussion_lightning_stroke_current} above. Further work is required to find such relationships. This however does not help with the defined goal of finding a suitable replacement for the Heidler function with an analytical integral.
+
+%----------------------------------------------------------------------------------------
+%    Conclusion
+%----------------------------------------------------------------------------------------
+
+\section{Conclusion}
+\label{sec:discussion_conclusion}

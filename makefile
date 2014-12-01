@@ -12,6 +12,7 @@ FLAGS = -f -cd -pdflatex=lualatex -pdf -quiet -synctex=1 -outdir=Output -shell-e
 # default: help
 
 all: $(FILES)
+	./latex-git-log --author --width=9 > versions.tex
 	$(TEX) $(FLAGS) $(MAIN_FILE)
 	makeglossaries -d Output -q main
 	rm ./Output/*.pdf

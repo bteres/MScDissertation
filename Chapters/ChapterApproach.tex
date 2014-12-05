@@ -11,43 +11,44 @@
 \end{quote}
 
 %----------------------------------------------------------------------------------------
+%    Overview
+%----------------------------------------------------------------------------------------
+
+\section{Overview}
+\label{sec:approach_overview}
+
+
+%----------------------------------------------------------------------------------------
 %    Problem Statement
 %----------------------------------------------------------------------------------------
 
-\section{Problem Statement}
+\section{Problem Statement (Why?)}
 \label{sec:approach_problem_statement}
-Lightning research has led to many advancements in \glspl{lps} design and analyses. The Heidler function is described (in the lightning protection standards) as the lightning current model that is used in developing \glspl{lps}. This however cannot be analytically integrated and hence the \gls{lemp} equations cannot be analytically calculated. This has an effect on lightning detection protection system designs and analyses.
+The Heidler function was developed to represent any lightning current waveshape \cite{Heidler2002}. However there is not analytical integral to the Heidler function. This leads to issues when trying to calculate the \gls{em} fields produced by a lightning stroke. Moreover, there is no way to analytically calculate the Fourier transform and hence the frequency components of a lightning stroke. When designing \glspl{lps} and/or calculating the induced effects of lightning strikes, there is a need for the analytical integral of the lightning current waveshape.
 
-Therefore, an approximation to the Heidler function with an analytical integral would provide researchers and designers with an means of calculating electric and magnetic fields of lightning currents. Moreover, it would be possible to obtain a true frequency spectrum of a lightning current, giving rise to further analyses of the individual frequencies of lightning currents. By creating a ``customisable'' lightning current model, any common (lightning or high voltage impulse) waveshape can be modelled for analyses.
+The IEC~62305-1 standard defines the Heidler function as the standardised lightning current waveshape. As there is no integral to this function, many researchers have used the double exponential function in its place. However the double exponential is not a suitable replacement as it is not a realistic waveshape. \chapref{ChapterBackground} gives a more detailed background into the applications of lightning current models, the IEC~62305-1 and the different lightning models and approximations.
 
-An equation is designed to approximate the Heidler function that is as ``customisable'' and is trivial to use and implement in analyses. The result is used to simulate several common lightning current waveshapes and these are compared to the same waveshapes simulated by the Heidler function. Furthermore, the simulations are tested against the characteristics outlined in the IEC~62305 to determine the viability of the approximation as a replacement to the Heidler function when an integral or an accurate frequency spectrum is required.
-
-%----------------------------------------------------------------------------------------
-%    Approximation Function and Evaluation
-%----------------------------------------------------------------------------------------
-
-\section{Approximation Function and Evaluation}
-\label{sec:approach_approximation_function_and_evaluation}
-
-%-----------------------------------
-%    Scope
-%-----------------------------------
-\subsection{Scope}
-\label{sub:approach_scope}
-
-%-----------------------------------
-%    Evaluation
-%-----------------------------------
-\subsection{Evaluation}
-\label{sub:approach_evaluation}
-
+Therefore there is a requirement for a function that can be used in place of the Heidler function in the standard. This function should take a similar form to that of the Heidler function, it should be intuitive when compared to the Heidler function and the mathematics in using this function should be as simple as that of the Heidler function. Most importantly this function must have an analytical integral for lightning current applications.
 
 %----------------------------------------------------------------------------------------
 %    Contribution of this dissertation
 %----------------------------------------------------------------------------------------
 
-\section{Contribution of this dissertation}
+\section{Contribution of this Dissertation (What?)}
 \label{sec:approach_contribution_of_this_dissertation}
+This study develops a function that approximates the Heidler function in the time domain. This approximation however does have an analytical integral. Moreover, it holds the same form as that of the Heidler function. Only the parts of the Heidler function that cannot be integrated are replaced in producing this approximation. This approximation is easy to use and the parameters for creating different lightning current waveshapes can be easily determined. In an system design or simulation, it would be trivial to replace the Heidler function with this approximation. \chapref{ChapterApprox} details the development process of this function with its properties.
+
+%----------------------------------------------------------------------------------------
+%    Study Methodology
+%----------------------------------------------------------------------------------------
+
+\section{Methodology of the Study (How?)}
+\label{sec:approach_study_methodology}
+This study is carried out by first evaluating the problems associated with the Heidler function. Once this has been identified, a solution is devised. The approach taken in developing this approximation is different to the others outlined in \secref{sec:background_approximations} because the development is done in the Laplace domain and the inverse Laplace transform obtained. This is done only for the problematic part of the equation. It is then placed back into the function to create the overall approximation. This is all discussed in \chapref{ChapterApprox}
+
+As this study is the development of an equation, all results are based on simulations of the approximation. In order to determine the accuracy of the approximation, a control is required. The IEC~62305-1 details two waveshapes and gives the corresponding parameters for the Heidler function for these waveshapes. The approximation is then simulated alongside these waveshapes. The maximum absolute errors are obtained by obtaining the absolute difference between the approximation and the Heidler function. Furthermore the derivatives are compared in a similar manner. \chapref{ChapterResults} details all of the results obtained using this methodology.
+
+Finally, the conclusions are drawn about the accuracy of the approximation. Furthermore, the frequency components are plotted and compared to those expected from the IEC~62305-1 standard. This is all detailed in \chapref{ChapterDiscussion}.
 
 %----------------------------------------------------------------------------------------
 %    Conclusion

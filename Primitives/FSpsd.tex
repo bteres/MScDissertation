@@ -8,19 +8,21 @@ xmode=log,
 xmin=0.1,
 xmax=10000000,
 % xminorticks=true,
-xmajorgrids,
+% xmajorgrids,
 ymode=log,
 ymin=0.001,
 ymax=1000,
 % yminorticks=true,
-ymajorgrids,
+% ymajorgrids,
 ylabel={Magnitude (A/Hz)},
 xlabel={Frequency  (Hz)}
 ]
 
-\addplot [color=red, solid, thick, forget plot]
+\addplot [color=black, dotted, line width=2pt]
   table[col sep=comma]{AdditionalFiles/FS/freqFS.csv};
-\addplot [color=blue, solid, thick, forget plot]
+\addlegendentryexpanded{First Stroke};
+\addplot [color=black!30, dashed, line width=2pt]
   table[col sep=comma]{AdditionalFiles/SS/freqSS.csv};
+\addlegendentryexpanded{Subsequent Stroke};
 \end{axis}
 \end{tikzpicture}%

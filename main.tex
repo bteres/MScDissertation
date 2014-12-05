@@ -61,6 +61,8 @@
 \makeatother
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usepackage{circuitikz}
+\pgfplotsset{compat=1.10}
 \usetikzlibrary{shapes.geometric, intersections,arrows}
 \usepgfplotslibrary{external}
 \tikzexternalize[prefix=TikzFigures/] %  activate!
@@ -69,6 +71,9 @@
 \setglossarystyle{long}
 \renewcommand{\glsnamefont}[1]{\textbf{#1}}
 \makeglossaries
+
+\usepackage{subfigure}
+\usepackage{breqn}
 
 \usepackage{Extras}
 
@@ -355,7 +360,7 @@ shch ch sh y yu\\ ya
 
 \lhead{\emph{References}} % Change the page header to say "Bibliography"
 
-\bibliographystyle{ieeetr} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+\bibliographystyle{IEEEtranN} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
 % \nocite{*}
 \bibliography{Bibliographies/Bibliography} % The references (bibliography) information are stored in the file named "Bibliography.bib"
 

@@ -65,7 +65,8 @@
 \pgfplotsset{compat=1.10}
 \usetikzlibrary{shapes.geometric, intersections,arrows}
 \usepgfplotslibrary{external}
-\tikzexternalize[prefix=TikzFigures/] %  activate!
+\usepackage{pdfpages}
+\tikzexternalize[prefix=TikzFigures/,shell escape=-enable-write18,optimize command away=\includepdf] %  activate!
 
 \usepackage[toc, acronym, nonumberlist, nopostdot]{glossaries}
 \setglossarystyle{long}
@@ -74,7 +75,6 @@
 
 \usepackage{subfigure}
 \usepackage{breqn}
-\usepackage{pdfpages}
 
 \usepackage{Extras}
 
@@ -379,7 +379,7 @@ shch ch sh y yu\\ ya
 % Uncomment the lines as you write the Appendices
 
 \input{./Appendices/AppendixDevelopment}
-\input{./Appendices/AppendixMath}
+% \input{./Appendices/AppendixMath}
 \input{./Appendices/AppendixICLP}
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics

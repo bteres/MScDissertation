@@ -49,7 +49,7 @@ By evaluating \eqnrefs{eqn:HFrise}{eqn:HFfall} independently the ``problems'' wi
 \label{sub:approx_heidler_rise_function}
 
 The rise time part of the Heidler function is defined by \eqnref{eqn:HFrise} and is plotted in \figref{fig:HeidlerFunctionRise}. Clearly, this function can be easily modified to represent any lightning waveform rise time. These can be achieved by varying $n_h$ (the steepness factor) and $\tau_1$ (the rise time constant). Therefore this function meets the criteria that it can approximate any lightning waveform. However this function cannot be integrated and therefore cannot be transformed into the frequency domain. In order to solve this issue another S-curve must be developed that approximates this one and can also be integrated.
-\inputtikzfig{HeidlerFuncRise}{HeidlerFunctionRise}{Graph depicting the rise function of the Heidler function (an S-curve) normalised to a peak current of 1~kA.}
+\inputtikzfig{HeidlerFuncRise}{HeidlerFunctionRise}{Graph depicting the rise function of the Heidler function (an S-curve).}
 
 There are numerous forms of the S-curve such as those given in \eqnref{eqn:erf} to \eqnref{eqn:abs}
 \begin{subequations}
@@ -74,7 +74,7 @@ These equations do not allow for easy ``customisation'' and hence the rise time 
 \label{sub:approx_heidler_fall_function}
 
 The part of the Heidler function that controls the decay time and shape is in \eqnref{eqn:HFfall} and a graph of this is plotted in \figref{fig:HeidlerFunctionFall}. This function clearly meets all the criteria outlined above. It can easily be customised to change the decay time and it can be trivially integrated (and hence transformed into the frequency domain).
-\inputtikzfig{HeidlerFuncFall}{HeidlerFunctionFall}{Graph depicting the decay function of the Heidler function (exponential decay function) normalised to a peak current of 1~kA.}
+\inputtikzfig{HeidlerFuncFall}{HeidlerFunctionFall}{Graph depicting the decay function of the Heidler function (exponential decay function).}
 Moreover this function is just a complex shift of the signal in the frequency domain because of the rule of Laplace transforms shown in \eqnref{eqn:laplaceComplexShift} \cite{bkSST,bkControl}.
 \begin{equation}
     \mathcal{L} \left \{ e^{-at}f\left ( t \right ) \right \} = F \left (s + a \right )
@@ -238,7 +238,7 @@ This section shows the time domain properties of the approximation namely, the t
 %-----------------------------------
 \subsection{Derivative}
 \label{sub:approx_derivative}
-\eqnref{eqn:approx_deriv} shows the analytical derivative of the approximation. This shows the rate of change of the current in the lightning stroke current model. All the steps required to reach this point can be found in \secref{sec:app_math_derivative} in \appref{AppendixMath}.
+\eqnref{eqn:approx_deriv} shows the analytical derivative of the approximation. This shows the rate of change of the current in the lightning stroke current model.
 \begin{equation}
     i'_{a} \left( t \right) = \frac{I_0}{\eta} \left [ e^{-\omega_0 t} \left ( \frac{\omega_0^{n_a+1} t^{n_a}}{n_a!} \right ) - \frac{1}{\tau_2} \left ( 1 - e^{-\omega_0 t}\left ( \sum_{i=0}^{n_a} \frac{\omega_0^{i} t^i}{i!} \right ) \right ) \right ] e^{-\frac{t}{\tau_2}}
     \label{eqn:approx_deriv}
@@ -252,7 +252,7 @@ As is expected, the greatest rate of change of current occurs during the rise of
 %    Integral
 %-----------------------------------
 \subsection{Integral}
-One of the primary reasons for developing an approximation to the Heidler function is to have the ability to integrate such a function. Obtaining the integral of the approximation is trivial and can be seen in \eqnref{eqn:approxInt} where $C$ is some arbitrary constant of integration because it is an indefinite integral. The detailed steps to obtaining this integral can be found in \secref{sec:app_math_integral} in \appref{AppendixMath}.
+One of the primary reasons for developing an approximation to the Heidler function is to have the ability to integrate such a function. Obtaining the integral of the approximation is trivial and can be seen in \eqnref{eqn:approxInt} where $C$ is some arbitrary constant of integration because it is an indefinite integral.
 \label{sub:approx_integral}
 \begin{equation}
     \int i_a \left( t \right) \, dt = \frac{I_0 \tau _2 e^{-t \left(\frac{1}{\tau _2}+\omega _0\right)}}{\eta } \left(-e^{t \omega _0} + \sum _{i=0}^{n_a} \frac{\omega _0^i}{i!} \sum _{j=0}^i \frac{i! \tau _2^j t^{i-j}}{(i-j)! \left(\tau _2 \omega _0+1\right){}^{j+1}}\right) + C
@@ -265,7 +265,7 @@ One of the primary reasons for developing an approximation to the Heidler functi
 
 \section{Frequency Domain Properties}
 \label{sec:approx_frequency_domain_analysis}
-Another reason for using an approximation to the Heidler function is to obtain a Fourier transform and hence an current density or frequency response. The approximation shown in \eqnref{eqn:approx} makes this process even more trivial. Rather than using the fact that the approximation can be integrated (see \secref{sub:approx_integral}), the approximation is developed in the Laplace domain. Hence the Fourier transform is found by using the complex shifting property of Laplace (see \eqnref{eqn:laplaceComplexShift}) and replacing $s$ with $j\omega$. The result of this can be seen in \eqnref{eqn:approx_fourier}. The detailed mathematics used to find this equation can be found in \secref{sec:app_math_fourier} in \appref{AppendixMath}.
+Another reason for using an approximation to the Heidler function is to obtain a Fourier transform and hence an current density or frequency response. The approximation shown in \eqnref{eqn:approx} makes this process even more trivial. Rather than using the fact that the approximation can be integrated (see \secref{sub:approx_integral}), the approximation is developed in the Laplace domain. Hence the Fourier transform is found by using the complex shifting property of Laplace (see \eqnref{eqn:laplaceComplexShift}) and replacing $s$ with $j\omega$. The result of this can be seen in \eqnref{eqn:approx_fourier}.
 \begin{equation}
     I_a \left( j\omega \right) = \frac{I_0}{\eta}\frac{1}{j\omega + \frac{1}{\tau_2}}\frac{1}{\left ( \frac{j\omega + \frac{1}{\tau_2}}{\omega_0} + 1 \right )^{n_a}}
     \label{eqn:approx_fourier}

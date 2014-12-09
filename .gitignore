@@ -27,6 +27,7 @@ Output/TikzFigures/*.md5
 *.out
 Output/*.pdf
 TikzFigures/*.pdf
+./*.pdf
 *.pdfsync
 *.ps
 *.snm

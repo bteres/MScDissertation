@@ -1,5 +1,5 @@
-/Output/*.*
-/Output/TikzFigures/*.md5
+Output/*.*
+Output/TikzFigures/*.md5
 # Latex files
 *.acn
 *.acr
@@ -25,7 +25,8 @@
 *.nav
 *.nlo
 *.out
-*.pdf
+Output/*.pdf
+TikzFigures/*.pdf
 *.pdfsync
 *.ps
 *.snm

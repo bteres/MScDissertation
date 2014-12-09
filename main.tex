@@ -74,6 +74,7 @@
 
 \usepackage{subfigure}
 \usepackage{breqn}
+\usepackage{pdfpages}
 
 \usepackage{Extras}
 
@@ -207,8 +208,7 @@ Dave Barry
 
 \abstract{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
 
-\annote[BRT]{The work presented contributes to research in lightning protection simulations and focuses on approximating a lightning waveform that can be transformed into the frequency domain. Previous work in this area has produced very specific forms of the Heidler function (lightning current waveform). This work however focuses on a generic solution with parameters that can be modified to produce any lightning waveform that is required. In the research presented, the ``Terespolsky function'' is obtained. This function has an analytical solution in the frequency domain and has constants that can be changed to obtain different waveforms (8/20, 10/350, etc.). The characteristics of the ``Terespolsky function'' are compared with those of the Heidler function to ascertain whether or not the function is applicable for use with the lightning protection standard (IEC 62305). It is shown that the ``Terespolsky function'' does represent the same characteristics as those of the Heidler function and hence the IEC 62305. A practical application of the function in the frequency domain is carried out to synthesise a circuit network that generates a lighting impulse current (the ``Terespolsky function'') through a load. This represents a valuable contribution to engineers working in the field of lightning protection, specifically simulation models.
-}{This needs to be changed. From much earlier.}}
+The work presented contributes to research in lightning protection simulations and focuses on approximating the Heidler function with an analytical integral and hence a frequency domain representation. Previous work in this area has produced very specific forms of the Heidler function (lightning current waveform). This work however focuses on a generic solution with parameters that can be modified to produce any lightning waveform that is required. In the research presented, such an approximation is obtained. This function has an analytical solution to the integral and hence in the frequency domain. It has constants that can be changed to obtain different waveforms (10/350, 0.25/100, etc.). The characteristics of the approximation are compared with those of the Heidler function to ascertain whether or not the function is applicable for use with the lightning protection standard (IEC~62305-1). It is shown that the approximation does represent the same characteristics as those of the Heidler function and hence can be used in IEC~62305-1 standardised applications. This represents a valuable contribution to engineers working in the field of lightning protection, specifically simulation models.
 
 \clearpage % Start a new page
 
@@ -281,12 +281,44 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 
 \listofnomenclature{lll} % Include a list of Symbols (a three column table)
 {
-$\tau_1$ & Heidler rise time constant & \ensuremath{\mu}s \\
-$\tau_2$ & Fall time constant & \ensuremath{\mu}s \\
+$E_z \left( D, t \right)$ & Electric field of lightning stroke & V/m \\
+$B_{\phi} \left( D,t \right)$ & Magnetic field of lightning stroke & T \\
+
+& & \\ % Gap
+
+$i \left( z',t \right)$ & Return stroke model & A \\
+$i \left( 0,t \right)$ & Lightning channel base current & A \\
+
+& & \\ % Gap
+
+$i_e \left( t \right)$ & Double exponential lightning stroke current model & A \\
 $I_0$ & Peak current & A \\
+$A$ & Double exponential peak current correction &  \\
+$\alpha$ & Double exponential decay time constant & 1/s \\
+$\beta$ & Double exponential rise time constant & 1/s \\
+
+& & \\ % Gap
+
+$i_h \left( t \right)$ & Heidler function lightning stroke current model & A \\
 $\eta$ & Peak current correction &  \\
-$\omega_0$ & Approximation rise tiem constant & rad/s \\
-$n$ & Steepness factor & \\
+$\tau_1$ & Heidler rise time constant & s \\
+$\tau_2$ & Decay time constant & s \\
+$n_h$ & Heidler steepness factor & \\
+$i'_h \left( t \right)$ & First time derivative of $i_h \left( t \right)$ & A/s \\
+$x_h \left( t \right)$ & Heidler function rise time function &  \\
+$y \left( t \right)$ & Decay function & \\
+
+& & \\ % Gap
+
+$X_a \left( s \right)$ & Approximation rise time function (Laplace domain) &  \\
+$x_a \left( t \right)$ & Approximation rise time function (time domain) &  \\
+$i_a \left( t \right)$ & Approximation lightning stroke current model & A \\
+$\omega_0$ & Approximation rise time constant & rad/s \\
+$n_a$ & Approximation steepness factor & \\
+$i'_a \left( t \right)$ & First time derivative of $i_a \left( t \right)$ & A/s \\
+$I_a \left( j\omega \right)$ & Fourier transform (angular frequency) of $i_a \left( t \right)$ &  \\
+$I_a \left( jf \right)$ & Fourier transform (linear frequency) of $i_a \left( t \right)$ & A/Hz \\
+
 % Symbol & Name & Unit \\
 
 & & \\ % Gap to separate the Roman symbols from the Greek
@@ -346,7 +378,9 @@ shch ch sh y yu\\ ya
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
+\input{./Appendices/AppendixDevelopment}
 \input{./Appendices/AppendixMath}
+\input{./Appendices/AppendixICLP}
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 

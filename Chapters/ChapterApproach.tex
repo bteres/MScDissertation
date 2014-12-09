@@ -7,22 +7,14 @@
 
 \lhead{\chaptername~\thechapter. \emph{Approach Taken}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 \begin{quote}
-\note[BRT]{Chapter abstract goes here!}
+An overview of the work addressed in this study is detailed in this chapter. The problem statement, contribution of the dissertation and the methodology of the study are provided. This gives a quick overview of why the study has been done, what it provides and how the it was carried out and evaluated.
 \end{quote}
-
-%----------------------------------------------------------------------------------------
-%    Overview
-%----------------------------------------------------------------------------------------
-
-\section{Overview}
-\label{sec:approach_overview}
-
 
 %----------------------------------------------------------------------------------------
 %    Problem Statement
 %----------------------------------------------------------------------------------------
 
-\section{Problem Statement (Why?)}
+\section{Problem Statement}
 \label{sec:approach_problem_statement}
 The Heidler function was developed to represent any lightning current waveshape \cite{Heidler2002}. However there is not analytical integral to the Heidler function. This leads to issues when trying to calculate the \gls{em} fields produced by a lightning stroke. Moreover, there is no way to analytically calculate the Fourier transform and hence the frequency components of a lightning stroke. When designing \glspl{lps} and/or calculating the induced effects of lightning strikes, there is a need for the analytical integral of the lightning current waveshape.
 
@@ -34,7 +26,7 @@ Therefore there is a requirement for a function that can be used in place of the
 %    Contribution of this dissertation
 %----------------------------------------------------------------------------------------
 
-\section{Contribution of this Dissertation (What?)}
+\section{Contribution of this Dissertation}
 \label{sec:approach_contribution_of_this_dissertation}
 This study develops a function that approximates the Heidler function in the time domain. This approximation however does have an analytical integral. Moreover, it holds the same form as that of the Heidler function. Only the parts of the Heidler function that cannot be integrated are replaced in producing this approximation. This approximation is easy to use and the parameters for creating different lightning current waveshapes can be easily determined. In an system design or simulation, it would be trivial to replace the Heidler function with this approximation. \chapref{ChapterApprox} details the development process of this function with its properties.
 
@@ -42,9 +34,9 @@ This study develops a function that approximates the Heidler function in the tim
 %    Study Methodology
 %----------------------------------------------------------------------------------------
 
-\section{Methodology of the Study (How?)}
+\section{Methodology of the Study}
 \label{sec:approach_study_methodology}
-This study is carried out by first evaluating the problems associated with the Heidler function. Once this has been identified, a solution is devised. The approach taken in developing this approximation is different to the others outlined in \secref{sec:background_approximations} because the development is done in the Laplace domain and the inverse Laplace transform obtained. This is done only for the problematic part of the equation. It is then placed back into the function to create the overall approximation. This is all discussed in \chapref{ChapterApprox}
+This study is carried out by first evaluating the problems associated with the Heidler function. Once this has been identified, a solution is devised. The approach taken in developing this approximation is different to the others outlined in \secref{sec:background_approximations} because the development is done in the Laplace domain and the inverse Laplace transform obtained. This is done only for the problematic part of the equation. It is then placed back into the function to create the overall approximation. This is all discussed in more detail in \chapref{ChapterApprox}
 
 As this study is the development of an equation, all results are based on simulations of the approximation. In order to determine the accuracy of the approximation, a control is required. The IEC~62305-1 details two waveshapes and gives the corresponding parameters for the Heidler function for these waveshapes. The approximation is then simulated alongside these waveshapes. The maximum absolute errors are obtained by obtaining the absolute difference between the approximation and the Heidler function. Furthermore the derivatives are compared in a similar manner. \chapref{ChapterResults} details all of the results obtained using this methodology.
 
@@ -56,4 +48,6 @@ Finally, the conclusions are drawn about the accuracy of the approximation. Furt
 
 \section{Conclusion}
 \label{sec:approach_conclusion}
-\ldots The following chapter \ldots
+This chapter has given an overview of the entire study. It has essentially answered the questions of what, why and how relating to the study. It has also given an outline to which chapter answer what questions and how.
+
+The following chapter gives the background that relates to the work done. This is done by detailing some applications of lightning current models, the lightning protection standard, lightning current models and finally some of the work that has been done in approximating the Heidler function.

@@ -8,7 +8,7 @@
 \lhead{\chaptername~\thechapter. \emph{Results: A Comparison to the Heidler Function}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 
 \begin{quote}
-\note[BRT]{Chapter abstract goes here!}
+This chapter is shows the actual results obtained by simulating the approximation and comparing the simulations to those of the Heidler function. In order for the results to be understood, the experimental methodology is first defined which explains how the simulations are carried out and how the comparisons are made. Both the first short stroke and the subsequent short stroke (10/350 and 0.25/100 respectively) are analysed. In the analyses, the functions and their derivatives are compared and the amplitude density is shown as an indication.
 \end{quote}
 
 %----------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@
 
 \section{Overview}
 \label{sec:results_overview}
-As mentioned in \chapref{ChapterApproach}, the results obtained in this study are simulated. The simulations used in this study are those of the short lightning current waveshapes detailed in the IEC~62305-1 standard \cite{IEC623051}. These are the initial and subsequent short strokes (10/350 and 0.25/100 respectively). This chapter details the experimental methodology and compares the waveshapes obtained using the approximation (\eqnref{eqn:approx}) with those obtained using the Heidler function (\eqnref{eqn:HF}).
+As mentioned in \chapref{ChapterApproach}, the results obtained in this study are simulated. The simulations used in this study are those of the short lightning current waveshapes detailed in the IEC~62305-1 standard \cite{IEC623051}. These are the initial and subsequent short strokes (10/350 and 0.25/100 respectively). This chapter details the experimental methodology and compares the waveshapes obtained using the Heidler function (\eqnref{eqn:HF}) with those obtained using the approximation (\eqnref{eqn:approx}).
 
 %----------------------------------------------------------------------------------------
 %    Experimental Methodology
@@ -27,15 +27,15 @@ As mentioned in \chapref{ChapterApproach}, the results obtained in this study ar
 \label{sec:results_experimental_methodology}
 The requirement in this study is to determine the accuracy of the approximation to the Heidler function. This is achieved by running mathematical simulations using mathematical modelling software such as MATLAB, Mathematica, wxMaxima, etc. In order to determine a level of accuracy, the values used in the IEC~62305-1 are used as a control. The parameters used in creating the Heidler function are detailed in Table B.1 of the IEC~62305-1 standard. These values are for the 10/350 and the 0.25/100 waveshapes (first and subsequent short strokes respectively).
 
-Starting with the Heidler parameters mentioned above, initial values are estimated for the parameters of the approximation. These values are then empirically optimized in order to minimize the error between the approximation and the Heidler waveshapes. These tabulated and calculated parameters are then used in \eqnrefs{eqn:HF}{eqn:approx} to evaluate the accuracy of the approximation.
+Starting with the Heidler function parameters mentioned above, initial values are estimated for the parameters of the approximation. These values are then empirically optimized in order to minimize the error between the approximation and the Heidler waveshapes. These tabulated and calculated parameters are then used in \eqnrefs{eqn:HF}{eqn:approx} respectively to evaluate the accuracy of the approximation.
 
 There are various peak current values for the different \glspl{lpl} defined in Table B.1 in \cite{IEC623051}. However, as the peak current is only determined by $I_0$ (peak current) and $\eta$ (peak current correction), the peak current values have no effect on the waveshapes defined in \eqnrefs{eqn:HF}{eqn:approx} or their respective errors.
 
-The process entails three simulations per waveshape. These include the current waveshape, the change in current (first derivative) and the amplitude density.
+The evaluation process entails three simulations per waveshape. These include the current waveshape, the change in current (first derivative) and the amplitude density (Fourier transform).
 
 The current waveshapes of the Heidler function and the approximation are plotted with the required parameters. The absolute value of the difference between the two functions is determined and the maximum error is defined from this as a percentage of the Heidler function. The first derivative is done in very much the same manner as the current waveshape.
 
-Finally the amplitude density is evaluated. This is done by using the parameters calculated for the approximation in \eqnref{eqn:approx_fourier_freq}. This is then plotted on log-log axes.
+Finally the amplitude density is evaluated. This is done by using the parameters calculated for the approximation in \eqnref{eqn:approx_fourier_freq}. This is then plotted on log-log axes. As there is no analytical Fourier transform of the Heidler function, this is purely an indication. No quantification of error can be obtained from this.
 
 %----------------------------------------------------------------------------------------
 %    First Short Stroke (10/350)
@@ -43,7 +43,7 @@ Finally the amplitude density is evaluated. This is done by using the parameters
 
 \section{First Short Stroke (10/350)}
 \label{sec:results_FS}
-The first short stroke as defined by the IEC~62305-1 has a front time of 10~\usec and a fall time of 350~\usec (see \secref{sec:background_iec62305}) \cite{IEC623051}. A graph depicting both the Heidler function (solid line) and the approximation (dashed line) waveshapes can be seen in \figref{fig:FS}.
+The first short stroke as defined by the IEC~62305-1 has a front time of 10~\usec and a decay time of 350~\usec (see \secref{sec:background_iec62305}) \cite{IEC623051}. A graph depicting both the Heidler function (solid line) and the approximation (dashed line) waveshapes can be seen in \figref{fig:FS}.
 \inputtikzfig{FS}{FS}{Graph of the first short stroke (10/350) current model using both the Heidler function and the approximation. The time scale is up to 200~\usec and the amplitude is as high as 210~kA.}
 The values used in both of the equations to create the waveshapes seen in \figref{fig:FS} are shown in \tabref{tab:FS}.
 \begin{table}[htbp]
@@ -66,7 +66,7 @@ The values used in both of the equations to create the waveshapes seen in \figre
 It is clear from the figure that the approximation closely follows the waveshape produced by the Heidler function. \annote[BRT]{The error is quantified by determining the maximum value of the absolute value of the difference between the two functions. This is then defined as a percentage error by dividing by the maximum value of the Heidler function.}{Appendix here?} In the case of the 10/350 waveshape, with the parameters defined in \tabref{tab:FS}, the maximum error is defined as \input{AdditionalFiles/FS/FSerror.txt}\unskip \%.
 
 The next comparison made is between the first derivatives of both the Heidler function and the approximation (\eqnrefs{eqn:dHF}{eqn:approx_deriv} respectively). This shows the difference in the instantaneous change in current of the two waveshapes. The same parameters are used, i.e. those in \tabref{tab:FS}. The graph showing both of these waveforms can be seen in \figref{fig:dFS}.
-\inputtikzfig{dFS}{dFS}{Graph of the time derivative of the first short stroke (10/350) current model using both the Heidler function and the approximation. The time scale is up to 200~\usec and the amplitude is as high as 30~kA/\usec.}
+\inputtikzfig{dFS}{dFS}{Graph of the first time derivative of the first short stroke (10/350) current model using both the Heidler function and the approximation. The time scale is up to 200~\usec and the amplitude is as high as 30~kA/\usec.}
 
 Clearly the error is more pronounced in the derivative. Using the same method as above to obtain the maximum error as a percentage of the Heidler function maximum, the maximum error is calculated to be \input{AdditionalFiles/FS/FSdError.txt}\unskip \%.
 
@@ -85,12 +85,12 @@ It is difficult to calculate an error in the case of the amplitude density as th
 
 \section{Subsequent Short Stroke (0.25/100)}
 \label{sec:results_SS}
-As stated in \chapref{ChapterApproach}, the purpose of this study is to find an appropriate approximation to the Heidler function that can be used as a substitute when designing systems using the guidelines of the IEC~62305-1 standard. Therefore both the waveforms used in the standard need to be analysed. This section is similar to the last for this reason however slightly different conclusions can be drawn from the two different waveshapes.
+As stated in \chapref{ChapterApproach}, the purpose of this study is to find an appropriate approximation to the Heidler function that can be used as a substitute when designing systems using the guidelines of the IEC~62305-1 standard. Therefore both the waveforms used in the standard need to be analysed. Because of this, this section is similar to the last. However slightly different conclusions can be drawn from the two different waveshapes.
 
 According to the standard, the subsequent short stroke has a front duration of 0.25~\usec and a decay time of 100~\usec \cite{IEC623051}. This implies a much sharper rise time than that of the first short stroke. Again, the three metrics shown here are the actual waveshape, the first time derivative and the amplitude density.
 
-A graph depicting both the Heidler function (solid line) and the approximation (dashed line) waveshapes can be seen in \figref{fig:SS}.
 \inputtikzfig{SS}{SS}{Graph of a subsequent short stroke (0.25/100) current model using both the Heidler function and the approximation. The time scale is up to 5~\usec and the amplitude is as high as 52~kA.}
+A graph depicting both the Heidler function (solid line) and the approximation (dashed line) waveshapes can be seen in \figref{fig:SS}.
 The values used in both of the equations to create the waveshapes seen in \figref{fig:SS} are shown in \tabref{tab:SS}.
 \begin{table}[htbp]
     \centering
@@ -112,7 +112,7 @@ The values used in both of the equations to create the waveshapes seen in \figre
 Once again the approximation seems to approximate the Heidler function very well. With the method outlined above, the maximum error is calculated to be \input{AdditionalFiles/SS/SSerror.txt}\unskip \%. It is noted that the decay time is so much greater than the front duration (400$\times$), that there is almost no decay in the graph shown. This is however so that the variation in the rise part of the function can be seen.
 
 The first time derivative of both the Heidler function (solid line) and the approximation (dashed line) are shown in \figref{fig:dSS}.
-\inputtikzfig{dSS}{dSS}{Graph of the time derivative of a subsequent short stroke current model using both the Heidler function and the approximation. The time scale is up to 5~\usec and the amplitude is as high as 300~kA/\usec.}
+\inputtikzfig{dSS}{dSS}{Graph of the first time derivative of a subsequent short stroke current model using both the Heidler function and the approximation. The time scale is up to 5~\usec and the amplitude is as high as 300~kA/\usec.}
 
 Again it is noted that the error in the first time derivative is more pronounced than in the actual waveshape and this error is calculated to be \input{AdditionalFiles/SS/SSdError.txt}\unskip \%. Moreover, it is noted that the decay time is so large in comparison to the rise time, that the negative dI/dt is negligible and in most engineering applications can be assumed to be zero. It is further noted that the maximum change in current is ten times greater than that of the first return stroke.
 
@@ -127,3 +127,6 @@ As expected, there are higher frequency components in the subsequent short strok
 
 \section{Conclusion}
 \label{sec:results_conclusion}
+This chapter has discussed the experiment methodology. The results of the experiment are simulated and errors have been defined for the first and subsequent short strokes.
+
+The following chapter utilises these results in order to draw conclusions about the viability of this approximation as a suitable replacement for the Heidler function in the IEC~62305-1 standard. Moreover some comments about the further work that can be carried out are made.

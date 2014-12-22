@@ -247,40 +247,38 @@
   \hypersetup{pdfauthor=\authornames}
   \hypersetup{pdfkeywords=\keywordnames}
   \thispagestyle{empty}
-  \begin{titlepage}
-    \let\footnotesize\small
-    \let\footnoterule\relax
-    \let \footnote \thanks
-    \setcounter{footnote}{0}
-    \null\vfil
-    \vskip 60\p@
-    \begin{center}
-      \setlength{\parskip}{0pt}
-      {\large\textbf{\UNIVNAME}\par}
+    \begin{titlepage}
+      \begin{center}
+
+      \textsc{\LARGE \univname}\\[1.5cm] % University name
+      \textsc{\Large Masters Dissertation}\\[0.5cm] % Thesis type
+
+      \HRule \\[0.4cm] % Horizontal line
+      {\huge \bfseries \ttitle}\\[0.4cm] % Thesis title
+      \HRule \\[1.5cm] % Horizontal line
+
+      \begin{minipage}{0.4\textwidth}
+      \begin{flushleft} \large
+      \emph{Author:}\\
+      \href{http://www.bteres.tk}{\authornames} % Author name - remove the \href bracket to remove the link
+      \end{flushleft}
+      \end{minipage}
+      \begin{minipage}{0.4\textwidth}
+      \begin{flushright} \large
+      \emph{Supervisor:} \\
+      \href{http://dept.ee.wits.ac.za/~nixon}{\supname} % Supervisor name - remove the \href bracket to remove the link
+      \end{flushright}
+      \end{minipage}\\[3cm]
+
+      \large \textit{A dissertation submitted to the \facname, \univname, in fulfilment of the requirements for the degree of \degreename}\\[0.3cm] % University requirement text
+      \textit{in the}\\[0.4cm]
+      \groupname\\\deptname\\[2cm] % Research group name and department name
+
+      {\large \today}\\[4cm] % Date
+      % \includegraphics{Logo} % University/department logo - uncomment to place it
       \vfill
-      {\huge \bf \@title \par}
-      \vfill
-      {\LARGE by \par}
-      \smallskip
-      {\LARGE \authornames \par}
-      \vfill
-      {\large A thesis submitted in partial fulfillment for the \par}
-      {\large degree of \degreename \par}
-      \bigskip
-      \bigskip
-      {\large in the \par}
-      {\large \facname \par}
-      {\large \deptname \par}
-      \bigskip
-      \bigskip
-      \bigskip
-      {\Large \@date \par}
-      \bigskip
-    \end{center}
-    \par
-    \@thanks
-    \vfil\null
-  \end{titlepage}
+      \end{center}
+    \end{titlepage}
   \setcounter{footnote}{0}%
   \global\let\thanks\relax
   \global\let\maketitle\relax

@@ -22,6 +22,34 @@
   }
 }
 
+% argument #1: any options
+\newenvironment{customlegend}[1][]{%
+    \begingroup
+    % inits/clears the lists (which might be populated from previous
+    % axes):
+    \csname pgfplots@init@cleared@structures\endcsname
+    \pgfplotsset{#1}%
+}{%
+    % draws the legend:
+    \csname pgfplots@createlegend\endcsname
+    \endgroup
+}%
+
+% makes \addlegendimage available (typically only available within an
+% axis environment):
+\def\addlegendimage{\csname pgfplots@addlegendimage\endcsname}
+
+% definition to insert numbers
+\pgfkeys{/pgfplots/number in legend/.style={%
+        /pgfplots/legend image code/.code={%
+            \node at (0.125,-0.0225){#1}; % <= changed x value
+        },%
+    },
+}
+\pgfplotsset{
+every legend to name picture/.style={west}
+}
+
 %------------------------------------------------------------------------------
 %                           New Commands
 %------------------------------------------------------------------------------
@@ -59,6 +87,7 @@
 \newcommand{\figrefs}[2]{{\sl Figures~\ref{#1}\/} and {\sl \ref{#2}}\/}
 \newcommand{\tabref}[1]{{\sl Table~\ref{#1}\/}}
 \newcommand{\tabrefs}[2]{{\sl Tables~\ref{#1}\/} and {\sl \ref{#2}}\/}
+\newcommand{\tabrefn}[3]{{\sl Tables~\ref{#1}\/} and {\sl \ref{#2}}\/ and {\sl \ref{#3}}}
 \newcommand{\eqnref}[1]{{\sl Equation~\ref{#1}\/}}
 \newcommand{\eqnrefs}[2]{{\sl Equations~\ref{#1}} and {\sl \ref{#2}}\/}
 \newcommand{\secref}[1]{{\sl Section~\ref{#1}}\xspace}
@@ -91,14 +120,14 @@
 
 
 % Macros for easy inclusion of figures
-\newcommand{\inputtikzfig}[3]
+\newcommand{\inputtikzfig}[4][htbp]
 {
-\begin{figure}[htbp]
+\begin{figure}[#1]
     \centering
-    \tikzsetnextfilename{#2}
-    \input{#1}
-    \caption{#3}
-    \label{fig:#2}
+    \tikzsetnextfilename{#3}
+    \input{#2}
+    \caption{#4}
+    \label{fig:#3}
 \end{figure}
 }
 \newcommand{\inputfig}[2]

@@ -19,7 +19,7 @@
   ]
     \foreach \w in {50, 100, ..., 300}{
       \addplot table[col sep=comma] {AdditionalFiles/omegaData/omega0_\w.csv};
-      \addlegendentryexpanded{$\omega_0 = \w$  rad/s};
+      \addlegendentryexpanded{$\omega_0 = \the\numexpr\w*(10000)$  rad/s};
     }
   \end{axis}
 \end{tikzpicture}

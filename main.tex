@@ -65,12 +65,23 @@
 \pgfplotsset{compat=1.10}
 \usetikzlibrary{shapes.geometric, intersections,arrows}
 \usepgfplotslibrary{external}
+\usetikzlibrary{matrix}
+\usepgfplotslibrary{groupplots}
 \usepackage{pdfpages}
 \tikzexternalize[prefix=TikzFigures/,shell escape=-enable-write18,optimize command away=\includepdf] %  activate!
 
 \usepackage[toc, acronym, nonumberlist, nopostdot]{glossaries}
-\setglossarystyle{long}
+\newglossarystyle{mylong}{
+\glossarystyle{long}
+    \renewenvironment{theglossary}%
+        {\begin{longtable}{p{0.35\linewidth}p{0.6\linewidth}}}%
+        {\end{longtable}}%
+    \renewcommand*{\glossaryentryfield}[5]{%
+        \glsentryitem{##1}\glstarget{##1}{##2} & ##3\glspostdescription\space ##5\\[7.5pt]}%
+}
+\glossarystyle{mylong}
 \renewcommand{\glsnamefont}[1]{\textbf{#1}}
+
 \makeglossaries
 
 \usepackage{subfigure}
@@ -92,6 +103,8 @@
 \def\cdprime{\char127}
 
 \input{AdditionalFiles/acronyms.tex}
+\input{AdditionalFiles/nomenclature.tex}
+\glsaddall
 
 \begin{document}
 
@@ -118,40 +131,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\begin{titlepage}
-\begin{center}
-
-\textsc{\LARGE \univname}\\[1.5cm] % University name
-\textsc{\Large Masters Dissertation}\\[0.5cm] % Thesis type
-
-\HRule \\[0.4cm] % Horizontal line
-{\huge \bfseries \ttitle}\\[0.4cm] % Thesis title
-\HRule \\[1.5cm] % Horizontal line
-
-\begin{minipage}{0.4\textwidth}
-\begin{flushleft} \large
-\emph{Author:}\\
-\href{http://www.bteres.tk}{\authornames} % Author name - remove the \href bracket to remove the link
-\end{flushleft}
-\end{minipage}
-\begin{minipage}{0.4\textwidth}
-\begin{flushright} \large
-\emph{Supervisor:} \\
-\href{http://dept.ee.wits.ac.za/~nixon}{\supname} % Supervisor name - remove the \href bracket to remove the link
-\end{flushright}
-\end{minipage}\\[3cm]
-
-\large \textit{A dissertation submitted in fulfilment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
-\textit{in the}\\[0.4cm]
-\groupname\\\deptname\\[2cm] % Research group name and department name
-
-{\large \today}\\[4cm] % Date
-%\includegraphics{Logo} % University/department logo - uncomment to place it
-
-\vfill
-\end{center}
-
-\end{titlepage}
+\maketitle
 
 %----------------------------------------------------------------------------------------
 %	DECLARATION PAGE
@@ -162,16 +142,9 @@
 
 \addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
 
-I, \authornames, declare that this thesis titled, `\ttitle' and the work presented in it are my own. I confirm that:
+I, \authornames, declare that this dissertation titled, `\ttitle'  is my own unaided work. It is being submitted to the Degree of Master of Science to the University of the Witwatersrand, Johannesburg. It has not been submitted before for any degree or examination to any other University.
 
-\begin{itemize}
-\item[\tiny{$\blacksquare$}] This work was done wholly or mainly while in candidature for a research degree at this University.
-\item[\tiny{$\blacksquare$}] Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
-\item[\tiny{$\blacksquare$}] Where I have consulted the published work of others, this is always clearly attributed.
-\item[\tiny{$\blacksquare$}] Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
-\item[\tiny{$\blacksquare$}] I have acknowledged all main sources of help.
-\item[\tiny{$\blacksquare$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
-\end{itemize}
+\vfill
 
 Signed:\\
 \rule[1em]{25em}{0.5pt} % This prints a line for the signature
@@ -190,10 +163,10 @@ Date:\\
 
 \null\vfill % Add some space to move the quote down the page a bit
 
-\textit{``Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism."}
+\textit{``Give me six hours to chop down a tree and I will spend the first four sharpening the axe."}
 
 \begin{flushright}
-Dave Barry
+Abraham Lincoln
 \end{flushright}
 
 \vfill\vfill\vfill\vfill\vfill\vfill\null % Add some space at the bottom to position the quote just right
@@ -208,7 +181,7 @@ Dave Barry
 
 \abstract{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
 
-The work presented contributes to research in lightning protection simulations and focuses on approximating the Heidler function with an analytical integral and hence a frequency domain representation. Previous work in this area has produced very specific forms of the Heidler function (lightning current waveform). This work however focuses on a generic solution with parameters that can be modified to produce any lightning waveform that is required. In the research presented, such an approximation is obtained. This function has an analytical solution to the integral and hence in the frequency domain. It has constants that can be changed to obtain different waveforms (10/350, 0.25/100, etc.). The characteristics of the approximation are compared with those of the Heidler function to ascertain whether or not the function is applicable for use with the lightning protection standard (IEC~62305-1). It is shown that the approximation does represent the same characteristics as those of the Heidler function and hence can be used in IEC~62305-1 standardised applications. This represents a valuable contribution to engineers working in the field of lightning protection, specifically simulation models.
+The work presented contributes to research in lightning protection simulations and focuses on approximating the Heidler function with an analytical integral and hence a frequency domain representation. The integral of lightning current models is required in the analysis of lightning events including the induced effects and frequency analyses of lightning strikes. Previous work in this area has produced very specific forms of the Heidler function that are used to represent lightning current waveshapes. This work however focuses on a generic solution with parameters that can be modified to produce any lightning current waveshape that is required. In the research presented, such an approximation is obtained. This function has an analytical solution to the integral and hence can be completely represented in the frequency domain. This allows for a true representation of Maxwell's equations for \gls{em} fields and for an analytical frequency domain analysis. It has parameters that can be changed to obtain different waveshapes (10/350, 0.25/100, etc.). The characteristics of the approximation are compared with those of the Heidler function to ascertain whether or not the function is applicable for use with the lightning protection standard (IEC~62305-1). It is shown that the approximation does represent the same characteristics as those of the Heidler function and hence can be used in IEC~62305-1 standardised applications. This represents a valuable contribution to engineers working in the field of lightning protection, specifically simulation models.
 
 \clearpage % Start a new page
 
@@ -249,13 +222,8 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 
 \setstretch{1.5} % Set the line spacing to 1.5, this makes the following tables easier to read
 
-\lhead{\emph{Abbreviations}} % Set the left side page header to "Abbreviations"
-\printglossary[type=\acronymtype, title=Abbreviations]
-% \listofsymbols{ll} % Include a list of Abbreviations (a table of two columns)
-% {
-% \textbf{LPS} & \textbf{L}ightning \textbf{P}rotection \textbf{S}system \\
-% %\textbf{Acronym} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or \\
-% }
+% \lhead{\emph{Abbreviations}} % Set the left side page header to "Abbreviations"
+% \printglossary[type=\acronymtype, title=Abbreviations]
 
 %----------------------------------------------------------------------------------------
 %	PHYSICAL CONSTANTS/OTHER DEFINITIONS
@@ -281,16 +249,19 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 
 \listofnomenclature{lll} % Include a list of Symbols (a three column table)
 {
-$E_z \left( D, t \right)$ & Electric field of lightning stroke & V/m \\
-$B_{\phi} \left( D,t \right)$ & Magnetic field of lightning stroke & T \\
+% \textbf{Symbol} & \textbf{Description} & \textbf{Units} \\
+% & & \\ % Gap
+\multicolumn{3}{l}{\textbf{Electromagnetic Equations of a Lightning Stroke}} \\
+$E_z \left( D, t \right)$ & Electric field & V/m \\
+$B_{\phi} \left( D,t \right)$ & Magnetic field & T \\
 
 & & \\ % Gap
-
-$i \left( z',t \right)$ & Return stroke model & A \\
+\multicolumn{3}{l}{\textbf{Lightning Current Return Stroke Modelling}} \\
+$i \left( z',t \right)$ & Lightning current return stroke model & A \\
 $i \left( 0,t \right)$ & Lightning channel base current & A \\
 
 & & \\ % Gap
-
+\multicolumn{3}{l}{\textbf{Double Exponential Function}} \\
 $i_e \left( t \right)$ & Double exponential lightning stroke current model & A \\
 $I_0$ & Peak current & A \\
 $A$ & Double exponential peak current correction &  \\
@@ -298,7 +269,7 @@ $\alpha$ & Double exponential decay time constant & 1/s \\
 $\beta$ & Double exponential rise time constant & 1/s \\
 
 & & \\ % Gap
-
+\multicolumn{3}{l}{\textbf{Heidler Function}} \\
 $i_h \left( t \right)$ & Heidler function lightning stroke current model & A \\
 $\eta$ & Peak current correction &  \\
 $\tau_1$ & Heidler rise time constant & s \\
@@ -309,27 +280,44 @@ $x_h \left( t \right)$ & Heidler function rise time function &  \\
 $y \left( t \right)$ & Decay function & \\
 
 & & \\ % Gap
-
-$X_a \left( s \right)$ & Approximation rise time function (Laplace domain) &  \\
-$x_a \left( t \right)$ & Approximation rise time function (time domain) &  \\
-$i_a \left( t \right)$ & Approximation lightning stroke current model & A \\
-$\omega_0$ & Approximation rise time constant & rad/s \\
-$n_a$ & Approximation steepness factor & \\
+\multicolumn{3}{l}{\textbf{Heidler Function Approximation}} \\
+$X_a \left( s \right)$ & Rise time function of the approximation (Laplace domain) &  \\
+$x_a \left( t \right)$ & Rise time function of the approximation (time domain) &  \\
+$i_a \left( t \right)$ & Approximated lightning stroke current model & A \\
+$\omega_0$ & Rise time constant of the approximation & rad/s \\
+$n_a$ & Steepness factor of the approximation & \\
 $i'_a \left( t \right)$ & First time derivative of $i_a \left( t \right)$ & A/s \\
 $I_a \left( j\omega \right)$ & Fourier transform (angular frequency) of $i_a \left( t \right)$ &  \\
 $I_a \left( jf \right)$ & Fourier transform (linear frequency) of $i_a \left( t \right)$ & A/Hz \\
 
+& & \\ % Gap
+\multicolumn{3}{l}{\textbf{Error Evaluation}} \\
+$e \left( s \right)$ & Error function & A \\
+$e' \left( t \right)$ & First time derivative of $e \left( t \right)$ & A/s \\
+
 % Symbol & Name & Unit \\
 
-& & \\ % Gap to separate the Roman symbols from the Greek
+% & & \\ % Gap to separate the Roman symbols from the Greek
 
 % $\omega$ & angular frequency & rads$^{-1}$ \\
 % Symbol & Name & Unit \\
 }
 
 %----------------------------------------------------------------------------------------
+%    Nomenclature
+%----------------------------------------------------------------------------------------
+
+\clearpage % Start a new page
+
+\lhead{\emph{Nomenclature}} % Set the left side page header to "Abbreviations"
+\printglossary[title=Nomenclature]
+
+
+%----------------------------------------------------------------------------------------
 %	DEDICATION
 %----------------------------------------------------------------------------------------
+
+\clearpage
 
 \setstretch{1.3} % Return the line spacing back to 1.3
 

@@ -44,7 +44,7 @@ The current density is evaluated by using the parameters calculated for the appr
 \section{First Short Stroke (10/350)}
 \label{sec:results_FS}
 The first short stroke as defined by the IEC~62305-1 has a front time of 10~\usec and a decay time of 350~\usec (see \secref{sec:background_iec62305}) \cite{IEC623051}. A graph depicting both the Heidler function (solid line) and the approximation (dashed line) waveshapes can be seen in \figref{fig:FS}.
-\inputtikzfig{FS}{FS}{Graph of the first short stroke (10/350) current model using both the Heidler function and the approximation. The time scale is up to 200~\usec and the amplitude is as high as 210~kA.}
+\inputtikzfig[t]{FS}{FS}{Graph of the first short stroke (10/350) current model using both the Heidler function and the approximation. The time scale is up to 200~\usec and the amplitude is as high as 210~kA.}
 The values used in both of the equations to create the waveshapes seen in \figref{fig:FS} are shown in \tabref{tab:FS}.
 \begin{table}[htbp]
     \centering
@@ -126,9 +126,8 @@ The first time derivative of both the Heidler function (solid line) and the appr
 \inputtikzfig{dSS}{dSS}{Graph of the first time derivative of a subsequent short stroke current model using both the Heidler function and the approximation. The time scale is up to 5~\usec and the amplitude is as high as 300~kA/\usec.}
 Again the error in the first time derivative is more pronounced than in the actual waveshape and this error is calculated to be \input{AdditionalFiles/SS/SSdError.txt}\unskip \% (as before, the error is seen during the rise part of the waveshape). The decay time is so large in comparison to the rise time, that the negative dI/dt is negligible and in most engineering applications can be assumed to be zero. The maximum change in current is ten times greater than that of the first return stroke.
 
-Once again, the current density of the approximated subsequent short stroke can be seen in \figref{fig:FreqSS}. This is produced using \eqnref{eqn:approx_fourier_freq} and the parameters in \tabref{tab:SS}.
+Once again, the current density of the approximated subsequent short stroke can be seen in \figref{fig:FreqSS}. This is produced using \eqnref{eqn:approx_fourier_freq} and the parameters in \tabref{tab:SS}. As expected, there are higher frequency components in the subsequent short stroke than in the first short stroke. However, the amplitude is lower.
 \inputtikzfig{FreqSS}{FreqSS}{Current density of the approximation model produced from the waveshape plotted in \figref{fig:SS}.}
-As expected, there are higher frequency components in the subsequent short stroke than in the first short stroke. However, the amplitude is lower.
 
 %----------------------------------------------------------------------------------------
 %    Conclusion

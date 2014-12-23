@@ -74,7 +74,7 @@ These equations do not allow for an easy manipulation of parameters to tailor th
 \label{sub:approx_heidler_fall_function}
 
 The part of the Heidler function that controls the decay time and shape is in \eqnref{eqn:HFfall} and a graph of this is plotted in \figref{fig:HeidlerFunctionFall}. This function clearly meets all the criteria outlined above. It can easily be altered to change the decay time and it can be trivially integrated (and hence transformed into the frequency domain).
-\inputtikzfig{HeidlerFuncFall}{HeidlerFunctionFall}{Graph depicting the decay function of the Heidler function (exponential decay function).}
+\inputtikzfig[t]{HeidlerFuncFall}{HeidlerFunctionFall}{Graph depicting the decay function of the Heidler function (exponential decay function).}
 This function is just a complex shift of the signal in the frequency domain because of the rule of Laplace transforms shown in \eqnref{eqn:laplaceComplexShift} \cite{bkSST,bkControl}.
 \begin{equation}
     \mathcal{L} \left \{ e^{-at}f\left ( t \right ) \right \} = F \left (s + a \right )
@@ -245,7 +245,7 @@ This section shows the time domain properties of the approximation namely, the t
 \end{equation}
 
 A graph of the above function with the same parameters as those utilised in creating the graph in \figref{fig:ApproxFuncEx}, can be seen in \figref{fig:ApproxDeriv}.
-\inputtikzfig{ApproxDeriv}{ApproxDeriv}{Graph showing the derivative of the approximation function shown in \figref{fig:ApproxFuncEx}.}
+\inputtikzfig[t]{ApproxDeriv}{ApproxDeriv}{Graph showing the derivative of the approximation function shown in \figref{fig:ApproxFuncEx}.}
 As is expected, the greatest rate of change of current occurs during the rise of the graph and the negative rate of change is comparatively small.
 
 %-----------------------------------

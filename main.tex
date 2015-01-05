@@ -96,7 +96,7 @@
 %	Allow Russian alphabet from english letters. Just type \textcry{...}
 %----------------------------------------------------------------------------------------
 \usepackage[OT2,T1]{fontenc}
-\newcommand\textcyr[1]{{\fontencoding{OT2}\fontfamily{wncyr}\selectfont #1}}
+\newcommand\textcyr[1]{{\fontencoding{OT2}\fontfamily{wncyr}\fontshape{it}\selectfont #1}}
 \def\Eoborotnoye{\char3}
 \def\eoborotnoye{\char11}
 \def\cprime{\char126}
@@ -193,7 +193,29 @@ The work presented contributes to research in lightning protection simulations a
 
 \acknowledgements{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
 
-The acknowledgements and the people to thank go here, don't forget to include your project advisor\ldots
+I would like to thank Professor Ken J. Nixon for all his guidance, advice and enthusiasm throughout the duration of this work. I would also like to thank Professor Ian R. Jandrell for his support.
+
+Thank you to my colleagues in the High Voltage and Lightning EMC research group as well as the staff of the Genmin Laboratories for their encouragement and support.
+
+Thanks to the staff and postgraduate students of the school of electrical and information engineering in particular Mr Jacques Naud\'e, Professor Ivan Hofsajer and Ms Yu-Chieh (Jessie) Liu for their long conversations and advice.
+
+Special thanks are extended to Professor Montaz Ali and Professor Anne Love for the advice regarding complicated mathematics.
+
+The following organisations are gratefully acknowledged for funding and supporting the High Voltage and Lightning EMC Research Groups:
+\begin{itemize}
+    \item CBI-Electric for direct support and funding the Chair of Lightning at the University of the Witwatersrand.
+    \item Eskom through the Tertiary Education Support Programme (TESP).
+    \item The National Research Foundation (NRF).
+    \item The Department of Trade and Industry (DTI) for Technology and Human Resources for Industry Programme (THRIP) funding.
+\end{itemize}
+
+Furthermore, I formally acknowledge the funding that I received from the following establishments over the years:
+\begin{itemize}
+    \item The National Research Foundation (NRF) (\textit{opinions expressed and conclusions arrived at in this thesis are my own and should not necessarily be attributed to the NRF}).
+    \item The University Postgraduate Merit Award.
+\end{itemize}
+
+Last but not least, I am thankful to all my family and friends for their encouragement, patience and support (and to those that assisted in the pain-staking process of proof reading).
 }
 \clearpage % Start a new page
 
@@ -323,14 +345,24 @@ $e' \left( t \right)$ & First time derivative of $e \left( t \right)$ & A/s \\
 
 \pagestyle{empty} % Page style needs to be empty for this page
 
-\dedicatory{For/Dedicated to/To my\ldots \textcyr{Privet SHurochka\\
-a b v g d e \"e zh z i\\ {\u i} k l m n o p r s t\\ u f kh c ts
-shch ch sh y yu\\ ya
-\Eoborotnoye~
-\eoborotnoye~
-\cprime~
-\cdprime~
-}} % Dedication text
+\dedicatory{To my loving parents\\
+for their endless support\\
+and belief in me.
+\vspace{2em}
+
+\textcyr{K moemu Shurochka za to,\\
+chto tak lyubit\cprime~i podderzhivat\cprime}
+
+% \textcyr{Privet SHurochka\\
+% a b v g d e \"e zh z i\\ {\u i} k l m n o p r s t\\ u f kh c ts
+% shch ch sh y yu\\ ya
+% \Eoborotnoye~
+% \eoborotnoye~
+% \cprime~
+% \cdprime~
+% }
+}
+ % Dedication text
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 

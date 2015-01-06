@@ -96,7 +96,7 @@
 %	Allow Russian alphabet from english letters. Just type \textcry{...}
 %----------------------------------------------------------------------------------------
 \usepackage[OT2,T1]{fontenc}
-\newcommand\textcyr[1]{{\fontencoding{OT2}\fontfamily{wncyr}\fontshape{it}\selectfont #1}}
+\newcommand\textcyr[1]{{\fontencoding{OT2}\fontfamily{wncyr}\selectfont #1}}
 \def\Eoborotnoye{\char3}
 \def\eoborotnoye{\char11}
 \def\cprime{\char126}
@@ -350,8 +350,8 @@ for their endless support\\
 and belief in me.
 \vspace{2em}
 
-\textcyr{K moemu Shurochka za to,\\
-chto tak lyubit\cprime~i podderzhivat\cprime}
+\textcyr{\textit{Moe{\u i} SHurochke,\\
+za lyubov\cprime~i podderzhku}}
 
 % \textcyr{Privet SHurochka\\
 % a b v g d e \"e zh z i\\ {\u i} k l m n o p r s t\\ u f kh c ts

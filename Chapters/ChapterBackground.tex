@@ -44,7 +44,7 @@ Return stroke models are characterised into four primary classes, namely gas dyn
         \input{Primitives/TransmissionLineModel.tex}
         \label{fig:tr_line_model}
     }
-    \caption[]{\subref{fig:physical_model} Physical and \subref{fig:tr_line_model} Transmission Line models of a lightning strike close to a transmission line that induces over-voltages on the line.}
+    \caption{\subref{fig:physical_model} Physical and \subref{fig:tr_line_model} Transmission Line models of a lightning strike close to a transmission line that induces over-voltages on the line.}
     \label{fig:induced_voltage_models}
 \end{figure}
 \figref{fig:induced_voltage_models} shows the \subref{fig:physical_model} physical and \subref{fig:tr_line_model} return stroke models for a lightning strike in close proximity to a transmission line. From these figures it can be seen that when modelling a lightning strike occurring in close proximity to a transmission line, the lightning channel is modelled as a monopole with a perfectly conductive ground and a vertical current path \cite{Paolone2009,Baba2007,McAfee2015}.
@@ -69,7 +69,8 @@ In short, there are two steps of integration required to calculate induced curre
     \item Integrate the \gls{em} fields using the equations defined by \citeauthor{Agrawal1980} to obtain the induced currents.
 \end{enumerate}
 
-Therefore, by choosing an appropriate lightning channel base current, the induced effects on nearby transmission lines can be calculated. Clearly from the equations above, at least the second integral of this channel base current is required. Using an accurate lightning channel base current leads to very complex models that require long computer simulations because of numerical integration \cite{Paolone2009}. \secref{sec:background_current_waveshape_models} details two of the more common equations used as lightning channel base current models.
+%Therefore, by choosing an appropriate lightning channel base current, the induced effects on nearby transmission lines can be calculated.
+Referring back to \figref{fig:physical_model}, the induced effects on a nearby transmission line can be calculated by modelling the lightning event as in \figref{fig:tr_line_model} and choosing an appropriate lightning channel base current. Clearly from the equations above, at least the second integral of this channel base current is required. Using an accurate lightning channel base current leads to very complex models that require long computer simulations because of numerical integration \cite{Paolone2009}. \secref{sec:background_current_waveshape_models} details two of the more common equations used as lightning channel base current models.
 
 %-----------------------------------
 %    Frequency Components of Lightning Currents

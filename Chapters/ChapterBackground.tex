@@ -7,7 +7,7 @@
 
 \lhead{\chaptername~\thechapter. \emph{Background}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 \begin{quote}
-This chapter provides the background knowledge that is required to understand this research and why it was undertaken. There is some insight given into the applications of lightning current models, including induced currents on transmission lines and lightning frequency component analyses. The terminology used in the IEC lightning protection standard is defined giving insight into the reason for approximating the Heidler function. The Heidler function and the double exponential function are also defined and discussed. A literature review is carried out showing some of the work done by other researchers in obtaining approximations to the Heidler function.
+This chapter provides the background knowledge that is required to understand this research and why it was undertaken. Insight is given into the applications of lightning current models, including induced currents on transmission lines and lightning frequency component analyses. The terminology used in the IEC lightning protection standard is defined giving insight into the reason for approximating the Heidler function. The Heidler function and the double exponential function are also defined and discussed. A literature review is carried out showing some of the work done by other researchers in obtaining approximations to the Heidler function.
 \end{quote}
 
 %----------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ In short, there are two steps of integration required to calculate induced curre
 \end{enumerate}
 
 %Therefore, by choosing an appropriate lightning channel base current, the induced effects on nearby transmission lines can be calculated.
-Referring back to \figref{fig:physical_model}, the induced effects on a nearby transmission line can be calculated by modelling the lightning event as in \figref{fig:tr_line_model} and choosing an appropriate lightning channel base current. Clearly from the equations above, at least the second integral of this channel base current is required. Using an accurate lightning channel base current leads to very complex models that require long computer simulations because of numerical integration \cite{Paolone2009}. \secref{sec:background_current_waveshape_models} details two of the more common equations used as lightning channel base current models.
+Referring back to \figref{fig:induced_voltage_models}, the induced effects on a nearby transmission line can be calculated by modelling the lightning event as in \figref{fig:tr_line_model} and choosing an appropriate lightning channel base current. Clearly from the equations above, at least the second integral of this channel base current is required. Using an accurate lightning channel base current leads to very complex models that require long computer simulations because of numerical integration \cite{Paolone2009}. \secref{sec:background_current_waveshape_models} details two of the more common equations used as lightning channel base current models.
 
 %-----------------------------------
 %    Frequency Components of Lightning Currents
@@ -94,7 +94,7 @@ The IEC~62305 is the lightning protection standard containing four parts. Where 
 
 Figures A.3 and A.4 in the standard show typical waveshapes expected from both downward and upward lightning flashes respectively. The three components identified in these images are the first short stroke, the subsequent short stroke and the long stroke. The first and subsequent short strokes are seen to be high current impulses with a sharp rise and a slower decay. The long stroke on the other hand is a lower current that is maintained for a comparatively long time.
 
-Table A.1 in the standard shows the values that should be used in system designs. The values given here are the maximum change in current, the charge, the peak current, etc. With these values, systems can be designed to different \glspl{lpl}. The values given in this table are based on the original studies done by \citeauthor{Anderson1980} and \citeauthor{Berger1975} on lightning currents \cite{Anderson1980,Berger1975}. The standard typically makes use of the upper end values to protect against more cases.
+Table A.1 in the standard shows the values that should be used in system designs. The values given here are the maximum change in current, the charge, the peak current, etc. With these values, systems can be designed to different \glspl{lpl}. The values given in this table are based on the original studies done by \citeauthor{Anderson1980} and \citeauthor{Berger1975} on lightning currents \cite{Anderson1980,Berger1975}. The standard typically makes use of the upper end values to protect against more lightning events. For example, a system with a higher current rating will be protected against a lower current lightning strike.
 
 In order to simulate lightning currents in \gls{lps} design, the standard identifies a function that creates a waveshape with the characteristics outlined in Table A.1 of the standard. This function is the Heidler function with a specific configuration ($n = 10$) (see \secref{sub:background_heidler}). This function can be used to create any lightning current waveshape with the two of interest in the standard being the 10/350 (first short stroke) and the 0.25/100 (subsequent short stroke). These two waveshapes are simulated using the parameters specified in Table B.1 in the standard for the different \glspl{lpl} and stroke types \cite{IEC623051}.
 
@@ -123,7 +123,7 @@ Where: \\
     $\alpha$ & = & Decay time constant [1/s] \\
     $\beta$ & = & Rise time constant [1/s]
 \end{tabular}\\\\
-The double exponential model is often used in place of the Heidler function because it can be integrated. However the waveshape produced by the double exponential equation is not physically realistic because the maximum current steepness occurs at time $t=0$ \cite{ZhangFeizhouandLiuShanghe2002,Lovric2013,Heidler2002,Delfino2012}. Moreover, this function does not allow for waveshapes that comply with Table A.1 in the IEC~62305-1 standard. For instance, a subsequent short stroke for \gls{lpl}-I would have a maximum current steepness of about 545 kA/\usec \cite{Heidler2008}. Another disadvantage to using this equation is that it is not easily adjustable, the parameters are not easily obtained for different waveshapes \cite{Javor2011}.
+The double exponential model is often used in place of the Heidler function because it can be integrated. However the waveshape produced by the double exponential equation is not physically realistic because the maximum current steepness occurs at time $t=0$ \cite{ZhangFeizhouandLiuShanghe2002,Lovric2013,Heidler2002,Delfino2012}. Moreover, this function does not allow for waveshapes that comply with Table A.1 in the IEC~62305-1 standard. For instance, a subsequent short stroke for \gls{lpl}-I would have a maximum current steepness of about 545 kA/\usec, which is far greater than the maximum value outlined in the standard of less than 200 kA/\usec \cite{Heidler2008}. Another disadvantage to using this equation is that it is not easily adjustable, the parameters are not easily obtained for different waveshapes \cite{Javor2011}.
 
 %-----------------------------------
 %    The Heidler Function
@@ -163,9 +163,9 @@ The disadvantage of the Heidler function is that there is no analytical integral
 \label{sec:background_approximations}
 As there are is no analytical integral to the Heidler function, there are many researchers working towards an approximation that can be used in its place for applications such as those mentioned in \secref{sec:background_applications}. This section discusses a few of these approximations with the disadvantages associated with each one.
 
-\citeauthor{ZhangFeizhouandLiuShanghe2002} developed a function that they call the \textit{Pulse function}. According to their study, this function produces a maximum error of 0.5\% with the waveshapes they used. However, this function is a modified form of the double exponential function and it requires very complex methods to determine the parameters used in the equation \cite{ZhangFeizhouandLiuShanghe2002}.
+\citeauthor{ZhangFeizhouandLiuShanghe2002} developed a function that they call the \textit{Pulse function} \cite{ZhangFeizhouandLiuShanghe2002}. According to their study, this function produces a maximum error of 0.5\% with the waveshapes they used. However, this function is a modified form of the double exponential function and it requires very complex methods to determine the parameters used in the equation.
 
-\citeauthor{Heidler2002} \cite{Heidler2002} approximate the Heidler function utilised in the IEC~62305-1 standard. This approximation has an analytical integral but the equation is specific to the subsequent short stroke. There is no general form of this approximation and so this equation cannot be easily manipulated. Their study also details several other approximations to the Heidler function but all with other applications. They all have the disadvantage that they cannot be integrated analytically.
+\citeauthor{Heidler2002} approximate the Heidler function utilised in the IEC~62305-1 standard \cite{Heidler2002}. This approximation has an analytical integral but the equation is specific to the subsequent short stroke. There is no general form of this approximation and so this equation cannot be easily manipulated. Their study also details several other approximations to the Heidler function but all with other applications. They all have the disadvantage that they cannot be integrated analytically.
 
 \citeauthor{Delfino2012} conduct a study in which they develop a Prony series approximation to the Heidler function \cite{Delfino2012}. The mathematics required for this approximation is very complex limiting its use in engineering applications. Each scenario is different as there is no truly generalised form and the number of terms used affects the error associated with the approximation. This would be difficult to use for engineering applications.
 
@@ -181,6 +181,6 @@ All of the approximations above have one or more disadvantage or limitation. Ove
 
 \section{Conclusion}
 \label{sec:background_conclusion}
-This chapter has given all the background information that is relevant to this study. This includes all the terminology, equations, applications and a literature review.
+This chapter has given the background information relevant to this study. This includes all the terminology, equations, applications and a literature review.
 
 The following chapter details the approximation that is developed in this study. The development of the function is detailed and all its properties are discussed in isolation.

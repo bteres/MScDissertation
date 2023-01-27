@@ -1,0 +1,228 @@
+% -*- root: ../main.tex -*-
+% Chapter Template
+
+\chapter{Discussion and Further Work} % Main chapter title
+
+\label{ChapterDiscussion} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\lhead{\chaptername~\thechapter. \emph{Discussion and Further Work}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+\begin{quote}
+This chapter critically analyses the results obtained in the previous chapter. The lightning stroke current is analysed, noting some features of the waveshapes of the approximation and the Heidler function. A method is shown for choosing the rise time constant in the approximation. The approximation is a good replacement for the Heidler function as it takes the same form and contains most of the same parameters. Some notes are made about the derivatives, in particular the effect that the subsequent short stroke can have on a system. An untested hypothesis about the error percentages is discussed. There is some discussion about the frequency response of the approximation with reference to the lightning protection standard. Comments are made about the further work that is required to optimise the approximation.
+\end{quote}
+
+%----------------------------------------------------------------------------------------
+%    Overview
+%----------------------------------------------------------------------------------------
+
+\section{Overview}
+\label{sec:discussion_overview}
+This chapter points out several observations and discusses any implications that they may have in using the approximation. Some conclusions about the validity of the approximation and the suitability as a replacement for the Heidler function are made. Some comments are made about the work that can be done to further this research.
+
+%----------------------------------------------------------------------------------------
+%    Time Domain
+%----------------------------------------------------------------------------------------
+
+\section{Time Domain}
+\label{sec:discussion_time_domain}
+As there is no accurate way of integrating the Heidler function and hence obtaining frequency domain information without numerical methods, the comparisons between the Heidler function and the approximation are made in the time domain. By using this method, the maximum errors can be quantified. The following two sections discuss the results obtained in \secrefs{sec:results_FS}{sec:results_SS}.
+
+%-----------------------------------
+%    Stroke Current
+%-----------------------------------
+\subsection{Lightning Stroke Current}
+\label{sub:discussion_lightning_stroke_current}
+\chapref{ChapterResults} discussed the first and subsequent stroke simulations in isolation of each other. Several observations are made about the two strokes together. From the graphs in \figrefs{fig:FS}{fig:SS}, it is obvious that the shape of the graph is the same for both waveshapes but with different time and amplitude scales. The decay parts of the approximation waveshapes follow the Heidler function decay exactly as expected. Any errors are only present in the rise part of the waveshapes.
+
+The values of $\omega_0$ (approximation rise time constant) and $n_a$ (approximation steepness factor) that are used in creating the approximations shown in \figrefs{fig:FS}{fig:SS} are determined empirically. These values can be seen in \tabrefs{tab:FS}{tab:SS} respectively. The IEC~62305-1 is used as a control in the evaluation of the approximation and it states that for the first and subsequent short strokes defined, a steepness factor, $n_h$, of 10 is required. It was found empirically that an $n_a$ of 33 is appropriate for this case and therefore in this study only the rise time constant, $\omega_0$, is increased for a faster rise time. This increase is expected as $\omega_0 \propto \frac{1}{t}$ and $\tau_1$ (Heidler rise time constant) decreases with a quicker rise time. From the values in Table B.1 in the IEC~62305-1 standard, it is seen that the $\tau_1$ ratio of the first stroke to the subsequent stroke is $19/0.454 = 41.85$. Looking at the same ratio of $\omega_0$ with the values used in \tabrefs{tab:FS}{tab:SS}, there is a ratio of $1\ 768\ 211/74\ 000\ 000 = 0.023895$. This is the inverse of $41.85$ and therefore it is concluded that if the values of $\tau_1$ are known and only one value of $\omega_0$ is known, the known value of $\omega_0$ can be multiplied or divided by the ratio of $\tau_1$. Multiplication of $\omega_0$ is done for a decrease in $\tau_1$ and division for an increase in $\tau_1$.
+
+\captionsetup[subtable]{position=bottom}
+\begin{table}[htbp]
+    \centering
+    \caption{A figure}\label{fig:1}
+    \begin{subtable}{}
+        \centering
+        \label{fig:1a}\\
+        \begin{tabular}{rrr}
+            \textbf{$n_a$} & \textbf{Peak Current Error (\%)} & \textbf{Rise Time Error (\%)} \\
+            \hline
+            5 & 4.93 & 57.40 \\
+            12 & 3.67 & 36.64 \\
+            19 & 2.54 & 21.30 \\
+            26 & 1.46 & 9.67 \\
+            33 & 0.43 & 1.91 \\
+            40 & 0.57 & 12.17
+        \end{tabular}
+    \end{subtable}\\
+    \begin{subtable}{}
+        \centering
+        \label{fig:1b}\\
+        \begin{tabular}{rrr}
+            \textbf{$n_a$} & \textbf{Peak Current Error (\%)} & \textbf{Rise Time Error (\%)} \\
+            \hline
+            5 & 4.93 & 57.40 \\
+            12 & 3.67 & 36.64 \\
+            19 & 2.54 & 21.30 \\
+            26 & 1.46 & 9.67 \\
+            33 & 0.43 & 1.91 \\
+            40 & 0.57 & 12.17
+        \end{tabular}
+    \end{subtable}
+\end{table}
+
+Another observation that is made is that the maximum absolute error in the first stroke is \input{AdditionalFiles/FS/FSerror.txt}\unskip \% and \input{AdditionalFiles/SS/SSerror.txt}\unskip \% in the subsequent stroke. This is a small change and it could be attributed to rounding errors when finding values of $\omega_0$. This indicates that the maximum absolute error is constant for any approximation waveshape. This is unproven and is merely an observation but these errors do hold true for the waveshapes defined in the IEC~62305-1 standard which is set as the control in this study (see \chapref{ChapterApproach}).
+
+$I_0$ (peak current), $\eta$ (peak current correction) and $\tau_2$ (decay time constant) are the same for both the Heidler function and the approximation. This is expected as only $x_h \left( t \right)$ is replaced in the Heidler function with $x_a \left( t \right)$ in the approximation. As these are the respective rise time functions, it makes sense that the amplitude and decay time parts of the equation are unaffected. This implies that the approximation is easily interchangeable with the Heidler function.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{customlegend}[legend columns=3,legend style={align=left,draw=none,column sep=2ex}, legend entries={$n_h = 2$ ,$n_h = 4$ ,$n_h = 6$,$n_h = 8$,$n_h = 10$,$n_h = 12$}
+        ]
+        \addlegendimage{solid, line legend}
+        \addlegendimage{dashed}
+        \addlegendimage{dotted}
+        \addlegendimage{loosely dashed}
+        \addlegendimage{loosely dotted}
+        \addlegendimage{loosely dashdotted}
+        \end{customlegend}
+     \end{tikzpicture} \\
+    \subfigure[]{
+        \tikzsetnextfilename{HeidlerSteepness}
+        \input{Primitives/HeidlerSteepness.tex}
+        \label{fig:discussion_heidSteepness}
+    }
+    \subfigure[]{
+        \tikzsetnextfilename{dHeidlerSteepness}
+        \input{Primitives/dHeidlerSteepness.tex}
+        \label{fig:discussion_dHeidlerSteepness}
+    } \\
+    \vspace*{10pt}
+    \begin{tikzpicture}
+        \begin{customlegend}[legend columns=3,legend style={align=left,draw=none,column sep=2ex}, legend entries={$n_a = 5$ ,$n_a = 12$ ,$n_a = 19$,$n_a = 26$,$n_a = 33$,$n_a = 40$}
+        ]
+        \addlegendimage{solid, line legend}
+        \addlegendimage{dashed}
+        \addlegendimage{dotted}
+        \addlegendimage{loosely dashed}
+        \addlegendimage{loosely dotted}
+        \addlegendimage{loosely dashdotted}
+        \end{customlegend}
+     \end{tikzpicture} \\
+    \subfigure[]{
+        \tikzsetnextfilename{discApproxSteepness}
+        \input{Primitives/discApproxSteepness.tex}
+        \label{fig:discussion_approxSteepness}
+    }
+    \subfigure[]{
+        \tikzsetnextfilename{dApproxSteepness}
+        \input{Primitives/dApproxSteepness.tex}
+        \label{fig:discussion_dApproxSteepness}
+    }
+    \caption{Effects of varying the steepness factors, $n_h$ and $n_a$, in both the Heidler function and the approximation respectively. The \subref{fig:discussion_heidSteepness} Heidler function and the \subref{fig:discussion_dHeidlerSteepness} Heidler function derivative are compared to the \subref{fig:discussion_approxSteepness} approximation and its \subref{fig:discussion_dApproxSteepness} derivative.}
+    \label{fig:discussion_steepness}
+\end{figure}
+\figrefs{fig:discussion_heidSteepness}{fig:discussion_dHeidlerSteepness} show the effects of changing the steepness factor, $n_h$, on the Heidler function and its first time derivative respectively. A steeper graph implies a faster rise time and hence the steepness factor affects the rise time of the waveshape, however the defining feature change is the steepness of the rise time. The half peak value remains at the same point in time for different steepness factors. The maximum instantaneous change in current occurs later in time and with a greater amplitude for a greater $n_h$. This occurs shortly after the first knee (the upward bend) in the curve.
+
+\figrefs{fig:discussion_approxSteepness}{fig:discussion_dApproxSteepness} show the effects of changing the steepness factor, $n_a$, on the approximation and its first time derivative respectively. The change in the rise time of the waveshape is not as significant as with the Heidler function but the upward trend does still begin later in time. As expected, the maximum instantaneous change in current still occurs later in time but the peak value is decreased with an increase in $n_a$.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{customlegend}[legend columns=3,legend style={align=left,draw=none,column sep=2ex}, legend entries={$\tau_1 = 5$ \micro s ,$\tau_1 = 10$ \micro s ,$\tau_1 = 15$ \micro s,$\tau_1 = 20$ \micro s,$\tau_1 = 25$ \micro s,$\tau_1 = 30$ \micro s}
+        ]
+        \addlegendimage{solid, line legend}
+        \addlegendimage{dashed}
+        \addlegendimage{dotted}
+        \addlegendimage{loosely dashed}
+        \addlegendimage{loosely dotted}
+        \addlegendimage{loosely dashdotted}
+        \end{customlegend}
+     \end{tikzpicture} \\
+    \subfigure[]{
+        \tikzsetnextfilename{HeidlerRise}
+        \input{Primitives/HeidlerRise.tex}
+        \label{fig:discussion_heidRise}
+    }
+    \subfigure[]{
+        \tikzsetnextfilename{dHeidlerRise}
+        \input{Primitives/dHeidlerRise.tex}
+        \label{fig:discussion_dHeidlerRise}
+    } \\
+    \vspace*{10pt}
+    \begin{tikzpicture}
+        \begin{customlegend}[legend columns=3,legend style={align=left,draw=none,column sep=2ex}, legend entries={$\omega_0 = 500\ 000$ rad/s ,$\omega_0 = 1\ 000\ 000$ rad/s ,$\omega_0 = 1\ 500\ 000$ rad/s,$\omega_0 = 2\ 000\ 000$ rad/s,$\omega_0 = 2\ 500\ 000$ rad/s,$\omega_0 = 3\ 000\ 000$ rad/s}
+        ]
+        \addlegendimage{solid, line legend}
+        \addlegendimage{dashed}
+        \addlegendimage{dotted}
+        \addlegendimage{loosely dashed}
+        \addlegendimage{loosely dotted}
+        \addlegendimage{loosely dashdotted}
+        \end{customlegend}
+     \end{tikzpicture} \\
+    \subfigure[]{
+        \tikzsetnextfilename{discApproxRise}
+        \input{Primitives/discApproxRise.tex}
+        \label{fig:discussion_approxRise}
+    }
+    \subfigure[]{
+        \tikzsetnextfilename{dApproxRise}
+        \input{Primitives/dApproxRise.tex}
+        \label{fig:discussion_dApproxRise}
+    }
+    \caption{Effects of varying the rise time constants, $\tau_1$ and $\omega_0$, in both the Heidler function and the approximation respectively. The \subref{fig:discussion_heidRise} Heidler function and the \subref{fig:discussion_dHeidlerRise} Heidler function derivative are compared to the \subref{fig:discussion_approxRise} approximation and its \subref{fig:discussion_dApproxRise} derivative.}
+    \label{fig:discussion_rise}
+\end{figure}
+\figrefs{fig:discussion_heidRise}{fig:discussion_dHeidlerRise} show the effects of changing the rise time constant, $\tau_1$, on the Heidler function and its first time derivative respectively. A smaller rise time constant produces a faster rise time of the waveshape and hence the steepness is also increased. The defining feature is the change in rise time. Again the peak instantaneous change in current occurs later in time with an increase $\tau_1$ but converse to what is seen with the steepness factor, the peak amplitude decreases.
+
+\figrefs{fig:discussion_approxRise}{fig:discussion_dApproxRise} show the effects of changing the rise time constant, $\omega_0$, on the approximation and its first time derivative respectively. A greater $\omega_0$ results in a faster rise time. Again this affects the steepness of the rise time graph but the defining feature is the change in rise time. The derivative shows that the increase in $\omega_0$ increases the amplitude of the peak instantaneous change in current however this occurs earlier in time unlike the other figures. $\omega_0$ is proportional to the inverse of time ($\omega_0 \propto \frac{1}{t}$) and therefore the opposite of what is seen with the Heidler function (and $\tau_1$) is expected with the approximation (and $\omega_0$).
+
+The steepness factors and the rise time constants of the Heidler function and the approximation do not have the same effect on their respective waveshapes and hence these values for the approximation are calculated empirically. This method can be improved by finding some relationship between these parameters for the two functions (see \secref{sec:discussion_further_work}).
+
+%-----------------------------------
+%    Stroke Current Derivative
+%-----------------------------------
+\subsection{Lightning Stroke Current Derivative}
+\label{sub:discussion_stroke_current_derivative}
+When looking at the waveshapes of the derivatives of the approximated waveforms compared with those of the Heidler function in \figrefs{fig:dFS}{fig:dSS}, a few observations can be made. The first is that the peak change in current is seen at about 50\% of peak current value during the rise of the waveshape. This holds true for both the Heidler function and the approximation. This is expected as the rise time function is an S-curve which is most steep in the middle of the rise.
+
+From the two graphs, it can be seen that the maximum change in current in the subsequent stroke is ten times greater than that of the first stroke. This is critical when designing \glspl{lps} as the change in current is directly proportional to the voltage produced across an inductor (any wire). Therefore, the subsequent short strokes are more likely to have an effect on more sensitive systems due to even the smallest inductances.
+
+As discussed above, the difference in the errors in the first short stroke and the subsequent short stroke is almost the same. The maximum absolute error in the first stroke is \input{AdditionalFiles/FS/FSderror.txt}\unskip \% and \input{AdditionalFiles/SS/SSderror.txt}\unskip \% in the subsequent stroke. This could once again be attributed to rounding errors. This further indicates that the maximum absolute error could be constant for any approximation waveshape. However this is still merely a hypothesis and would require further simulation and verification.
+
+%----------------------------------------------------------------------------------------
+%    Frequency Domain
+%----------------------------------------------------------------------------------------
+
+\section{Frequency Domain}
+\label{sec:discussion_frequency_domain}
+One of the reasons for undertaking this study is to obtain an analytical Fourier transform for the Heidler function (see \chapref{ChapterApproach}). This implies that any transform of the Heidler function is done numerically which has inherent errors. There is no real way to quantify the error of the approximation in the frequency domain. \figref{fig:StandardFreqComparison} shows an adaptation of Figure~B.5 in the IEC~62305-1 standard with the results obtained from the Fourier transform of the approximation (\eqnref{eqn:approx_fourier_freq}) plotted on top.
+\inputtikzfig[t]{FSpsd}{StandardFreqComparison}{Amplitude densities of the different lightning currents according to {\gls{lpl}-I} as stipulated by the IEC~62305-1 with the results of the Fourier transform of the approximation (adapted from Figure~B.5 in \cite{IEC623051}). The numbers point to the solid lines obtained from the standard.}
+Line 2 shows the expected amplitude density of the first short stroke current while line 3 shows the expected amplitude density of the subsequent short stroke current. The results from the approximation clearly follow their respective waveshape expectations.
+
+A current amplitude density is chosen because that is what is stipulated in the standard. Clearly, if the values are multiplied by their respective frequencies i.e. \eqnref{eqn:approx_fourier_freq} is multiplied by frequency, the amplitude spectrum can be found. It is clear that for the first short stroke the peak current components are between about 500~Hz and 40~kHz with a rapid decay above 40~kHz. The subsequent short stroke has lower amplitude current components with a wider frequency range as expected. The peak current components here are between about 1~kHz and 1~MHz. The subsequent short stroke is more important when analysing wideband or high frequency systems/effects.
+
+%----------------------------------------------------------------------------------------
+%    Further Work
+%----------------------------------------------------------------------------------------
+
+\section{Further Work}
+\label{sec:discussion_further_work}
+This study provides a replacement for the Heidler function that can be integrated. There is enough evidence given via experimentation (simulation) to define a suitable function that can be used. The evidence in this study is based on the waveforms and information outlined in the standard. However there are areas that can be further evaluated to possibly optimise the use of this function.
+
+As noted above there is an error associated with the current waveshape and its derivative when compared with those of the Heidler function. This error is within a tolerable range and is quantified. It can therefore be taken into account in very sensitive system designs. It is posited above that this error could be consistent across all variations of the waveshape, however there are only two cases dealt with in this study (the only two waveshapes detailed in the IEC~62305-1) and therefore this hypothesis requires further testing.
+
+Another area for further research is again related to the errors that are quantified above. It is possible that the errors are as ``high'' as they are (no approximation will ever have zero error) because the numbers used for $n_a$ (approximation steepness factor) and $\omega_0$ (approximation rise time constant) are determined empirically. These could be better calculated by using some form of error optimisation algorithm. With these calculated numbers the error could be reduced.
+
+There may be some relationship between $\omega_0$ and the parameters used in the Heidler function, particularly $\tau_1$ (Heidler rise time constant). By the same notion there may be some relationship between $n_a$ and the parameters used in the Heidler function. These relationships would make plotting different waveshapes even easier than using the ratio method described in \secref{sub:discussion_lightning_stroke_current} above. Further work is required to find such relationships. This however does not affect the validity of the approximation as a suitable replacement for the Heidler function with an analytical integral.
+
+%----------------------------------------------------------------------------------------
+%    Conclusion
+%----------------------------------------------------------------------------------------
+
+\section{Conclusion}
+\label{sec:discussion_conclusion}
+This chapter has critically analysed the results obtained in the previous chapter. It has drawn some conclusions about these results and hence the viability of the approximation. Some further work is posited to further optimise the approximation and lower the error.
+
+The following chapter concludes this dissertation by summing up all the work that has been discussed and stating the conclusions that are drawn.

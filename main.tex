@@ -28,6 +28,14 @@
 
 \documentclass[11pt, a4paper, oneside]{Thesis} % Paper size, default font size and one-sided paper
 \usepackage{etex}
+\usepackage{multirow}
+
+\newcommand{\specialcellc}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\specialcelll}[2][c]{%
+  \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+\newcommand{\specialcellr}[2][c]{%
+  \begin{tabular}[#1]{@{}r@{}}#2\end{tabular}}
 
 \graphicspath{{./Figures/}} % Specifies the directory where pictures are stored
 
@@ -376,6 +384,7 @@ za lyubov\cprime~i podderzhku}}
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
 
+\glsresetall
 \input{./Chapters/ChapterIntro}
 \input{./Chapters/ChapterApproach}
 \input{./Chapters/ChapterBackground}

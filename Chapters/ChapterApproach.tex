@@ -30,6 +30,16 @@ There is a requirement for a function that can be used in place of the Heidler f
 \label{sec:approach_contribution_of_this_dissertation}
 This study develops a function that approximates the Heidler function in the time domain. This approximation has the advantage of having an analytical integral and taking the same form as that of the Heidler function; only the parts of the Heidler function that cannot be integrated are replaced in producing this approximation. This approximation is easy to use and the parameters for creating different lightning current waveshapes are determined easily. In a system design or simulation, it would be trivial to replace the Heidler function with this approximation. Most importantly, it can be utilised in performing Maxwell's equations or finding the Fourier transform (frequency components). \chapref{ChapterApprox} details the development process of this function with its properties.
 
+
+%----------------------------------------------------------------------------------------
+%    Scope and Limitations
+%----------------------------------------------------------------------------------------
+
+\section{Scope and Limitations}
+\label{sec:approach_scope_and_limitations}
+The approximation developed in this research has a clearly defined scope: it is based on the waveshapes mentioned in the IEC~62305-1 lightning protection standard. The approximation is ideally suited for use in cases where the integral of the Heidler function is required. Therefore, the IEC~62305-1 standard is used as a starting point for the research which introduces some limitations. For example, the parameters for the various \glspl{lpl} and lightning current models are dictated by those defined in this standard. The research is limited to the definitions in this standard and comparisons are only made to the two waveshapes mentioned therein. The parameters of the approximation are determined empirically from those defined in the IEC~62305-1 for the Heidler function. No evidence is provided in this research to show that this approximation can be used outside of the bounds of the IEC~62305-1. \chapref{ChapterDiscussion} discusses further research that can be carried out to either overcome or verify these limitations.
+
+
 %----------------------------------------------------------------------------------------
 %    Study Methodology
 %----------------------------------------------------------------------------------------

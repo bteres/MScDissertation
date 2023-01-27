@@ -1,0 +1,27 @@
+\begin{tikzpicture}[
+  % scale = 1.5,
+]
+  \begin{axis}[
+    width=0.8\linewidth,
+    xlabel=Time ($\mu s$),
+    ylabel=Current ($kA$),
+    grid=both,
+    /pgf/number format/1000 sep={},
+    xmin=0,
+    xmax=5e-6,
+    ymin=0,
+    cycle list name=linestyles*,
+    scaled x ticks={base 10:6},
+    xtick scale label code/.code={},
+    % samples=500,
+    legend pos=south east,
+    % restrict y to domain=0:200000
+    scaled y ticks={base 10:-3},
+    ytick scale label code/.code={},
+  ]
+    \addplot table[col sep=comma]{AdditionalFiles/SS/HeidlerSS.csv};
+    \addlegendentryexpanded{Heidler};
+    \addplot table[col sep=comma]{AdditionalFiles/SS/ApproxSS.csv};
+    \addlegendentryexpanded{Approximation};
+  \end{axis}
+\end{tikzpicture}

@@ -1,0 +1,25 @@
+\begin{tikzpicture}[
+  % scale = 1.5,
+]
+  \begin{axis}[
+    width=0.8\linewidth,
+    xlabel=Time ($\mu s$),
+    ylabel=Change in Current ($kA/\mu s$),
+    grid=both,
+    /pgf/number format/1000 sep={},
+    xmin=0,
+    xmax=5e-6,
+    ymin=-1e10,
+    ymax=30e10,
+    cycle list name=linestyles*,
+    scaled x ticks={base 10:6},
+    scaled y ticks={base 10:-9},
+    xtick scale label code/.code={},
+    ytick scale label code/.code={},
+  ]
+    \addplot table[col sep=comma] {AdditionalFiles/SS/dHeidlerSS.csv};
+    \addlegendentryexpanded{Heidler};
+    \addplot table[col sep=comma] {AdditionalFiles/SS/dApproxSS.csv};
+    \addlegendentryexpanded{Approximation};
+  \end{axis}
+\end{tikzpicture}

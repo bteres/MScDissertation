@@ -1,0 +1,231 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Professional Formal Letter
+% LaTeX Template
+% Version 1.0 (28/12/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Brian Moses (http://www.ms.uky.edu/~math/Resources/Templates/LaTeX/)
+% with extensive modifications by Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt,a4paper]{letter} % Specify the font size (10pt, 11pt and 12pt) and paper size (letterpaper, a4paper, etc)
+
+\usepackage{graphicx} % Required for including pictures
+\usepackage{tabularx,ragged2e}
+\usepackage{ltablex}
+\usepackage{microtype} % Improves typography
+\usepackage{gfsdidot} % Use the GFS Didot font: http://www.tug.dk/FontCatalogue/gfsdidot/
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Required for accented characters
+\usepackage{lmodern} % load a font with all the characters
+
+%\usepackage{geometry}
+%\usepackage{fancyhdr}
+%\usepackage{lipsum}
+%
+%\geometry{headheight = 0.6in}
+%%\fancypagestyle{firstpage}{\fancyhf{}\fancyhead[L]{\includegraphics[height=0.5in, keepaspectratio=true]{logo.png}}}
+%\fancypagestyle{plain}{\fancyhf{}\fancyhead[L]{\includegraphics[height=0.5in, keepaspectratio=true]{logo.png}}}
+%\pagestyle{plain}
+
+% Create a new command for the horizontal rule in the document which allows thickness specification
+\makeatletter
+\def\vhrulefill#1{\leavevmode\leaders\hrule\@height#1\hfill \kern\z@}
+\makeatother
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT MARGINS
+%----------------------------------------------------------------------------------------
+
+\textwidth 6.75in
+\textheight 9.25in
+\oddsidemargin -.25in
+\evensidemargin -.25in
+\topmargin -0.5in
+\parindent 0.2in
+\longindentation 0.50\textwidth
+
+%----------------------------------------------------------------------------------------
+%	SENDER INFORMATION
+%----------------------------------------------------------------------------------------
+
+\def\Who{Brett Ryan Terespolsky} % Your name
+\def\What{} % Your title
+\def\Where{} % Your department/institution
+\def\Address{} % Your address
+\def\CityZip{} % Your city, zip code, country, etc
+\def\Email{E-mail: bteres@gmail.com} % Your email address
+\def\TEL{Phone: 072-375-6160} % Your phone number
+\def\URL{} % Your URL
+
+%----------------------------------------------------------------------------------------
+%	HEADER AND FROM ADDRESS STRUCTURE
+%----------------------------------------------------------------------------------------
+
+\address{
+\includegraphics[width=1in]{logo.png} % Include the logo of your institution
+\hspace{5.1in} % Position of the institution logo, increase to move left, decrease to move right
+\vskip -1.07in~\\ % Position of the text in relation to the institution logo, increase to move down, decrease to move up
+\Large\hspace{1.5in}UNIVERSITY OF \hfill ~\\[0.05in] % First line of institution name, adjust hspace if your logo is wide
+\hspace{1.5in}THE WITWATERSRAND \hfill \normalsize % Second line of institution name, adjust hspace if your logo is wide
+\makebox[0ex][r]{\bf \Who \What }\hspace{0.08in} % Print your name and title with a little whitespace to the right
+~\\[-0.11in] % Reduce the whitespace above the horizontal rule
+\hspace{1.5in}\vhrulefill{1pt} \\ % Horizontal rule, adjust hspace if your logo is wide and \vhrulefill for the thickness of the rule
+\hspace{\fill}\parbox[t]{2.85in}{ % Create a box for your details underneath the horizontal rule on the right
+\footnotesize % Use a smaller font size for the details
+\Who \\ \em % Your name, all text after this will be italicized
+% \Where\\ % Your department
+% \Address\\ % Your address
+% \CityZip\\ % Your city and zip code
+\TEL\\ % Your phone number
+\Email\\ % Your email address
+% \URL % Your URL
+}
+\hspace{-1.4in} % Horizontal position of this block, increase to move left, decrease to move right
+\vspace{-1in} % Move the letter content up for a more compact look
+}
+
+%----------------------------------------------------------------------------------------
+%	TO ADDRESS STRUCTURE
+%----------------------------------------------------------------------------------------
+
+\def\opening#1{\thispagestyle{empty}
+{\centering\fromaddress \vspace{0.6in} \\ % Print the header and from address here, add whitespace to move date down
+%\hspace*{\longindentation}
+\vfill
+\today\hspace*{\fill}\par} % Print today's date, remove \today to not display it
+{\raggedright
+ \toaddress \par} % Print the to name and address
+\vspace{0.4in} % White space after the to address
+\noindent #1 % Print the opening line
+% Uncomment the 4 lines below to print a footnote with custom text
+%\def\thefootnote{}
+%\def\footnoterule{\hrule}
+%\footnotetext{\hspace*{\fill}{\footnotesize\em Footnote text}}
+%\def\thefootnote{\arabic{footnote}}
+}
+
+%----------------------------------------------------------------------------------------
+%	SIGNATURE STRUCTURE
+%----------------------------------------------------------------------------------------
+
+\signature{\Who \What} % The signature is a combination of your name and title
+
+\long\def\closing#1{
+%\vspace{0.2in} % Some whitespace after the letter content and before the signature
+\noindent % Stop paragraph indentation
+% \hspace*{\longindentation} % Move the signature right
+\hfill
+\parbox{\indentedwidth}{\raggedright
+#1 % Print the signature text
+\vskip 1.00in % Whitespace between the signature text and your name
+\fromsig}} % Print your name and title
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TO ADDRESS
+%----------------------------------------------------------------------------------------
+
+\begin{letter}
+{\\ School of Electrical and Information Engineering\\
+Chamber of Mines Building\\
+West Campus\\
+University of the Witwatersrand\\
+Johannesburg, South Africa, 2050\\
+}
+
+%----------------------------------------------------------------------------------------
+%	LETTER CONTENT
+%----------------------------------------------------------------------------------------
+
+\opening{Dear Prof. Takawira and Prof. Nixon,}
+
+I would like to express my gratitude to the School of Electrical and Information Engineering for the support that I received while carrying out my masters research and write up of my dissertation. Furthermore, I have had an enjoyable time at Wits and intend to maintain a long lasting relationship with the university and the school in particular. Most importantly, I would like to thank Ken for his constant support and encouragement. When things seemed hopeless, he managed to pick my spirits back up and I have made it this far because of him.
+
+I would also like to thank the external examiners for the time they put in to give me such detailed comments. Clearly, both examiners put in a lot of effort to understand my research and critically analyse my work. Their comments have helped me produce a document that I can truly be proud of.
+
+This letter details all of the comments made by the examiners with my remarks stating whether or not I made any changes and an explanation thereof. There is one section for each examiner's comments. The comments are tabulated detailing where the comment was made or was appropriate to, what the examiner's comment was and the description and/or correction made. Anything that requires further explanation is detailed below the table of the respective examiner. In making these corrections, I was able to pick up a few small typographical errors that have been corrected.
+
+\vfill
+\closing{Sincerely,}
+\end{letter}
+
+\newpage
+
+\noindent{\Large \textbf{Examiner A}}\\
+
+Examiner A's comments were very positive with only a small list of corrections. These corrections were mostly grammatical and I agreed with most of them as is indicated in the table below. The addition of the tables indicating the variation of the error with the change in the various parameters of the approximation added a lot of value to the dissertation.
+
+\begin{tabularx}{6.5in}{X|p{0.35\textwidth}|p{0.35\textwidth}}
+	\textbf{Placement} & \textbf{Examiner comment} & \textbf{Correction / Description} \\ \hline
+	\endhead
+	Page 1, Par 1, Line 2 & Lightning Protection Systems can be abbreviated LPSs not LPSes\ldots & Changed all occurrences.  \\ \hline
+	Page 8, Par Bottom, Line 1 & ``Referring back to Figure 3.1(a)\ldots'' - Should this be Figure 3.1?  & Correction made which clarifies the sentence slightly. \\ \hline
+	Page 9, Par 6, Line 3 & ``LPLs'' - has not been explained prior to use & The abbreviation is defined as Lightning Protection Levels at this point. \\ \hline
+	Page 12, Par 5, Line 1 & Reference for ``Feizhou and Shange'' & The reference was at the end of the paragraph and has been moved to directly after the sentence mentioning Feizhou and Shange. This paragraph and the following 4 paragraphs all have the same style of referencing now. \\ \hline
+	Page 13, Par 2, Line 1 & Incorrect spelling of Vujevi\'{c} & Corrected all occurrences in document. \\ \hline
+	Page 14, Par 2, Line 7 & ``\ldots so that they can be interchanged\ldots'' - explain what is meant by they & Changed to ``\ldots so that the Heidler function and the approximation can be interchanged\ldots'' to clarify the statement. \\ \hline
+	Page 15, Par 1, Line 1 & ``By evaluating Equations 4.2 and 4.3 independently the limitations of the equations can be found.'' This paragraph is too diluted and needs to be firmed up by elaborating on the specifics. & This paragraph has been rewritten to explain what the two equations are. Their limitations are briefly discussed and the future sections that analyse these equations are alluded to. Finally it is stated that these are the building blocks for the approximation. \\ \hline
+	Page 15, Section 4.2.1, Par 1 & Point out that the rise of the Heidler function is represented by an ``S-curve'' before delving into the development of the ``S-curve'' & The second sentence now specifies that ``This function is identified as a form of an ``S-curve.'' \\ \hline
+	Page 16, Par 2, Line 2 & The sentence ``Therefore an alternative is required that can easily be modified'' fits better at the end of the paragraph. & Sentence has been moved to the end of the paragraph. \\ \hline
+	Page 17, Par 1, Line 1 & ``\ldots outlined above'' could read better with a colon & a colon has been added to indicate an explanatory sentence. \\ \hline
+	Page 17, Par 2, Line 2 & Move ``Where $I_0$, $\eta$ and $y(t)$ \ldots function'' to follow equation 4.6 & Move to below equation. \\ \hline
+	Page 19 & Would have been useful if the two traces (Figure 4.2 and Figure 4.3) were presented in a single graph for purposes of comparison & Figures 4.2 and 4.3 are not comparable (one is a rise function and the other is a decay function). Assuming the examiner is referring to figures 4.2 and 4.4, these are not compared here as the chapter is about the approximation and not talking to its accuracy. It would break the focus and flow of the chapter to introduce such a comparison at this point. All comparisons are made in the results and discussion chapters. \\ \hline
+	Page 21, Par 1 & It may be useful to clearly show the differences in the rise time and the peak current in a table for the different values of steepness factor expressed as a percentage. This would have allowed for a better ``feel'' for the sensitivity of the different factors. & Added Table 4.2 to show how the rise time and peak current change as a percentage with a change in the steepness factor. \\ \hline
+	Page 22 & Same comment as for the steepness factor above should be applied to the rise time constant & Added Table 4.4 to show how the rise time and peak current change as a percentage with a change in the rise time constant. \\ \hline
+	Page 23 & Same comment as for the steepness factor above should be applied to the fall time constant & Added Table 4.6 to show how the rise time and peak current change as a percentage with a change in the fall time constant. \\ \hline
+	Page 21, Section 4.4.2 & Heading to read ``Rise Time Constant'' & Added the word ``Constant'' to the section title. \\ \hline
+	Page 22, Section 4.4.3 & Heading to read ``Fall Time Constant'' & Added the word ``Constant'' to the section title. \\ \hline
+	Pages 24, 29 and 40 & Figures 4.9, 5.1 and 6.3 are not discussed in the sections where they appear & A typesetting style has been used throughout the document where the images and tables are inserted where there is space close to where they are references. With this style, images and tables are moved to the top and bottom of pages and this causes the section heading to appear after the image in some cases.  \\ \hline
+	Page 33, Par 1, Line 1 & It may be useful to have a sentence discussing Figure 5.4 before the figure and not following the figure & A typesetting style has been used throughout the document where the images and tables are inserted where there is space close to where they are references. With this style, images and tables are moved to the top and bottom of pages and sometimes they appear before they are referenced and sometimes after. \\ \hline
+	Page 56, Ref [26] & Spelling  - ``Vujevi\'c'' and ``Lovri\'c'' & Spelling has been corrected. \\ \hline
+	List of References & ``Last accessed \textit{<date>}'' should be added to internet references including [2], [3], [6], [7], [9], [10], [12], [16], [18], [19], [20], \ldots [33]. & These references are not internet references. They are journal articles and conference papers. For the convenience of the reader, a URL has been included to find the particular journal article or conference paper online. There is no need for a last accessed \textit{<date>} here. \\ \hline
+\end{tabularx}
+
+\newpage
+\noindent{\Large \textbf{Examiner B}}\\
+
+Examiner B marked up the dissertation and made more general statements about the dissertation in the examiner's report. These comments were very insightful and I have made changes accordingly. The comparison back to the standard was overlooked in the original submission and the comment about a tolerable range of error has now helped polish the dissertation. The table below indicates the comments and/or changes relating to the examiner's remark. The list below is a discussion around some points that the examiner made on the dissertation.
+
+\begin{tabularx}{6.5in}{X|p{0.35\textwidth}|p{0.35\textwidth}}
+	\textbf{Placement} & \textbf{Examiner comment} & \textbf{Correction / Description} \\ \hline
+	\endhead
+	Page vi, Contents & ``Developing an Approximation to the Heidler Function'' used as subsequent sections names & Changed first occurrence to ``Decomposing the Heidler function''.  \\ \hline
+	Page xiv, Nomenclature & IEC~62305 is not the only lightning protection standard & Specified that it is the IEC lightning protection standard. \\ \hline
+	Page 6, Par 1, Line 2 & ``There is some insight given \ldots'' should read ``Insight is given \ldots'' & Changed accordingly \\ \hline
+	Page 11, Par 1, Line 5 & ``For instance, a subsequent short stroke for LPL-I would have a maximum current steepness of about 545~kA/$\mu$s [21]'' could be clarified. & Clarified by changing the sentence to ``\ldots 545~kA/$\mu$s, which is far greater than the maximum value outlined in the standard of less than 200~kA/$\mu$s [21].'' \\ \hline
+	Page 13, Par 3 & Are there any other limitations? & The limitations of the approximation are discussed in the future work. I have added a section to Chapter 2 to introduce these limitations accordingly. \\ \hline
+	Page 13, Par 4, Line 1 & remove the words ``all'' and ``that is'' from ``\ldots given all the background information that is relevant \ldots'' & Changed accordingly \\ \hline
+	Page 36, Par 4 & Is the comparison made to error margins allowed? & This comparison was made to show the overall difference between the Heidler function and the approximation. However a paragraph and table have been added to the dissertation to make the crucial connection back to the IEC~62305 standard. This table shows that the peak current and rise time errors in the approximation are within the tolerable bands allowed for by the standard. \\ \hline
+	Page 39, Par 3, Line 1 & The word ``when'' is used twice in the same sentence. & Second ``when'' is removed from the sentence. \\ \hline
+	Page 41, Par 3, Line 2 & What is a tolerable range of error? & According to the IEC~62305-1 standard, there is a tolerance of $\pm$10\% on the peak current and $\pm$20\% on the rise time. A paragraph has been added to Section~6.2.1 to explain this and Table~6.1 compares the errors with this tolerance in mind. \\ \hline
+	Page 43, Par 2, Line 4 & Please compare with standard. & The new table (Table~6.1) and paragraph in Section~6.2.1 explain this in detail. \\ \hline
+	Page 43, Par 2, Last Line & Elaborate on when it is required to use frequency spectra of lightning & This is discussed in detail in the background chapter. See Section~3.2.2. This details the work done by Lee et al., in which they are looking at the effects of the various frequency components (rather than current amplitude) of lightning on lightning injury and death. Another area where the frequency spectrum of lightning is required is in the design of systems such as a lightning detection system which acts as an antenna picking up lightning frequencies. Understanding the strongest frequencies enables the designer to make changes depending on the particular circumstances. \\ \hline
+	Page 43, Par 3, Line 2 & Remove ``with each other'' from ``\ldots they are easily interchangeable with each other.'' & Changed accordingly \\ \hline
+\end{tabularx}
+
+Examiner B has mentioned a few things that he would have liked to seen in the dissertation. These things are discussed in more detail below. The overarching comment made by examiner B was comparing the approximation back to the standard.
+\begin{itemize}
+	\item \textbf{A slight expansion on the limitations of the research would enhance the conclusion and add to the humility of the dissertation.} - The scope and limitations of the work have now been clearly defined in Chapter 2, the Approach Taken. I have now made it clear that the research is scoped as an approximation to the Heidler function within the bounds of the IEC~62305 standard. Therefore evidence is only given as to where the approximation could be used as an alternative to the Heidler function. It is not a general alternative across all standards, designs and research areas.
+	\item \textbf{It would have been advantageous if a comparison was made between the errors obtained in the approximations performed in this thesis and the errors allowed in the relevant standards with regard to the Heidler function.} - Clearly there is more than one standard that can be used for comparison but this research is clearly scoped to just the IEC~62305. This is now more clearly defined. Moreover, a comparison is now made back to the standard indicating the tolerable range of peak current and rise time and this shows that the approximation falls within these ranges.
+	\item \textbf{An expansion on the particular usage of the frequency spectra of lightning strokes with an example would help the reader relate to the particular problem} - There are various cases such as the design of lightning detection systems that use frequencies to determine where and when a lightning strike occurred. However, the basics have been defined in the background and it is clear that this approximation is useful in any scenario that requires an analytical integral of a lightning stroke current, not only when the frequency spectra are required. This is more of an example of a specific case.
+	\item \textbf{It would have been really interesting to see the results of simulations with some extreme waveforms, for example with very long rise times, which the examiner suspects would not have a large error at all} - I agree with the examiner but the scope of the research is limited. In order to keep the research focused and not stray off topic, the simulations were chosen with great care. It would be nice to see such simulations in a research paper and these simulations are alluded to in the future work section of the dissertation.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

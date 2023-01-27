@@ -1,6 +1,6 @@
 % -*- pdf: BrettTerespolskyMScDissertation.pdf -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Thesis 
+% Thesis
 % LaTeX Template
 % Version 1.4 (30/6/13)
 %
@@ -8,7 +8,7 @@
 % http://www.latextemplates.com
 %
 % Original authors:
-% Steven Gunn 
+% Steven Gunn
 % http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/
 % and
 % Sunil Patel
@@ -27,10 +27,19 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[11pt, a4paper, oneside]{Thesis} % Paper size, default font size and one-sided paper
+\usepackage{etex}
+\usepackage{multirow}
+
+\newcommand{\specialcellc}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\specialcelll}[2][c]{%
+  \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+\newcommand{\specialcellr}[2][c]{%
+  \begin{tabular}[#1]{@{}r@{}}#2\end{tabular}}
 
 \graphicspath{{./Figures/}} % Specifies the directory where pictures are stored
 
-\usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
+\usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers'
 \usepackage{har2nat}
 \makeatletter
 \def\@mb@citenamelist{cite,citep,citet,citealp,citealt}
@@ -44,8 +53,8 @@
 % finalold  - Reject all edits. Refrain from using this.
 % finalnew  - Accept all edits. Refrain from using this.
 % The above two options should not be used, rather the trackchanges.py application must be used. Alternatively there is the acceptchanges.py for the terminal but check options carefully
-% footnotes - Display edits as footnotes. 
-% margins   - Display edits as margin notes. 
+% footnotes - Display edits as footnotes.
+% margins   - Display edits as margin notes.
 % inline    - Display edits inline.
 \addeditor{KJN}
 \addeditor{BRT}
@@ -60,13 +69,49 @@
 \makeatother
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usepackage{circuitikz}
+\pgfplotsset{compat=1.10}
+\usetikzlibrary{shapes.geometric, intersections,arrows}
 \usepgfplotslibrary{external}
-\tikzexternalize[prefix=TikzFigures/] %  activate!
+\usetikzlibrary{matrix}
+\usepgfplotslibrary{groupplots}
+\usepackage{pdfpages}
+\tikzexternalize[prefix=TikzFigures/,shell escape=-enable-write18,optimize command away=\includepdf] %  activate!
 
-\pgfplotscreateplotcyclelist{linestyles*}{solid,dashed, dotted, loosely dashed, loosely dotted, loosely dashdotted}
+\usepackage[toc, acronym, nonumberlist, nopostdot]{glossaries}
+\newglossarystyle{mylong}{
+\glossarystyle{long}
+    \renewenvironment{theglossary}%
+        {\begin{longtable}{p{0.35\linewidth}p{0.6\linewidth}}}%
+        {\end{longtable}}%
+    \renewcommand*{\glossaryentryfield}[5]{%
+        \glsentryitem{##1}\glstarget{##1}{##2} & ##3\glspostdescription\space ##5\\[7.5pt]}%
+}
+\glossarystyle{mylong}
+\renewcommand{\glsnamefont}[1]{\textbf{#1}}
+
+\makeglossaries
+
+\usepackage{breqn}
+
+\usepackage{Extras}
 
 \hypersetup{urlcolor=blue, colorlinks=false} % Colors hyperlinks in blue - change to black if annoying
 \title{\ttitle} % Defines the thesis title - don't touch this
+
+%----------------------------------------------------------------------------------------
+%	Allow Russian alphabet from english letters. Just type \textcry{...}
+%----------------------------------------------------------------------------------------
+\usepackage[OT2,T1]{fontenc}
+\newcommand\textcyr[1]{{\fontencoding{OT2}\fontfamily{wncyr}\selectfont #1}}
+\def\Eoborotnoye{\char3}
+\def\eoborotnoye{\char11}
+\def\cprime{\char126}
+\def\cdprime{\char127}
+
+\input{AdditionalFiles/acronyms.tex}
+\input{AdditionalFiles/nomenclature.tex}
+\glsaddall
 
 \begin{document}
 
@@ -93,40 +138,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\begin{titlepage}
-\begin{center}
-
-\textsc{\LARGE \univname}\\[1.5cm] % University name
-\textsc{\Large Masters Dissertation}\\[0.5cm] % Thesis type
-
-\HRule \\[0.4cm] % Horizontal line
-{\huge \bfseries \ttitle \note[BRT]{Need to find a suitable title}}\\[0.4cm] % Thesis title
-\HRule \\[1.5cm] % Horizontal line
- 
-\begin{minipage}{0.4\textwidth}
-\begin{flushleft} \large
-\emph{Author:}\\
-\href{http://www.bterespolsky.tk}{\authornames} % Author name - remove the \href bracket to remove the link
-\end{flushleft}
-\end{minipage}
-\begin{minipage}{0.4\textwidth}
-\begin{flushright} \large
-\emph{Supervisor:} \\
-\href{http://dept.ee.wits.ac.za/~nixon}{\supname} % Supervisor name - remove the \href bracket to remove the link  
-\end{flushright}
-\end{minipage}\\[3cm]
- 
-\large \textit{A thesis submitted in fulfilment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
-\textit{in the}\\[0.4cm]
-\groupname\\\deptname\\[2cm] % Research group name and department name
- 
-{\large \today}\\[4cm] % Date
-%\includegraphics{Logo} % University/department logo - uncomment to place it
- 
-\vfill
-\end{center}
-
-\end{titlepage}
+\maketitle
 
 %----------------------------------------------------------------------------------------
 %	DECLARATION PAGE
@@ -137,20 +149,13 @@
 
 \addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
 
-I, \authornames, declare that this thesis titled, `\ttitle' and the work presented in it are my own. I confirm that:
+I, \authornames, declare that this dissertation titled, `\ttitle'  is my own unaided work. It is being submitted to the Degree of Master of Science to the University of the Witwatersrand, Johannesburg. It has not been submitted before for any degree or examination to any other University.
 
-\begin{itemize} 
-\item[\tiny{$\blacksquare$}] This work was done wholly or mainly while in candidature for a research degree at this University.
-\item[\tiny{$\blacksquare$}] Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
-\item[\tiny{$\blacksquare$}] Where I have consulted the published work of others, this is always clearly attributed.
-\item[\tiny{$\blacksquare$}] Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
-\item[\tiny{$\blacksquare$}] I have acknowledged all main sources of help.
-\item[\tiny{$\blacksquare$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
-\end{itemize}
- 
+\vfill
+
 Signed:\\
 \rule[1em]{25em}{0.5pt} % This prints a line for the signature
- 
+
 Date:\\
 \rule[1em]{25em}{0.5pt} % This prints a line to write the date
 }
@@ -165,10 +170,10 @@ Date:\\
 
 \null\vfill % Add some space to move the quote down the page a bit
 
-\textit{``Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism."}
+\textit{``Give me six hours to chop down a tree and I will spend the first four sharpening the axe."}
 
 \begin{flushright}
-Dave Barry
+Abraham Lincoln
 \end{flushright}
 
 \vfill\vfill\vfill\vfill\vfill\vfill\null % Add some space at the bottom to position the quote just right
@@ -183,8 +188,7 @@ Dave Barry
 
 \abstract{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
 
-The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
-}
+The work presented contributes to research in lightning protection simulations and focuses on approximating the Heidler function with an analytical integral and hence a frequency domain representation. The integral of lightning current models is required in the analysis of lightning events including the induced effects and frequency analyses of lightning strikes. Previous work in this area has produced very specific forms of the Heidler function that are used to represent lightning current waveshapes. This work however focuses on a generic solution with parameters that can be modified to produce any lightning current waveshape that is required. In the research presented, such an approximation is obtained. This function has an analytical solution to the integral and hence can be completely represented in the frequency domain. This allows for a true representation of Maxwell's equations for \gls{em} fields and for an analytical frequency domain analysis. It has parameters that can be changed to obtain different waveshapes (10/350, 0.25/100, etc.). The characteristics of the approximation are compared with those of the Heidler function to ascertain whether or not the function is applicable for use with the lightning protection standard (IEC~62305-1). It is shown that the approximation does represent the same characteristics as those of the Heidler function and hence can be used in IEC~62305-1 standardised applications. This represents a valuable contribution to engineers working in the field of lightning protection, specifically simulation models.
 
 \clearpage % Start a new page
 
@@ -196,7 +200,29 @@ The Thesis Abstract is written here (and usually kept to just this page). The pa
 
 \acknowledgements{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
 
-The acknowledgements and the people to thank go here, don't forget to include your project advisor\ldots
+I would like to thank Professor Ken J. Nixon for all his guidance, advice and enthusiasm throughout the duration of this work. I would also like to thank Professor Ian R. Jandrell for his support.
+
+Thank you to my colleagues in the High Voltage and Lightning EMC research group as well as the staff of the Genmin Laboratories for their encouragement and support.
+
+Thanks to the staff and postgraduate students of the school of electrical and information engineering in particular Mr Carson McAfee, Mr Jacques Naud\'e, Professor Ivan Hofsajer and Ms Yu-Chieh (Jessie) Liu for their long conversations and advice.
+
+Special thanks are extended to Professor Montaz Ali and Professor Anne Love for the advice regarding complicated mathematics.
+
+The following organisations are gratefully acknowledged for funding and supporting the High Voltage and Lightning EMC Research Groups:
+\begin{itemize}
+    \item CBI-Electric for direct support and funding the Chair of Lightning at the University of the Witwatersrand.
+    \item Eskom through the Tertiary Education Support Programme (TESP).
+    \item The National Research Foundation (NRF).
+    \item The Department of Trade and Industry (DTI) for Technology and Human Resources for Industry Programme (THRIP) funding.
+\end{itemize}
+
+Furthermore, I formally acknowledge the funding that I received from the following establishments over the years:
+\begin{itemize}
+    \item The National Research Foundation (NRF) (\textit{opinions expressed and conclusions arrived at in this thesis are my own and should not necessarily be attributed to the NRF}).
+    \item The University Postgraduate Merit Award.
+\end{itemize}
+
+Last but not least, I am thankful to all my family and friends for their encouragement, patience and support (and to those that assisted in the pain-staking process of proof reading).
 }
 \clearpage % Start a new page
 
@@ -209,9 +235,11 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 \lhead{\emph{Contents}} % Set the left side page header to "Contents"
 \tableofcontents % Write out the Table of Contents
 
+\clearpage
 \lhead{\emph{List of Figures}} % Set the left side page header to "List of Figures"
 \listoffigures % Write out the List of Figures
 
+\clearpage
 \lhead{\emph{List of Tables}} % Set the left side page header to "List of Tables"
 \listoftables % Write out the List of Tables
 
@@ -223,26 +251,22 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 
 \setstretch{1.5} % Set the line spacing to 1.5, this makes the following tables easier to read
 
-\lhead{\emph{Abbreviations}} % Set the left side page header to "Abbreviations"
-\listofsymbols{ll} % Include a list of Abbreviations (a table of two columns)
-{
-\textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere \\
-%\textbf{Acronym} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or \\
-}
+% \lhead{\emph{Abbreviations}} % Set the left side page header to "Abbreviations"
+% \printglossary[type=\acronymtype, title=Abbreviations]
 
 %----------------------------------------------------------------------------------------
 %	PHYSICAL CONSTANTS/OTHER DEFINITIONS
 %----------------------------------------------------------------------------------------
 
-\clearpage % Start a new page
+% \clearpage % Start a new page
 
-\lhead{\emph{Physical Constants}} % Set the left side page header to "Physical Constants"
+% \lhead{\emph{Physical Constants}} % Set the left side page header to "Physical Constants"
 
-\listofconstants{lrcl} % Include a list of Physical Constants (a four column table)
-{
-Speed of Light & $c$ & $=$ & $2.997\ 924\ 58\times10^{8}\ \mbox{ms}^{-\mbox{s}}$ (exact)\\
-% Constant Name & Symbol & = & Constant Value (with units) \\
-}
+% \listofconstants{lrcl} % Include a list of Physical Constants (a four column table)
+% {
+% Speed of Light & $c$ & $=$ & $2.997\ 924\ 58\times10^{8}\ \mbox{ms}^{-\mbox{s}}$ (exact)\\
+% % Constant Name & Symbol & = & Constant Value (with units) \\
+% }
 
 %----------------------------------------------------------------------------------------
 %	SYMBOLS
@@ -254,25 +278,98 @@ Speed of Light & $c$ & $=$ & $2.997\ 924\ 58\times10^{8}\ \mbox{ms}^{-\mbox{s}}$
 
 \listofnomenclature{lll} % Include a list of Symbols (a three column table)
 {
-$a$ & distance & m \\
-$P$ & power & W (Js$^{-1}$) \\
+% \textbf{Symbol} & \textbf{Description} & \textbf{Units} \\
+% & & \\ % Gap
+\multicolumn{3}{l}{\textbf{Electromagnetic Equations of a Lightning Stroke}} \\
+$E_z \left( D, t \right)$ & Electric field & V/m \\
+$B_{\phi} \left( D,t \right)$ & Magnetic field & T \\
+
+& & \\ % Gap
+\multicolumn{3}{l}{\textbf{Lightning Current Return Stroke Modelling}} \\
+$i \left( z',t \right)$ & Lightning current return stroke model & A \\
+$i \left( 0,t \right)$ & Lightning channel base current & A \\
+
+& & \\ % Gap
+\multicolumn{3}{l}{\textbf{Double Exponential Function}} \\
+$i_e \left( t \right)$ & Double exponential lightning stroke current model & A \\
+$I_0$ & Peak current & A \\
+$A$ & Double exponential peak current correction &  \\
+$\alpha$ & Double exponential decay time constant & 1/s \\
+$\beta$ & Double exponential rise time constant & 1/s \\
+
+& & \\ % Gap
+\multicolumn{3}{l}{\textbf{Heidler Function}} \\
+$i_h \left( t \right)$ & Heidler function lightning stroke current model & A \\
+$\eta$ & Peak current correction &  \\
+$\tau_1$ & Heidler rise time constant & s \\
+$\tau_2$ & Decay time constant & s \\
+$n_h$ & Heidler steepness factor & \\
+$i'_h \left( t \right)$ & First time derivative of $i_h \left( t \right)$ & A/s \\
+$x_h \left( t \right)$ & Heidler function rise time function &  \\
+$y \left( t \right)$ & Decay function & \\
+
+& & \\ % Gap
+\multicolumn{3}{l}{\textbf{Heidler Function Approximation}} \\
+$X_a \left( s \right)$ & Rise time function of the approximation (Laplace domain) &  \\
+$x_a \left( t \right)$ & Rise time function of the approximation (time domain) &  \\
+$i_a \left( t \right)$ & Approximated lightning stroke current model & A \\
+$\omega_0$ & Rise time constant of the approximation & rad/s \\
+$n_a$ & Steepness factor of the approximation & \\
+$i'_a \left( t \right)$ & First time derivative of $i_a \left( t \right)$ & A/s \\
+$I_a \left( j\omega \right)$ & Fourier transform (angular frequency) of $i_a \left( t \right)$ &  \\
+$I_a \left( jf \right)$ & Fourier transform (linear frequency) of $i_a \left( t \right)$ & A/Hz \\
+
+& & \\ % Gap
+\multicolumn{3}{l}{\textbf{Error Evaluation}} \\
+$e \left( s \right)$ & Error function & A \\
+$e' \left( t \right)$ & First time derivative of $e \left( t \right)$ & A/s \\
+
 % Symbol & Name & Unit \\
 
-& & \\ % Gap to separate the Roman symbols from the Greek
+% & & \\ % Gap to separate the Roman symbols from the Greek
 
-$\omega$ & angular frequency & rads$^{-1}$ \\
+% $\omega$ & angular frequency & rads$^{-1}$ \\
 % Symbol & Name & Unit \\
 }
+
+%----------------------------------------------------------------------------------------
+%    Nomenclature
+%----------------------------------------------------------------------------------------
+
+\clearpage % Start a new page
+
+\lhead{\emph{Nomenclature}} % Set the left side page header to "Abbreviations"
+\printglossary[title=Nomenclature]
+
 
 %----------------------------------------------------------------------------------------
 %	DEDICATION
 %----------------------------------------------------------------------------------------
 
+\clearpage
+
 \setstretch{1.3} % Return the line spacing back to 1.3
 
 \pagestyle{empty} % Page style needs to be empty for this page
 
-\dedicatory{For/Dedicated to/To my\ldots} % Dedication text
+\dedicatory{To my loving parents\\
+for their endless support\\
+and belief in me.
+\vspace{2em}
+
+\textcyr{\textit{Moe{\u i} SHurochke,\\
+za lyubov\cprime~i podderzhku}}
+
+% \textcyr{Privet SHurochka\\
+% a b v g d e \"e zh z i\\ {\u i} k l m n o p r s t\\ u f kh c ts
+% shch ch sh y yu\\ ya
+% \Eoborotnoye~
+% \eoborotnoye~
+% \cprime~
+% \cdprime~
+% }
+}
+ % Dedication text
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 
@@ -287,13 +384,16 @@ $\omega$ & angular frequency & rads$^{-1}$ \\
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
 
-\input{./Chapters/Chapter1}
-%\input{./Chapters/Chapter2} 
-%\input{./Chapters/Chapter3}
-%\input{./Chapters/Chapter4} 
-%\input{./Chapters/Chapter5} 
-%\input{./Chapters/Chapter6} 
-%\input{./Chapters/Chapter7} 
+\glsresetall
+\input{./Chapters/ChapterIntro}
+\input{./Chapters/ChapterApproach}
+\input{./Chapters/ChapterBackground}
+\input{./Chapters/ChapterApprox}
+\input{./Chapters/ChapterResults}
+% \input{./Chapters/ChapterApplication}
+\input{./Chapters/ChapterDiscussion}
+\input{./Chapters/ChapterConclusion}
+\clearpage
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
@@ -306,9 +406,9 @@ $\omega$ & angular frequency & rads$^{-1}$ \\
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
-\input{./Appendices/AppendixA}
-%\input{./Appendices/AppendixB}
-%\input{./Appendices/AppendixC}
+\input{./Appendices/AppendixDevelopment}
+% \input{./Appendices/AppendixMath}
+\input{./Appendices/AppendixICLP}
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 
@@ -322,9 +422,9 @@ $\omega$ & angular frequency & rads$^{-1}$ \\
 
 \lhead{\emph{References}} % Change the page header to say "Bibliography"
 
-\bibliographystyle{ieeetr} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
-
-\bibliography{Bibliography} % The references (bibliography) information are stored in the file named "Bibliography.bib"
+\bibliographystyle{IEEEtranN} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+% \nocite{*}
+\bibliography{Bibliographies/Bibliography} % The references (bibliography) information are stored in the file named "Bibliography.bib"
 
 \lhead{\emph{Bibliography}}
 
@@ -334,7 +434,7 @@ $\omega$ & angular frequency & rads$^{-1}$ \\
 \def\@biblabel#1{\hspace*{-\labelsep}}
 \makeatother
 
-\bibliographybib{Bibliography}
+\bibliographybib{Bibliographies/Bibliography}
 \nocitebib{*}
 
-\end{document}  
+\end{document}

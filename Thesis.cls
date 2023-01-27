@@ -4,7 +4,7 @@
 % This template has been downloaded from:
 % http://www.latextemplates.com
 %
-% This class file defines the structure and design of the template. 
+% This class file defines the structure and design of the template.
 %
 % There is one part of this file that needs to be filled out - the variables
 % dictating the document particulars such as the author name, university
@@ -67,21 +67,29 @@
 \onehalfspacing
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2.0ex plus0.5ex minus0.2ex}
-\usepackage{vmargin}
+% \usepackage{vmargin}
+
+% Changed vmargin to geometry so that pdfpages is compatible.
+\usepackage{geometry}
+\geometry{includehead,includefoot,
+  left=1.5in,right=1.0in,
+  top=0.6in,bottom=0.8in,
+  headheight=20pt,headsep=0.25in,
+  footskip=0.3in}
 
 \RequirePackage[utf8]{inputenc} % Allows the use of international characters (e.g. Umlauts)
 
 %----------------------------------------------------------------------------------------
-%	MARGINS
+%	MARGINS (only used with vmargin)
 %----------------------------------------------------------------------------------------
-\setmarginsrb  { 1.5in}  % left margin
-                        { 0.6in}  % top margin
-                        { 1.0in}  % right margin
-                        { 0.8in}  % bottom margin
-                        {  20pt}  % head height
-                        {0.25in}  % head sep
-                        {   9pt}  % foot height
-                        { 0.3in}  % foot sep
+% \setmarginsrb  { 1.5in}  % left margin
+%                         { 0.6in}  % top margin
+%                         { 1.0in}  % right margin
+%                         { 0.8in}  % bottom margin
+%                         {  20pt}  % head height
+%                         {0.25in}  % head sep
+%                         {   9pt}  % foot height
+%                         { 0.3in}  % foot sep
 %----------------------------------------------------------------------------------------
 \raggedbottom
 \setlength{\topskip}{1\topskip \@plus 5\p@}
@@ -182,56 +190,56 @@
 %	defined as \examname above so you cite it as \examname
 %----------------------------------------------------------------------------------------
 
-\thesistitle{Thesis Title} % Your thesis title - this is used in the title and abstract
-%-------------------------------------------------  
-\supervisor{Prof. K. J. \textsc{Nixon}} % You supervisor's name - this is used in the title page
-%-------------------------------------------------   
+\thesistitle{An Approximation to the Heidler Function with an Analytical Integral for Engineering Applications Using Lightning Currents} % Your thesis title - this is used in the title and abstract
+%-------------------------------------------------
+\supervisor{Prof. Ken. J. \textsc{Nixon}} % You supervisor's name - this is used in the title page
+%-------------------------------------------------
 \examiner{} % Your examiner's name - this is not currently used anywhere in the template, cite it with \examname if you want it
-%-------------------------------------------------   
-\degree{MSc Eng} % Your degree name - this is currently used in the title page and abstract
-%-------------------------------------------------   
+%-------------------------------------------------
+\degree{Master of Science in Engineering} % Your degree name - this is currently used in the title page and abstract
+%-------------------------------------------------
 \authors{Brett Ryan \textsc{Terespolsky}} % Your name - this is used in the title page and abstract
-%-------------------------------------------------   
+%-------------------------------------------------
 \addresses{} % Your address - this is not currently used anywhere in the template, cite it with \addressnames if you want it
-%-------------------------------------------------   
+%-------------------------------------------------
 \subject{} % Your subject area - this is not currently used anywhere in the template, cite it with \subjectname if you want it
-%-------------------------------------------------   
+%-------------------------------------------------
 \keywords{} % Keywords for your thesis - this is not currently used anywhere in the template, cite it with \keywordnames if you want it
-%-------------------------------------------------   
+%-------------------------------------------------
 \university{\texorpdfstring{\href{http://www.wits.ac.za} % Your university's URL
                 {University of the Witwatersrand, Johannesburg}} % Your university's name - this is currently used in the title page
                 {University of the Witwatersrand, Johannesburg}}
-%-------------------------------------------------   
+%-------------------------------------------------
 \UNIVERSITY{\texorpdfstring{\href{http://www.wits.ac.za} % Your university's URL
                 {UNIVERSITY OF THE WITWATERSRAND, JOHANNESBURG}} % Your university's name in capitals - this is currently used in the abstract page
                 {UNIVERSITY OF THE WITWATERSRAND, JOHANNESBURG}}
-%-------------------------------------------------                
+%-------------------------------------------------
 \department{\texorpdfstring{\href{http://www.eie.wits.ac.za} % Your department's URL
                 {School of Electrical and Information Engineering}} % Your department's name - used in the title page and abstract
                 {School of Electrical and Information Engineering}}
-%-------------------------------------------------                
+%-------------------------------------------------
 \DEPARTMENT{\texorpdfstring{\href{http://www.eie.wits.ac.za} % Your department's URL
                 {SCHOOL OF ELECTRICAL AND INFORMATION ENGINEERING}} % Your department's name in capitals - this is not currently used anywhere in the template, cite it with \DEPTNAME if you want it
                 {SCHOOL OF ELECTRICAL AND INFORMATION ENGINEERING}}
-%-------------------------------------------------                
+%-------------------------------------------------
 \group{\texorpdfstring{\href{Research Group Web Site URL Here (include http://)} % Your research group's URL
-                {Lightning and EMC Research Group}} % Your research group's name - this is currently used in the title page 
+                {Lightning and EMC Research Group}} % Your research group's name - this is currently used in the title page
                 {Lightning and EMC Research Group}}
-%-------------------------------------------------                
+%-------------------------------------------------
 \GROUP{\texorpdfstring{\href{Research Group Web Site URL Here (include http://)} % Your research group's URL
                 {LIGHTNING AND EMC RESEARCH GROUP}} % Your research group's name in capitals - this is not currently used anywhere in the template, cite it with \GROUPNAME if you want it
                 {LIGHTNING AND EMC RESEARCH GROUP}}
-%-------------------------------------------------                
+%-------------------------------------------------
 \faculty{\texorpdfstring{\href{http://www.wits.ac.za/ebe} % Your faculty's URL
                 {Faculty of Engineering and the Built Environment}} % Your faculty's name - this is currently used in the abstract page
                 {Faculty of Engineering and the Built Environment}}
-%-------------------------------------------------                
+%-------------------------------------------------
 \FACULTY{\texorpdfstring{\href{http://www.wits.ac.za/ebe} % Your faculty's URL
                 {FACULTY OF ENGINEERING AND THE BUILT ENVIRONMENT}} % Your faculty's name in capitals - this is not currently used anywhere in the template, cite it with \FACNAME if you want it
                 {FACULTY OF ENGINEERING AND THE BUILT ENVIRONMENT)}}
-%----------------------------------------------------------------------------------------    
+%----------------------------------------------------------------------------------------
 
-% The default title page, this is not used in this www.latextemplates.com version            
+% The default title page, this is not used in this www.latextemplates.com version
 \renewcommand\maketitle{
   \btypeout{Title Page}
   \hypersetup{pdftitle={\@title}}
@@ -239,40 +247,38 @@
   \hypersetup{pdfauthor=\authornames}
   \hypersetup{pdfkeywords=\keywordnames}
   \thispagestyle{empty}
-  \begin{titlepage}
-    \let\footnotesize\small
-    \let\footnoterule\relax
-    \let \footnote \thanks
-    \setcounter{footnote}{0}
-    \null\vfil
-    \vskip 60\p@
-    \begin{center}
-      \setlength{\parskip}{0pt}
-      {\large\textbf{\UNIVNAME}\par}
+    \begin{titlepage}
+      \begin{center}
+
+      \textsc{\LARGE \univname}\\[1.5cm] % University name
+      \textsc{\Large Masters Dissertation}\\[0.5cm] % Thesis type
+
+      \HRule \\[0.4cm] % Horizontal line
+      {\huge \bfseries \ttitle}\\[0.4cm] % Thesis title
+      \HRule \\[1.5cm] % Horizontal line
+
+      \begin{minipage}{0.4\textwidth}
+      \begin{flushleft} \large
+      \emph{Author:}\\
+      \href{http://www.bteres.tk}{\authornames} % Author name - remove the \href bracket to remove the link
+      \end{flushleft}
+      \end{minipage}
+      \begin{minipage}{0.4\textwidth}
+      \begin{flushright} \large
+      \emph{Supervisor:} \\
+      \href{http://dept.ee.wits.ac.za/~nixon}{\supname} % Supervisor name - remove the \href bracket to remove the link
+      \end{flushright}
+      \end{minipage}\\[3cm]
+
+      \large \textit{A dissertation submitted to the \facname, \univname, in fulfilment of the requirements for the degree of \degreename}\\[0.3cm] % University requirement text
+      \textit{in the}\\[0.4cm]
+      \groupname\\\deptname\\[2cm] % Research group name and department name
+
+      {\large \today}\\[4cm] % Date
+      % \includegraphics{Logo} % University/department logo - uncomment to place it
       \vfill
-      {\huge \bf \@title \par}
-      \vfill
-      {\LARGE by \par}
-      \smallskip
-      {\LARGE \authornames \par}
-      \vfill
-      {\large A thesis submitted in partial fulfillment for the \par}
-      {\large degree of \degreename \par}
-      \bigskip
-      \bigskip
-      {\large in the \par}
-      {\large \facname \par}
-      {\large \deptname \par} 
-      \bigskip
-      \bigskip
-      \bigskip
-      {\Large \@date \par}
-      \bigskip
-    \end{center}
-    \par
-    \@thanks
-    \vfil\null
-  \end{titlepage}
+      \end{center}
+    \end{titlepage}
   \setcounter{footnote}{0}%
   \global\let\thanks\relax
   \global\let\maketitle\relax

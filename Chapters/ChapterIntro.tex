@@ -1,0 +1,31 @@
+% -*- root: ../main.tex -*-
+% Chapter Template
+
+\chapter{Introduction} % Main chapter title
+
+\label{ChapterIntro} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\lhead{\chaptername~\thechapter. \emph{Introduction}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+Mathematical lightning current models are used in many areas of research ranging from the design of \glspl{lps} to the understanding of electric and magnetic fields associated with lightning discharges \cite{IEC623051, ZhangFeizhouandLiuShanghe2002}.
+Lightning current models are typically used as design tools and for further research into the understanding of the effects of a lightning strike.
+The Heidler function, which is the standard lightning current model, cannot be integrated analytically and therefore the frequency domain of the lightning strike cannot be accurately presented nor is it possible to utilise Maxwell's equations in analysing lightning events. This research presents a suitable replacement to the Heidler function for situations where an integral is required.
+
+This replacement falls under the category of an approximation to the Heidler function and as such, it can be tailored to any waveshape required just as the \gls{heidler} can by varying the parameters.
+An investigation is carried out to determine the accuracy of the approximation. This is done by using computer simulations of the approximation and the results are compared to the \gls{heidler} to determine the viability of this approximation in the design of \glspl{lps}. All the results are based on the waveshapes defined in the IEC~62305-1 so that there is a known control\footnote{\textit{Note to the reader:} This research assumes familiarity with the IEC 62305-1 standard (``Protection against lightning - Part 1: General principles'') - it is advised that the reader have access to this document when reading this dissertation.}.
+
+\chapref{ChapterApproach} details the \textbf{\textit{approach taken}} in designing and evaluating the approximation to the \gls{heidler}. The assumptions and constraints made in this study are outlined. The significance of this study in the field of lightning research is discussed with reference to the problem statements.
+
+\chapref{ChapterBackground} discusses the relevant \textbf{\textit{background}} information with respect to this research. This includes information about the different lightning current models and their applications. Key areas relating to this study are detailed from the IEC~62305-1 standard. A review of the existing work in the field of approximating lightning currents is also identified.
+
+\chapref{ChapterApprox} provides the \textbf{\textit{approximation to the \gls{heidler}}} that was developed in this study. All the components of the equation are discussed as well as the parameters used to create the various waveshapes. The properties of the approximation along with its derivative and integral are detailed. A comparison of the parameters used in the approximation and the \gls{heidler} are also given.
+
+\chapref{ChapterResults} investigates the accuracy of the approximation by simulating \textbf{\textit{results}} and comparing them to the expected values obtained from the \gls{heidler}. This includes the waveshapes in the IEC~62305-1 standard and the frequency responses.
+
+\chapref{ChapterDiscussion} summarises the results obtained from the simulations. A \textbf{\textit{discussion}} of the viability of this approximation as a suitable replacement to the \gls{heidler} is provided. \textbf{\textit{Future work}} in the field of approximating lightning current models is detailed with the goal of optimising the approximation detailed in this study.
+
+\chapref{ChapterConclusion} provides a \textbf{\textit{conclusion}} to the work and discusses the viability of this function in various fields of lightning research.
+
+\appref{AppendixDev} details the \textbf{\textit{development}} of the approximation including all the mathematical steps.
+
+\appref{AppendixDef} presents an edited copy of a paper published at a peer-reviewed conference, to provide the preliminary results obtained using the approximation.

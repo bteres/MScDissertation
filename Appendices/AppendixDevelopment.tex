@@ -1,0 +1,78 @@
+% Appendix Template
+
+\chapter{Approximation to the Heidler Function - Development} % Main appendix title
+
+\label{AppendixDev} % Change X to a consecutive letter; for referencing this appendix elsewhere, use \ref{AppendixX}
+
+\lhead{\chaptername~\thechapter. \emph{Approximation Development}} % Change X to a consecutive letter; this is for the header on each page - perhaps a shortened title
+
+%----------------------------------------------------------------------------------------
+%    Overview
+%----------------------------------------------------------------------------------------
+
+\section{Overview}
+\label{sec:app_dev_overview}
+The process of developing an approximation to the Heidler function is easily described in a few steps. This appendix goes into more detail and shows all the necessary steps in developing the approximation.
+
+%----------------------------------------------------------------------------------------
+%    Developing the Approximation
+%----------------------------------------------------------------------------------------
+
+\section{Developing the Approximation}
+\label{sec:app_dev_developing_the_approximation}
+\eqnref{eqn:app_HFrise} shows the Heidler rise time function and it is clear that this function cannot be analytically integrated.
+\begin{equation}
+    x_h \left( t \right) = \frac{{\left (\frac{t}{\tau_1} \right )}^{n_h}}{1 + {\left (\frac{t}{\tau_1} \right )}^{n_h}}
+    \label{eqn:app_HFrise}
+\end{equation}
+A plot of this is seen in \figref{fig:AppHeidlerFunctionRise} (an S-curve).
+\inputtikzfig{HeidlerFuncRise}{AppHeidlerFunctionRise}{Graph depicting the rise function of the Heidler function (an S-curve).}
+
+The S-curve rises to a value of one and remains constant. It is clear from this that a step response is required. The approximation rise time function can be defined as in \eqnref{eqn:app_approx_rise_laplace}.
+\begin{equation}
+    X_a \left( s \right) = \frac{1}{s} H \left( s \right)
+    \label{eqn:app_approx_rise_laplace}
+\end{equation}
+Where: \\
+\begin{tabular}{cll}
+    $H \left( s \right)$ & = & Transfer function (Laplace domain) \\
+    $\frac{1}{s}$ & = & Unit step function in the Laplace domain
+\end{tabular}\\
+The step response of an n-th order real and negative pole in the Laplace domain produces an S-shaped curve response in the time domain. Therefore the transfer function can be defined as in \eqnref{eqn:app_tf_func}.
+\begin{equation}
+    H \left( s \right) = \frac{1}{\left( \frac{s}{\omega_0} + 1 \right)^{n_a}}
+    \label{eqn:app_tf_func}
+\end{equation}
+Where: \\
+\begin{tabular}{cll}
+    $\omega_0$ & = & Some real and negative value
+\end{tabular}\\\\
+By substitution, \eqnref{eqn:app_approx_rise_laplace} becomes \eqnref{eqn:app_approx_rise_laplace_final}.
+\begin{equation}
+    X_a \left( s \right) = \frac{1}{s} \frac{1}{\left( \frac{s}{\omega_0} + 1 \right)^{n_a}}
+    \label{eqn:app_approx_rise_laplace_final}
+\end{equation}
+
+The time domain equation is required which can be found by taking the inverse Laplace transform of \eqnref{eqn:app_approx_rise_laplace_final} as defined in \eqnref{eqn:app_approx_rise}.
+\begin{align}
+    x_a \left( t \right) & = \mathcal{L}^{-1} \left \{ X_a \left( s \right) \right \} \notag\\
+     & = \mathcal{L}^{-1} \left \{ \frac{1}{s} \frac{1}{\left( \frac{s}{\omega_0} + 1 \right)^{n_a}} \right \} \notag\\
+     & = 1 - e^{-\omega_0 t} \left ( \sum\limits_{i=0}^{n_a} \frac{\omega_0^i t^i}{i!} \right )
+    \label{eqn:app_approx_rise}
+\end{align}
+
+By substituting this back into the generalised form of the lightning stroke current shown in \eqnref{eqn:app_eqn_small}, the complete approximation can be seen in \eqnref{eqn:app_approx}.
+\begin{align}
+    i_a \left( t \right) & = \frac{I_0}{\eta} x_a \left( t \right) y \left( t \right) \label{eqn:app_eqn_small} \\
+    & = \frac{I_0}{\eta} \left ( 1 - e^{-\omega_0 t} \left ( \sum\limits_{i=0}^{n_a} \frac{\omega_0^i t^i}{i!} \right ) \right ) y \left( t \right) \notag\\
+    & = \frac{I_0}{\eta} \left ( 1 - e^{-\omega_0 t} \left ( \sum\limits_{i=0}^{n_a} \frac{\omega_0^i t^i}{i!} \right ) \right ) e^{-t/\tau_2}
+    \label{eqn:app_approx}
+\end{align}
+
+%----------------------------------------------------------------------------------------
+%    Conclusion
+%----------------------------------------------------------------------------------------
+
+\section{Conclusion}
+\label{sec:app_dev_conclusion}
+This appendix provides all the mathematical steps required to develop the approximation to the Heidler function. This starts at the step response function and goes through until the final equation.

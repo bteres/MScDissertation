@@ -1,0 +1,174 @@
+%------------------------------------------------------------------------------
+%                           Global Tikz Styles and Equations
+%------------------------------------------------------------------------------
+
+\pgfplotscreateplotcyclelist{linestyles*}{solid,dashed, dotted, loosely dashed, loosely dotted, loosely dashdotted}
+\tikzset{declare function={
+    rise(\t,\ta,\n) = and(\t >= 0, \t < \ta/(2^(2/\n))) * 2*(\t/\ta)^\n    +
+    and(\t >= \ta/2^(2/\n), \t< \ta) * ((-2)*(\t/\ta)^\n + 4*(\t/\ta)^(\n/2) - 1)     +
+     (\t>\ta) * (1);
+  },
+  declare function={
+    fall(\t,\tb) = exp(-\t/\tb);
+  },
+  declare function={
+    teres(\t,\ta,\tb,\n,\I,\e) = (\I/\e)*fall(\t,\tb)*rise(\t,\ta,\n);
+  },
+  declare function={
+    hrise(\t,\ta,\n) = ((\t/\ta)^\n)/(1 + (\t/\ta)^\n);
+  },
+  declare function={
+    heidler(\t,\ta,\tb,\n,\I,\e) = (\I/\e)*hrise(\t,\ta,\n)*fall(\t,\tb);
+  }
+}
+
+% argument #1: any options
+\newenvironment{customlegend}[1][]{%
+    \begingroup
+    % inits/clears the lists (which might be populated from previous
+    % axes):
+    \csname pgfplots@init@cleared@structures\endcsname
+    \pgfplotsset{#1}%
+}{%
+    % draws the legend:
+    \csname pgfplots@createlegend\endcsname
+    \endgroup
+}%
+
+% makes \addlegendimage available (typically only available within an
+% axis environment):
+\def\addlegendimage{\csname pgfplots@addlegendimage\endcsname}
+
+% definition to insert numbers
+\pgfkeys{/pgfplots/number in legend/.style={%
+        /pgfplots/legend image code/.code={%
+            \node at (0.125,-0.0225){#1}; % <= changed x value
+        },%
+    },
+}
+\pgfplotsset{
+every legend to name picture/.style={west}
+}
+
+%------------------------------------------------------------------------------
+%                           New Commands
+%------------------------------------------------------------------------------
+
+\newcommand{\micro}{\mbox{$\mu$}}
+\newcommand{\usec}{\ensuremath{\mu}s\xspace}
+\newcommand{\kApusec}{\ensuremath{kA/\mu}s\xspace}
+\newcommand{\uF}{\ensuremath{\mu}F\xspace}
+\newcommand{\uH}{\ensuremath{\mu}H\xspace}
+\newcommand{\uA}{\ensuremath{\mu}A\xspace}
+
+\newcommand{\Ohm}{\ensuremath{\Omega}\xspace}
+\newcommand{\ohm}{\Ohm}
+\newcommand{\ohms}{\Ohm}
+\newcommand{\ohmm}{\ensuremath{\Omega}m\xspace}
+% The Degree symbol (works in any mode) - thnx Dr Clark
+% Usage: ..... 90\degrees North .....
+\newcommand{\degrees}{\ensuremath{^\circ}}
+% \newcommand{\degree}{\degrees\xspace}
+
+%\newcommand{\first}{1$^{st}$}
+%\newcommand{\secnd}{2$^{nd}$}
+\newcommand{\first}{1st}
+\newcommand{\secnd}{2nd}
+
+% Steve
+\newcommand{\jw}{j\omega}
+\newcommand{\w}{\omega}
+\newcommand{\matlab}{\mbox{\textrm{M\kern-.05em\textsc{a\kern-.01em t\kern-.05em\-l\kern-.05em a\kern-.05em b}}}\xspace}
+%\newcommand{\ahref}[1]{\href{#1}{\url{#1}}}            % unnecessary as \url is redefined by hyperref to form a link
+\newcommand{\email}[1]{\href{mailto:#1}{#1}}            % for email hyperlinks
+
+% Shorthands for references
+\newcommand{\figref}[1]{{\sl Figure~\ref{#1}\/}}
+\newcommand{\figrefs}[2]{{\sl Figures~\ref{#1}\/} and {\sl \ref{#2}}\/}
+\newcommand{\tabref}[1]{{\sl Table~\ref{#1}\/}}
+\newcommand{\tabrefs}[2]{{\sl Tables~\ref{#1}\/} and {\sl \ref{#2}}\/}
+\newcommand{\tabrefn}[3]{{\sl Tables~\ref{#1}\/} and {\sl \ref{#2}}\/ and {\sl \ref{#3}}}
+\newcommand{\eqnref}[1]{{\sl Equation~\ref{#1}\/}}
+\newcommand{\eqnrefs}[2]{{\sl Equations~\ref{#1}} and {\sl \ref{#2}}\/}
+\newcommand{\secref}[1]{{\sl Section~\ref{#1}}\xspace}
+\newcommand{\chapref}[1]{{\sl Chapter~\ref{#1}}\xspace}
+\newcommand{\appref}[1]{{\sl Appendix~\ref{#1}}\xspace}
+\newcommand{\secrefs}[2]{{\sl Sections~\ref{#1}\/} and {\sl \ref{#2}}\/}
+\newcommand{\secrefn}[3]{{\sl Sections~\ref{#1}\/}, {\sl \ref{#2}} and {\sl \ref{#3}}\/}
+
+%
+% Miscellaneous
+
+\newcommand{\smallitem}{\setlength{\itemsep}{-0.5ex}}
+\newcommand{\Bit}{\begin{itemize}\smallitem}
+\newcommand{\Eit}{\end{itemize}}
+
+% To fix font problems changed ptmb to ptmb8r (SPL)
+\newfont{\msbf}{ptmb8r}
+
+%\newtheorem{theorem}{Theorem}
+\newtheorem{thrm}{Theorem}
+
+
+% Allow global changes to "units" in equations
+\newcommand{\units}[1]
+{\rm \hspace{1em} [#1]}
+
+%\newcommand{\ahref}[1]
+%{\href{#1}{#1}}
+\newcommand{\ahref}[1]{#1}
+
+
+% Macros for easy inclusion of figures
+\newcommand{\inputtikzfig}[4][htbp]
+{
+\begin{figure}[#1]
+    \centering
+    \tikzsetnextfilename{#3}
+    \input{#2}
+    \caption{#4}
+    \label{fig:#3}
+\end{figure}
+}
+\newcommand{\inputfig}[2]
+{
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics{#1} % it will pull in the figure
+        \caption{#2}   % includes fig num
+        \label{fig:#1} % ie may \ref{fig:#1}
+    \end{center}
+\end{figure}
+}
+\newcommand{\inputfigtop}[2]
+{
+\begin{figure}[t!]
+    \begin{center}
+        \includegraphics{#1} % it will pull in the figure
+        \caption{#2}   % includes fig num
+        \label{fig:#1} % ie may \ref{fig:#1}
+    \end{center}
+\end{figure}
+}
+\newcommand{\inputfigbot}[2]
+{
+\begin{figure}[b!]
+    \begin{center}
+        \includegraphics{#1} % it will pull in the figure
+        \caption{#2}   % includes fig num
+        \label{fig:#1} % ie may \ref{fig:#1}
+    \end{center}
+\end{figure}
+}
+
+% This for equation "wheres"
+\newcommand{\where}[1]
+{
+% \begin{center}
+  % \begin{scriptsize}
+    \begin{tabular}{cll}
+    {#1}
+    \end{tabular}
+  % \end{scriptsize}
+% \end{center}
+}

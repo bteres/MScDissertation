@@ -1,0 +1,49 @@
+\begin{tikzpicture}[
+  place/.style={circle,draw,fill,thick,
+                 inner sep=0pt,minimum size=1mm},
+]
+  \begin{axis}[
+    % xlabel=Time ($\mu s$),
+    % ylabel=Current ($kA$),
+    grid=none,
+    % /pgf/number format/1000 sep={},
+    % xmin=0,
+    % xmax=500e-6,
+    ymin=-0.05,
+    ymax=0.4,
+    % cycle list name=linestyles*,
+    % scaled x ticks={base 10:6},
+    % xtick scale label code/.code={},
+    samples=1000,
+    xtick=\empty,
+    ytick=\empty,
+    hide axis,
+    enlargelimits=false,
+    width=\textwidth
+  ]
+    
+    \addplot+[mark=none, color=black, solid, domain=0:500e-6] {heidler(\x, 100e-6, 200e-6, 4, 1, 1)};
+    \node at (axis cs:0.000116, 0.36)(T90) [place, pin=180:{90\%}] {};
+    \node at (axis cs:0.0000485, 0.04)(T10) [place, pin=110:{10\%}] {};
+    \node at (axis cs:3.2e-4, 0.2)(T50) [place, pin=180:{50\%}] {};
+    \node at (axis cs:4.0057e-5,0)(O1) [pin=30:{$O_1$}]{};
+    % \node at (axis cs:4.0057e-5, 0)(O1) [] {};
+    % \node at (axis cs:4.0057e-5, -0.05)(O11) [] {};
+    % \node at (axis cs:1.2338e-4,0.395)(P1)[] {};
+    % \node at (axis cs:1.2338e-4,-0.05)(P11)[] {};
+    \addplot+[mark=none, color=black, solid, domain=4.0057e-5:1.2338e-4]{\x*(4.7407e3) + (-0.1899)};
+    \addplot+[mark=none, color=black, dotted, domain=1e-4:2e-4]{0.395};
+    \addplot+[mark=none, color=black, solid, domain=0:500e-6]{0};
+    \draw[dashed] (axis cs:1.2338e-4,0.395) -- (axis cs:1.2338e-4,-0.025);
+    \draw[dashed] (axis cs:4.0057e-5,0) -- (axis cs:4.0057e-5,-0.05);
+
+    \draw[dashed] (axis cs:3.2e-4, 0.21) -- (axis cs:3.2e-4, -0.05);
+
+    \draw[>=latex,<->] (axis cs:4.0057e-5, -0.015) -- (axis cs:1.2338e-4, -0.015) node [midway,fill=white] {$T_1$};
+    \draw[>=latex,<->] (axis cs:4.0057e-5, -0.04) -- (axis cs:3.2e-4, -0.04) node [midway,fill=white] {$T_2$};
+
+    % \draw (O1) -- (O11);
+    % \draw (P1) -- (P11);
+
+  \end{axis}
+\end{tikzpicture}
